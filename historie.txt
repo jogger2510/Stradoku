@@ -1,0 +1,3799 @@
+--------------------------------------------------------------------------------
+
+Dokumentation der Änderungen 
+
+--------------------------------------------------------------------------------
+
+
+Version 6.6.4
+
+16.1.25
+- Referenzen auf "arche.kar" entfernt
+- Abhängigkeit zu Java 8 entfernt
+- Abhängigkeit zu Windows entfernt
+- Code zur Bestimmung und Verwendung des aktuellen Verzeichnisses überarbeitet
+
+Version 6.6.3
+
+31.12.2024
+In StradokuApp.symLeisteStrEditieren() setToolTipText() für das Bearbeiten-Symbol
+so hinzugefügt, dass der Hinweis im Lösungsmodus auch dann gezeigt wird, wenn
+zuvor der NeueingabeModus aktiv war.
+
+29.12.2024
+Bei der Anzeige von Lösungstipps wurde die betroffene Zelle nicht selektiert wenn
+showSelect vom Anwender auf false gesetzt war. Problem behoben indem in 
+StradokuApp.setLoeTipps() der Aufruf von strBoard.setShowSelector() hinzugefügt
+wurde. Die Methode setShowSelector() wurde in StradokuBoard hinzugefügt.
+
+
+22.12.2024
+In StradokiBoard die Anzeige für die selektierte Zelle überarbeitet. Wird jetzt
+auch über die Shift-Taste global verwendet.
+
+
+19.12.2024
+StradokuOrg.setMaxSchwer()() überarbeitet, so dass nun auch für Level 5Aufgaben
+einer Reduzierung der Vorgabe- und Sperrwerte erreicht werden kann.
+
+
+17.12.2024
+In StradokuOrg.setMaxSchwer() zu den angezeigten Ergebnissen auch den Level
+hinzugefügt.
+
+
+Version 6.6.2
+
+02.12.2024
+Version auf 6.6.3 angehoben
+
+Hilfedatei für Ausgabe von Verlauf.log überarbeitet.
+
+In StradokuApp.makeTestModus() wurden beim Verlassen des Testmodus die Notizen
+gelöscht. Damit wird die Auswertung eines Testlaufes erheblich erschwert. 
+Die Methode strOrg.entferneNotizen() auskommentiert.
+
+In StraddokuOrg.setTestWert() wurde der Aufruf von strApp.setStatusBarHinweis()
+nach oben vor den rekursiven Aufruf von setTestWert() verschoben, da ansonsten
+die vom Anwender veranlasste erste Eingabe erst nach evenuell möglichen weiteren
+Zuweisungen angezeigt wird.
+
+
+30.11.2024
+Alle Lösungsschritte für die Statuszeile werden nun auch für den Testmodus in die 
+Log-Datei aufgenommen. Gleichzeitig wurde die Ausgabe für Änderungen durch ein 
+Navigieren ausgeschlossen. In StradokuApp.setKndListenMode(), .makeTestModus()
+(Umbenennung von 'startTestModus'), .symLeisteKndListenModeActionPerformed()
+und .mbTestModeCheck() sowie in Stradoku.Org.copyKandidaten(), .schrittWiederholen(),
+schrittZurueck() und .setTestWert() vorgenommen. 
+Die Hilfe-Datei wurde ergänzt. 
+
+
+Version 6.6.1
+Die Version auf 6.6.2 angehoben.
+
+In der Log-Datei wurde die letzte Zuweisung, mit der die Aaufgabe gelöst wurde,
+nicht angeeigt. In StradokzOrg.setWert() freieZellen und gelöst gesondert behandelt
+und in StradokuApp.geloest() beim Aufruf von setStatusBarHinweis() log auf true 
+gesetzt. Damit wird in der log-Datei jetzt auch die letzte Zuweisung und der Hinweis
+auf "gelöst" ausgegeben.
+
+
+Version 6.6.0
+27.11.2024
+Die Version auf 6.6.1 angehoben.
+
+Hilfe-Datei aktualisiert.
+
+Ausgabe von Aktionen in die Log-Datei beschränkt. Es werden praktisch nur
+noch unmittelbare Fortschritte im Lösungsverlauf protokolliert.
+
+
+25.11.2024
+In der Hilfedatei wurde noch nicht auf die automatische Erstellung der Protokolldatei
+'Verlauf.log' hingewiesen. Dies wurde nachgeholt.
+
+Der Hilfe-Button blieb auch aktiv, wenn die Lösung gezeigt wurde. Dies wurde durch
+entsprechende Enable-Schaltungen verhindert, vermtlich noch nicht vollständig,
+verhindert. 
+
+
+Version 6.5.1
+
+24.11.2024
+Version auf 6.6 erhöht.
+
+StradokuApp.setStatusBarHinweis() so geändert, dass nahezu alle Statusbarmeldungen
+auch in die Verlaufsdatei übernommen werden und zwar mit Angabe der Position für
+die jeweilige Aktion.
+
+In StradokuApp > Menü > Anzeige die drei Optionen "Startposition", "Aktuelle Position"
+und "Lösung zeigen" hinzugefügt.
+
+Hilfedatei entsprechend erweitert.
+
+In StradokuApp.bearbeiteAufgabe() wurde nach dem Beenden der Bearbeitung für eine
+Neueingabe beim Aufruf von resetBearbeitungsModus() fals als Parameter übergeben.
+Dies führte zu einem falschen Text im Datei-Menü und dem Tooltip-Text für das
+Symbol "symLeisteStrEingabe". Bug durch Übergabe von true behoben. 
+
+
+06.11.2024
+Ein Zufall zeigte, dass ein extremes Stradoku von Andrew Stuart nicht gelöst
+werden konnte. Nach langen Suchen stand fest, dass dieser offensichtliche Bug
+nicht auftrat, wenn die Methode levelSolver.nackteGruppen() nicht aufgerufen
+wurde. Wurde sie jedoch generell nicht aufgerufen, dann wurden aus sehr vielen
+Stradokus mit dem Level 4 solche mit dem Level 5.
+Eine Überprüfung dieser Methode ergab keinerlei Unstimmigkeiten. Sie musste
+also für Level 4 Aufgaben richtige Ergebnisse liefern. Ein Test, den Aufruf
+dieser Methode nur dann zu erlauben, wenn die backtracking-Suche noch nicht
+aktiviert war, verlief erfolgreich. Die Testeinstellung wurde daher übernommen.
+
+Für die Neueingabe eines Stradoku musste in StradokuApp.setBearbeitungsModus()
+noch der Aufruf von StradokuOrg.setzeStradokuNeu() und .uebernehmeNeueAufgabe()
+hinzugefügt werden.
+
+
+02.11.2024
+In Hilfedatei den Abschnitt 'Stradoku selbst erstellen' umgeschrieben.
+
+In set- und resetBearbeitungsModus() wurde die Anzeige in Menü-Bearbeiten-Testmodus
+nicht behandelt. Bug behoben
+
+
+27.10.2024
+StradokuOrg.setSperrZellenWerte() überarbeitet. Es können jetzt auch für
+Level 5 und für gültige, jedoch nicht eindeutig lösbare Stradokus Sperrwerte
+gesetzt werden.
+
+In StradokuBoard.myKeyPressed() war bei der Abfrage "eWert >= 0 && ..." nicht
+die "0" sondern ">= 1" gesetzt. Das führte dazu, dass die Kurztaste Shift+0
+nicht mehr funktionierte. Außerdem war auch durch die Abbruchbedingung 
+"code == KeyEvent.VK_ALT" die Alt-Taste lahmgelegt. Beide Bugs behoben.
+
+
+23.10.2024
+In StradokuBoard.myKeyPressed() wurde für die Ausblendung der Selektion nicht
+berücksichtigt, dass im Testmodus, wenn nur noch ein Kandidat angezeigt wird,
+dieser nicht zugewiesen werden darf. Also wurde eine Zuweisung versucht und die
+Eingabe der Spacetaste damit nicht weiter ausgewertet. Bug behoben.
+
+
+21.10.2024
+StradokuBoard.myKeyPressed() überarbeitet. Jetzt kann eine Selektion über die 
+Space-Taste aus- und eingeblendet werden. Außerdem kann über die Space-Taste
+ein angezeigter Single-Kandidat zugewiesen werden.
+
+Mit der Maustaste kann durch einen Klick auf den Rand die Selection ebenfalls
+aus- und eingeblendet werden.
+
+
+14.10.2024
+In LevelSolver.loeseAufgabe() die Oberkante eines Abbruchs auf 10000 hochgesetzt.
+Mit dem letzten Wert wurde zu früh abgebrochen.
+
+Der schwere Bug, der vermeintlich erkannt und behoben wurde, war zwar ein Bug, 
+aber die Annahme, Stradokus mit dem Level 5 dürften nicht wie alle anderen im 
+Archiv verändert werden, da Sie sonst unlösbar würden, ist falsch. 
+Ursache war, eine zu niedrige Einstellung der Obergrenze für die Durchlaufvariable 'd'
+in LevelLoeser.LevelSolver(). Damit wurde für Backtracking die Suche nach geeigneten
+Testwerten zu früh abgebrochen.
+
+Nachdem alle Änderungen für die Behebung des vermeintlichen Bugs wieder zurück-
+genommen waren, lassen sich nun auch Level-5 Stradokus wie alle anderen im Archiv
+manipulieren.
+
+
+Version 6.5.0
+
+08.10.2024
+In Archiv.getAufgabe() musste für den Level 5 die Aktualisierung der Daten, also 
+die Modifizierung selbst und auch der jeweilige Status nach einem Zugriff noch
+deaktiviert werden. In ArchivLevel.getArchivLevel() wurde der Level 5 ebenfalls
+ausgeschlossen.
+
+
+Version 6.4.1
+
+02.10.2024
+
+Schweren Bug erkannt und behoben.
+Stradokus mit dem Level 5 dürfen nicht wie alle anderen im Archiv verändert werden.
+Sie werden sonst unlösbar. Das gilt nach meinen Feststellungen fast ausnamslos für 
+alle Level-5 Aufgaben. Diese müssen von den Änderungen ausgenommen werden. Etwa 200 
+sind bereits geändert und damit nicht mehr zu lösen. Mindestens bei eingen können 
+die Änderungen rückgängig gemacht werden.
+Um die Level-5 Aufgaben im Archiv von Änderungen auszunehmen mussten folgende
+Methoden modifiziert werden:
+In Archiv.checkDoppelVorkommen(), .checkArchivtauglich(), in StradokuOrg.loeseStradoku(),
+in SwImportStrListe.add_internStradoku() und in StradokuApp.bearbeiteAufgabe() und
+.checkDoppelEintraege(). Eventuell kommen nach dem Austesten weitere Änderungen dazu.
+
+
+01.10.2024
+Bei Level 5 Aufgaben, bei denen nicht alle Varianten lösbar sind, wurde nicht
+angezeigt, dass sie nicht archivgeeignet sind. Dieser Bug wurde behoben. Dafür
+waren Änderungen in ArchivLevel.getArchivLevel() und in StradokuApp.bearbeiteAufgabe()
+erforderlich.
+
+Bei der Übername aus dem Archiv wird die Archivtauglichkeit in diesen Fällen
+auch nicht erkannt, was noch behoben werden muss.
+
+
+30.09.2024
+In StradokuApp.bearbeiteAufgabe() wurde bei einem Abbruch einer Neueingabe zuerst
+resetBearbeitungsModus() und dann ladenKonfiguration() aufgerufen. Dies führte zu
+einer falschen Angabe der freien Zellen. Nach einer Umstellung ist die Anzeige
+nun korrekt.
+
+
+29.09.2024
+In StradokuApp.bearbeiteAufgabe() und StradokuOrg.setzeStradokuNeu() Änderungen
+vorgenommen, damit bei einer Neueingabe der Level 0 und für die freien Zellen 81
+angezeigt  wird.
+
+
+22.09.2024
+In StrasdokuBoard.myMousePressed() die vereinfachte Zuweisung von Singles auch
+für Notizen ermöglicht.
+
+
+17.09.2024
+Beim Übernehmen eines Stradoku aus einer sortierten Liste in die Zwischenablage
+wurde nicht der markierte String sondern der String übernommen, welcher in der
+Zeile stand, in der bei unsortierter Liste der markierte String steht.
+Um diesen Bug zu beseitigen wurde im Konstruktor von ListenFrame nach
+      int z = jTable.getSelectedRow();
+für die Ermittlung der markierten Zeile folgende Abfrage eingeführt: 
+      int afgNr = (int)jTable.getValueAt(z, 1) - 1;
+Danach wird der für das Clipbord einzugende String mit:
+      String clipStr = (String) listenModel.getValueAt(afgNr, 2);
+ermittelt.
+
+
+06.09.2024
+TippLoeser.check38erStra() Prüfung auf verlorene Kandidaten erweitert.
+
+LogLevelLoeser in TippLoeser umbenannt.
+
+
+
+04.09.2024
+Kurztaste T für Lösungstipp geben eingeführt und in Hilfe ergänzt.
+
+
+01.09.2024
+In StrdakuOrg.setSperrZellenWerte() Text für hinzufügen von Sperrwerten geändert.
+In GlobaleObjekte das Array getRandomNdx[81] definiert.
+In StradokuOrg die Methode initGetRandomNdx() eingeführt.
+In StradokuOrg.setMaxSchwer() das Array getRandomNdx[] für die Auswahl der zu
+entfernenden Vorgabe- und Sperrwerte eingesetzt. Damit wird vermieden, dass bei
+vielen zu entfernender Werte fast alle nur aus dem oberen Bereich entfernt werden.
+
+
+27.08.2024
+Hilfe-Datei um Beispiele zum Testmodus erweitert und den Teil zur Beschreibung des
+Vorgehens zum Lösen eindes Stradoku entfernt.
+
+Auch in StradokuApp.setKndListenMode() und .setNotizenMode() sowie in .starteTestModus() 
+den Aufruf von strOrg.entferneNotizen() auskommentiert. 
+
+
+24.08.2024
+In LevelSolver Methode freieZellen() eingeführt. Damit wird im Bearbeitungsmodus
+verhindert, dass für eine Bearbeitung der Lösung auch dann Level 1 ausgegeben
+wird, wenn noch keine Zelle frei ist.
+
+
+20.08.2024
+In StradokuApp.setKndListenMode() den Aufruf von strOrg.entferneNotizen()
+auskommentiert. 
+
+
+19.08.2024
+Version auf 6.4.1 angehoben
+Damit möchte ich meine Arbeit an diesem Projekt beenden.
+
+
+12.08.2024
+In StradokuIOrg.setFilterKnd() wurde StradokuApp.usedKndFi bei jedem Filterrurchlauf
+bei Null auf false gesetzt. "strApp.set_usedKndFi(filterKnd > 0)" wurde entfernt.
+
+
+11.08.2024
+In StradoluApp.geloest() setKndModus(0, true) hinzugefügt und damit deb
+Kandidatenblock deaktiviert. 
+
+
+09.08.2024
+In StradokuBoard.myMousePressed() die Abfrage
+      if (isNotiz) {
+          strOrg.notiereKandidat(i, k, evt.isShiftDown());
+      } else {
+geändert zu:
+      if (!isKListe) {
+          strOrg.notiereKandidat(i, k, evt.isShiftDown());
+      } else {
+In StradokuOrg.notiereKandidat() eingefügt:
+      if (strApp.getKndModus() != 2) {
+         strApp.setNotizenMode(true);
+      }
+strApp.setNotizenMode(true) wurde von privat auf public umdeklariert.
+
+Damit wird durch einen Klick mit Shift der Notizenmodus aktiviert falls
+der Kandidaten-Listenmodus noch nicht aktiviert ist.
+
+
+
+30.07.2024
+Hinweise wurden bisher als ausgegeben angezeigt, auch wenn keine ausgegeben
+werden konnten. LogLevelLoeser.loeseLogAufgabe(), StradokuOrg,loeseLogStradoku() 
+und StradokuApp.loesungsTippActionPerformed() so geändert, dass nur bei Erfolg
+true zurückgegeben und damit ein Hinweis als solcher gezählt wird.
+
+In StradokuApp.aufgabeErstellen() doppelte Abfrage von levelBox.getSelectedIndex()
+entfernt und damit verhindert, dass nach einer unmittelbar vorausgegangenen 
+Änderung der LevelBox ein Stradoku nit dem falschen Level generiert wurde.
+
+
+
+Version 6.3.0
+
+16.07.2024
+Version auf 6.4.0 angehoben
+
+Gesamten Code von LogLevelLoeser "entschlackt"
+
+LogLevelLoeser.versteckteGruppen() total überarbeitet.
+
+
+14.06.2024
+Hilfedatei für UR3c bearbeitet (Link zu UR2c hinzugefügt).
+
+
+10.06.2024
+Die Schrift für die Kandidaten von Arial auf Ebrima umgestellt. Damit sind die 
+6, 8 und 9 besser zu unterscheiden.
+
+
+09.06.2024
+Hilfedatei um Beispiel für UR3 erweitert.
+
+08.06.2024
+StratokuOrg.bearbeiteKndButton() so geändert, dass im Testmodus Kandidaten acuh
+über den Kandidatenblock entfernt werden können.
+
+In LogLevelLoeser noch einige Berichtigungen vorgenommem.
+
+
+Version 6.2.1
+
+07.06.2024
+Die Version wurde auf 6.3 angehoben.
+
+Wegen eines "Hängers" in NetBeans bei Öffnen der Datei "LevelLoeser.java" musste
+das gesamte Projekt neu erstellt und die Klasse "LevelLoeser" umbenannt werden.
+Sie ist jetzt als "LevelSolver" benannt.
+
+In der Klasse LogLevelLoeser musste die Methode "versteckteGruppen()" komplett
+überarbeitet werden. Damit ist die Beschränkung auf die Levels 1 bis 4 nicht mehr
+notwendig und wurde daher aufgehoben. Die Hilfe-Datei wurde entsprechen überarbeitet.
+
+
+26.05.2024
+In StradokuApp.setKndListenMode() wurde vom Aufruf strOrg.entferneNotizen() true
+als Parameter übergeben. Dadurch wurde in der Statuszeile die entsprechende 
+Meldung ausgegeben, anstatt der Meldung, dass der Kandidatenlistenmodus aktiviert
+wurde.
+
+
+22.05.2024
+Version angehoben.
+
+Anordnung der Elemente in der Systemleiste etwas aufgelockert.  
+
+Für ein gelöstes Stradoku wird die Selektierung entfernt.
+
+
+Version 6.2
+
+Bei der Behandlung dert Positionsspeicherung war in StradokuApp.makeSavePosition()
+die Abfrage der Position falsch (aktuelle Lösungsposition wurde abgefragt). Dies
+und einige Kleinigkeiten im Zusammenhang damit in StradokuBoard und StradokuOrg
+wurde berichtigt bzw. geändert.
+
+
+01.05.2024
+Hilfedatei für die Lösungstipps überarbeitet.
+
+
+30.04.2024
+LogLevelLoeser komplett überarbeitet.
+
+
+28.04.2024
+In LogLevelLoeser war die Auswertung für versteckte Gruppen nicht eingerichtet.
+wurde erledigt.
+
+
+25.04.2024
+Im Konstruktor von StradokuApp folgenden if-Block auskommentiert,
+er hat zu Problemen mit der Zeitanzeige geführt:
+
+    if (strOrg.getLetzterVerlaufsNdx() == 0) {
+        uhr.zeitAnzeigeStop();
+        setStartZeit(0);
+    }
+
+In StradokuOrg die Voraussetzungen für den Aufruf von setStart(0) für einen
+Neuanfang überarbeitet
+
+
+Nach Anhebung der Version auf der Server hochgeladen. 
+
+
+
+Version 6.1.0
+
+
+25.04.2024
+In SetSperrWerte wurden alle vorhandenen Sperrwerte auf Null gesetzt und durch
+neue ersetzt. Dies wurde rückgängig gemacht.
+
+
+22.04.2024
+in StradokuOrg.loeseStradoku() "if (getFreiZellen(false) == 0)" auskommentiert.
+
+In StradokuOrg.setSperrZellenWerte() die Abfrage:
+    if (!loe && lev < 1 || lev > 5 ) {
+geändert zu:
+    if (lev > 4 || lev < 0) {
+
+In StradokuApp.mbLoesungBearbeitenActionPerformed() den Aufruf von 
+strOrg.setSperrZellenWerte(true) auskommentiert.
+
+Damit können nun im Bearbeitungsmodus bei Lösung bearbeiten Sperrwerte auch dann 
+gesetzt werden, wenn alle Zellen belegt sind. Sperrzellen werden nicht mehr auto-
+matisch gesetzt, sondern über Shift+Einfg-Taste.  
+
+
+11.04.2024
+Wenn aus dem Bearbeitungsmodus ein Abbruch erfolgte, lief die Anzeige der Uhr nicht
+weiter. Die verbrauchte Zeit wurde jedoch nach dem Lösen der Aufgabe angezeigt.
+Das Problem konnte behoben werden, indem ich in StradokuApp.bearbeiteAufgabe() nach
+der Auswertung der Abfrage zum Verlassen des Bearbeitungsmodus für einen Abbruch
+den Aufruf von resetBearbeitungsModus() vor der Aufruf von ladenKonfiguration() 
+stellte und den Aufruf von statusBarZeit.setEnabled(true) hinzufügte.
+
+
+21.03.2024
+In StradokuOrg die Methode entferneZellNotizen() hinzugefügt, damit Notizen mit einem Klick
+aus einer Zelle entfernt werden können. Aufruf über StradokuBoard.myMousePressed().
+Die Hilfe-Datei wurde diesbezüglich aktualisiert.
+
+
+19.03.2024
+Damit, wenn auf Start zurückgegangen wurde, nach einer Neueingabe die Zeit auf '0'
+zurückgestellt wird, in StradokuOrg.gotoNaviPosition() für die Startposition 'gestartet'
+auf false gesetzt.
+
+
+18.03.2024
+Die Zeitmessung wurde durch die Eingabe von Notizen nicht gestartet. 'gestartet' wurde
+daher bei der Eingabe von Notizen auf true gesetzt und die Zeitanzeige bei einem Neuanfang 
+nicht nur dann gestartet, wenn 'verlaufsIndex' == 0 ist, sondern auch dann wenn 'gestartet' 
+nicht gesetzt ist.
+
+
+Version 6.0.1
+
+17.01.2024
+Version auf 6.1.0 angehoben
+
+Hilfedatei überarbeitet.
+
+In StradokuBoard.myKeyPressed() den Übergabeoarameter für isShift im Aufruf von 
+strOrg.notiereKandidat() direkt übernommen.
+
+
+16.01.2024
+Für das Entfernen von Notizen eine gedrückte Shift-Taste vorausgesetzt, da andernfalls zu leicht
+passiert, dass Notizen ungewollt entfernt werden. Änderungen in StradokuApp, StradokuOrg und 
+StradokuBoard.
+
+
+09.01.2024
+In StradokuApp.geloest() wurde die Verwendung der Kandidatenliste aktsiviert wenn der
+Kandidatenfilter verwendet wurde. Das ist falsch und wurde geändert.
+
+
+08.01.2024
+StradokuBoard.myMousePressed() so geändert, dass im Notizenmodus, auch wenn nur ein
+Kandidat angezeigt wird, dieser für eine Zuweisung gezielt angeklickt wird.
+
+
+06.01.2024
+Kleine Überarbeitung der Loggerausgabe.
+
+
+05.01.2024
+Die Klasse 'Verlaufslogger' ist nun funktionsfähig.
+
+
+04.01.2024
+Alle Ausgaben in die Statuszeile nun über StradokuApp.setStatusBarHinweis() und dieser Methode
+den zweiten Parameter 'log' hinzugefügt. Damit kann nun die Ausgabe des Klösungsverlaufs in
+eine Log-datei geschrieben werden. Die Methode 'zeigeHinweis()' wurde entfernt.
+
+
+02.01.2024
+In StradokuOrg.gotoNaviPosition() bei einem Rücksprung zur Start-Position die verstrichene Zeit
+auf Null gesetzt.
+
+in StradokuOrg.notiereKandidat() die Navigationsanzeige für einen Rücksprung zu Start nach der
+ersten Eintragung einer Notiz aktiviert.
+
+
+26.12.2023
+In StradokuBoard.myKeyPressed() und in .myMousePressed() dem Aufruf von .getSingleKandidat()
+nicht tru für KListe und false für Notizen sondern generell die Variable isKListe übergeben.
+
+
+16.12.2023
+Im Konstruktor vom StradokuApp für den Programmstart einen Hinweis in der Statuszeile zur
+aktuellen Lösungsposition hinzugefügt.
+
+
+13.12.2023
+In StradokuOrg.setMaxSchwer() wurde ein Abbruch durch einen ungültigen Level 0, der durch
+einen vorausgegangenen Test auftreten konnte, durch einen Lösungsversuch verhindert.
+
+In StradokuApp.bearbeiteKndButton() die Bearbeitung von nicht zu bearbeitenden Zellen 
+ausgeschlossen.
+
+
+12.12.2023
+StradokuBoard.myMousePressed() wurde nochmals überarbeitet und dafür den Hauptteil völlig
+neu geschrieben.
+
+
+09.12.2023
+Hilfedatei mit Schwerpunkt 'Kandidatenbereiche' überarbeitet.
+
+In StradokuBoard.myMousePressed() wurde im Listenmodus ein einziger Kandidat einer Zelle bei
+einem ungezielten Mausklick nicht zugewiesen. Problem behoben.
+
+
+06.12.2023
+Hilfedatei kontextbezogen überarbeitet.
+
+StradokuBoard.myMousePressed() mit dem Ziel überarbeitet, dass im Notizenmodus bei genau einem
+Kandidaten in einer Zelle eine Zuweisung auch durch einen 'ungezielten' Klick möglich ist. Ist
+der einzige Kandidat nicht der Lösungswert, wird er entfernt, da er ansonsten manuell entfernt
+werden müsste, damit der richtige Wert als Lösungwert eingetragen werden kann.
+
+
+27.11.2023
+In StradokuOrg.loeseStradoku() hatte ich testhalber vor der Lösung das Array für die Lösung
+nicht gelöscht. Dadurch trat im Bearbeitungsmodus ein Problem auf, bei Beendigung der
+Bearbeitung kam es vor, dass ab der zuletzt bearbeiteten Zelle alle weiteren gelöscht wurden.
+Das Array loesung[] wurde daher wieder gelöscht.
+
+
+25.11.2023
+In StradokuOrg.isKandidatenfehler() zunächst die betroffene Zelle darauf überprüft, ob in
+ihr überhaupt ein Kandidat sein kann. Das wurde bisher nicht geprüft und deshalb konnte
+zum Beispiel einer Zelle mit Vorgabewert eine Notiz hinzugefügt werden, wodurch dann
+diese Zelle auch als gefilterte Zelle markiert wurde.
+
+
+23.11.23
+Zeitzählung wird nun auch nach einer Eingabe von Notizen begonnen. Dafür alle drei Eingabe-
+methoden in StradokuOrg.setStart() zusammengefasst.
+
+
+22.11.23
+Hilfedatei aktualisiert.
+
+In StradokuApp.bearbeiteAufgabe() die Reihenfolge des Aufrufs von ladenKonfiguration() und
+resetBearbeitungsModus()vertauscht, da ansonsten bei einem Abbruch der Bearbeitung ein Teil
+der ursprünglichen Daten, zum Beispiel die Anzahl der freien Zellen, überschrieben wurden.
+
+In StradokuOrg.setMaxSchwer() die Auswertung und Anzeige der Infos verbessert.
+
+
+18.11.2023
+Hilfedatei für die Maustasten überarbeitet.
+
+In stradokuBoard.myMousePressed() die Eingabe für Zellen mit nur einem angezeigten Kandidaten im
+Notizenbmodus überarbeitet.
+
+
+30.10.2023
+In StradokuOrg.copyKandidaten() den Aufruf von strApp.set_usedKListe(true); hinzugefügt. Damit
+wird das Übernehmen der KndListe im Notizenmodus als Verwendung der Kandidatenliste gewertet.
+
+
+28.10.2023
+In LogLevelLoeser zwei ungeklärte Lösungtipps als Bereichssingle definiert.
+
+
+27.10.2023
+In StradokuApp Bezeichnung der Methode aufgabeBearbeiten() zu bearbeiteAufgabe() umbenannt und
+in setBearbeitungsModus() die Levelanzeige hinzugefügt.
+
+
+26.10.2023
+Hilfedatei aktualisiert.
+In StradokuOrg die Methode
+    public boolean isLoesungswert(int pos, int knd) {
+        return (loesung[pos] & ZAHL) == knd;
+    }
+hinzugefügt, über die in StradokuBoard.myMousePressed() bei der Eingabe im Notizenmode von einem
+Wert verwendet wird, wenn in der Zelle nur ein notierter Kandidat angezeigt wird, der nicht
+Lösungswert ist.
+
+
+17.10.2023
+StradokuApp.checkDoppelEintraege() so modifiziert, dass während einer Überprüfung die Zeitanzeige
+angehalten wird.
+
+
+Version 6.0
+
+16.10.2023
+Version auf 6.0.1 angehoben
+
+Berichtigungen in der Hilfe-Datei bei den Kurztastem im Bearbeitungsmodus.
+
+Einer Zelle mit genau einem notierten Wert konnte per Mausklick mit gedrückter Strg-Taste 
+kein nicht notierter Wert zugewiesen werden. Nach Erweiterung des Codes 
+
+    if (loesungsModus && isKListe || isNotiz) {
+        if (anzKnd == 1 && (isKListe || isNotiz)) {
+            if (isKListe) {
+                k = getSingleKandidat(zelle, true);
+            } else if (evt.isShiftDown()) {
+                k = klickPos;
+            } else {
+                k = getSingleKandidat(zelle, false);
+            }
+            strOrg.setWert(i, k);
+        } else {
+            strOrg.setWert(i, klickPos);
+        }
+    }
+
+in StradokuBoard.myMousePressed() um die else if-Abfrage kann nun mit Strg+Shift-Taste 
+in diesen Fällen auch ein nicht notierter Wert zugewiesen werden.
+
+
+Version 5.4.5
+
+17.09.2023
+Version auf 6.0 angehoben (letzte Version)
+
+06.09.2023
+Hilfedatei überarbeitet - Schwerpunkt: Hilfemenü
+
+
+Version 5.4.4
+
+04.09.2023
+Version angehoben.
+
+Alle Level 1 Stradokus überarbeitet.
+
+
+03.09.2023
+Hilfedatei überarbeitet. Schwerpunkt Archivnutzung
+
+In StradokuBoard.private void myKeyPressed() den Aufruf von strApp.checkDoppelEintraege()
+von Strg+F9 auf Strg+F10 verlegt.
+
+
+02.09.2023
+StradokuOrg.setMaxSchwer() um die Anzeige der Anzahl leerer Zellen nach der
+Reduzierung erweitert.
+
+
+01.09.2023
+In StradokuApp die boolsche Variable 'zeigtLoesung' und die Methode 'zeigtLoesung()'
+eingeführt und StradokuOrg.setMarkierung() so geändert, dass auch für eine Lösung
+Markierungen gesetzt weren können.
+
+StradokuOrg.setMaxSchwer() so geändert, dass erst Vorgabewerte und dann Spwerrwerte
+entfernt werden.
+
+
+31.08.2023
+In StradokuOrg.setSperrZellenWerte() den boolschen Aufrufparameter 'loe' hinzugefügt.
+Erfolgt der Aufruf für die Bearbeitung der Lösung mit true, wird die Eindeutigkeit
+nicht überprüft. Damit können sofort, ohne dass erst Werte entfernt werden müssen,
+alle möglichen Sperrwerte gesetzt werden.
+In StradokuApp.mbLoesungBearbeitenActionPerformed() wurde außerdem der Aufruf von
+strgOrg.setSperrZellenWerte() hinzugefügt. Damit werden für die Bearbeitung der
+Lösung sofort die möglichen Sperrzellen gesetzt.
+
+
+30.08.2023
+In StradokuBoard.myMousePressed() Doppelklick auf schwarze Zelle abgefangen
+
+Version erhöht auf 5.4.4
+
+
+Version 5.4.3
+
+30.08.23
+Hilfedatei überarbeitet, Schwerpunkt 3W-Auswertung
+
+
+27.08.2023
+Hilfedatei weiter überarbeitet, Schwerpunkt mögliche Kandidaten
+
+24.08.2023
+Hilfedatei überarbeitet (Archivtauglichkeit, Konfigurationsdatei).
+
+Handling für die Konfigurationsdaten überarbeitet. Markierung für Tipp-Zelle entfernt, die
+wird jetzt immer markiert. Dafür auch die entsprechende Menüoption entfernt. Für die
+Archivtauglichkeit die Abfrage der Datei "archivtauglich" eingeführt. Damit ist ausgeschlossen,
+dass die Archivtauglichkeit unabsichtlich verändert wird, zum Beispiel durch einen 
+Programmstart per Doppelklick aauf Stradokudatei.
+
+
+24.08.23
+Hilfe weiter überarbeiet. Schwerpunkt 3W-Strategie.
+
+
+21.08.2023
+Hilfe weiter überarbeiet. Schwerpunkt Settis.
+
+
+19.08.2023
+Hilfedatei weiter überarbeitet. Schwerpunkt UR3.
+
+
+17.08.2023
+Hilfedatei weiter überarbeitet.
+
+In StradokuApp.setLevel() Abfrage auf Level 5 eingefügt und abhängig davon das
+Symbol für Tipps aus- oder eingeblendet. Um alle Fälle zu erfassen, musst der 
+Aufruf von setLevel() in setKndListenMode() und setNotizenMode() hinzugefüt 
+sowie in resetBearbeitungsModus() nach unten verschoben werden.
+
+
+Version 5.4.2
+
+14.08.2023
+Hilfedatei aktualisiert.
+
+Bezeichnung 'Automatische Markierung' im Menü "Markierungen" auf 'Tipp markieren' 
+umgestellt. So ist es wesentlich treffender und auch verständlicher.
+
+Nachdem es mit stradokuOrg.setMaxSchwer() zu Problemen kam, innerhalb der Schleife, 
+wenn sich der Level geändert haben konnte, diesen mit 'level = aktLevel' wieder 
+zurückgesetzt. Damit sind diese Probleme behoben.
+Um auch die Archivtauglichkeit zu berücksichtigen, wurde diese abgerufen.
+
+In StradokuOrg.setWert() für die erste Wertzuweisung 'tipps' nicht auv '0' zurück
+gesetzt.
+
+
+Version 5.4.1
+
+12.08.2023
+In LevelLoeser.loeseAufgabe()den Aufruf von endCheck() am Anfang dieser Methode
+auskommentiert. Es wurden falsche Werte geliefert
+
+
+Version 5.3.4
+
+10.08.2023
+Version angehoben auf 5.4.0
+
+Das Handling für die Einstellung der Filterfarbe in StradokuApp und StradokuBoard
+verbessert. Basiseinstellung ist jetzt 30. Sie kann nun in der Konfigurationsdatei
+über "Filerfarbe" von 0 bis 60 variiert werden. In der Hilfedatei wird darauf
+hingewiesen.
+
+
+08.08.2023
+In StradokuApp.setLoeTipps() dia Anzeige der Tipps verbessert. 
+
+
+05.08.2023
+In UpdateDialog den Link für den Download direkt auf das Downloadverzeichnis 
+gesetzt.
+
+Im gesamten Projekt diverse Auskommentierungen entfernt.
+
+
+04.08.2023
+Version erhöht.
+
+In der Hilfedatei einige Änderungen in den Abschnitten "Testmodus" und "Settis"
+vorgenommen.
+
+
+Version 5.3.2
+
+02.08.2023
+In StradokuApp den Aufruf des Testmodus so umgearbeitet, dass er auch bei
+gedrückter Strg-Taste mit einem Klick auf das Kandidatenlisten Icon erfolgen kann.
+
+In StradokuBoard die Variable tmpselect und die beiden Methoden setTmpSelect() 
+sowie getTmpSelect eingeführt. In StradokuApp.naviPosMousePressed() beim Setzen
+einer Position über StradokuBoard.setTmpSelect() die aktuelle Position gespeichert
+und beim Herstellen einer gewspeicherten Position über StradokuBoard.getTmpSelect()
+auch die Markierung auf die gespeicherte Position gesetzt.
+
+
+31.07.2023
+In StradokuApp.setKndListenMode() über strOrg.entferneNotizen() alle Notizen
+testhalber entfernt.
+
+Für die beiden Klassen LevelLoeser und LogLevellöser in allen Fällen, in den Werte
+aus dem StradokuFeld in das Array 'wrt[]' eingelesen werden, die Maske 'AKND'
+hinzugefügt, da ansonsten eventuell vorhandene Notizen mit eingelesen wurden. 
+
+Version 5.3.1
+
+27.07.2023
+In GlobaleObjekte das Array KMASKE um einen Eintrag für 9 Zellen erweitert und
+in den beidem Klassen LevelLoeser und LogLevelLoeser den Aufruf von check38erStra()
+auf 9zellige Bereiche erweitert.
+
+
+26.07.1023
+In StradokuApp dem Hauptmenü Hilfe de  Eintrag "Lösungstipp zeigen" hinzugefügt.
+
+In LogLevelLoeser einen Bug in checkKandidatenfolge() gefunden. Diese Methode
+total entfernt und in LevelLoeser Bug behoben.
+
+
+25.07.2023
+In StradokuOrg die Einstellungen für einen Neuanfang für entferneKandidat() und 
+notiereKandidat() identisch wie in setWert() gesetzt. Damit werden alle Aktivitäten, 
+die einen Neuanfang auslösen, gleich behandelt.
+
+In StradokuBoard die Farben für Markierungen und Zellenselektion geändert.
+
+
+24.07.2023
+Version angehoben.
+
+In StradokuOrg die Methode setMaxSchwer() hinzugefügt. Der Aufruf erfolgt über Str+F11.
+Damit kann das aktuelle Stradoku im Bearbeitungsmodes durch das Entfernen aller 
+möglichen Werte ohne den Level zu ändern maximal erschwert werden. Haupteinsatz ist
+für den Level 4 gedacht.
+
+
+
+18.07.2023
+Version auf 5.3.0 angehoben.
+
+In StradokuApp die boolsche Variable erstinfo eingefügt, die beim erstmaligen Start
+des Programms (keine Config-Datei) auf true gesetzt, damit nach dem Entfernen der
+Begrüßung durch hinweisFeldMausKlick()das Hinweisfeld nicht leer bleibt.
+
+StradokuOrg.setSperrZellenWerte() überarbeitet:
+
+- Sperrwerte werden nur gesetzt, wenn aktuelle Stellung eindeutig lösbar ist.
+  Wenn nicht möglich wird Hinweis ausgegeben.
+  
+- Für alle anderen Ergebnisse Statusbar-Hinweise erstellt
+
+
+
+Version 5.2.0
+
+11.07.2023
+Version auf 5.2.0 angehoben
+
+Da die Ausgabe von Lösungstipps für Aufgaben mit dem Level 5 zu falschen Tipps führen 
+konnte, wurde sie unterbunden. Dazu wurden in StradokuApp folgende Änderungen vorgenommen:
+- in loesungsTippActionPerformed() Aufgaben mit Level 5 abgefangen und
+- in setLoeTipps() Ausgabe eines entsprechenden Hinweises hinzugefügt
+
+In StradokuBoard.myMousePressed() und in StradokuBoard.auswertenNavigation() wurden
+bei positiver Abfrage von isTipp alle Markierungen entfernt. Damit wurden bei einem 
+angezeigten Tipp immer alle Markierungen entfernt, wenn eine Zelle selektiert wurde.
+Das bedeutete, dass immer nur eine Zelle markiert werden konnte. Um das zu verhindern
+wurde das Entfernen der Markierungen zunächst einmal auskommentiert.
+
+
+17.06.2023
+In der Klasse SetSperrWerte wurde auf die unregelmäßige Auffüllung mit Sperrwerten
+verzichtet. Sie erfolgt jetzt an Stelle von pos über i von 0 bis 80.
+
+In StradokuOrg.loeseStradoku() war die Beschränkung der Eindeutigkeitsprüfung
+auf den Level 5 auskommentiert. Ich habe sie wieder entfernt und auch die Änderung
+vom 01.05.2023.
+
+In StradokuBoard wird bei jeder Änderung der Selection einer Zelle abgefragt, ob 
+ein Lösungstipp angezeigt wird, wenn ja, wird die Markierung dafür entfernt.
+In StradokuApp wurde dafür die Variable 'isTipp' eingeführt, die in 
+loesungsTippActionPerformed() gesetzt, mit get_isTipp() abgefragt und von
+reset_isTipp() zurück gesetzt werden kann.
+
+
+01.05.2023
+In StradokuOrg.loeseStradoku() vor dem Versuch, die Aufgabe zu lösen, die Lösung
+in tmploesung gesichert. Kann die Aufgabe nicht gelöst werden, ist in loesung 
+in den meisten Fällen nicht mehr die ursprüngliche Lösung, sie wird jetzt durch
+tmploesung ersetzt. Damit wird ein Bug behoben, der beim automatischen Eintragen
+von Sperrwerten falsche Werte einsetzte, wenn zuvor ein Lösungsversuch misslang.
+Änderung am 17.06.2023 wieder entfernt.
+
+
+12.04.2023
+In der Hilfedatei die Beschreibung der Kurztasten für das Stradokufeld getrennt, 
+einmal für den Lösungs- und dann für den Bearbeitungsmodus.
+
+
+12.03.2023
+In LogLevelLoeser.nackteGruppen() die Ausgabe für nackte 3er-Gruppen vervollständigt
+und in .getKndString() die Stringbildung für nackte Gruppen angepasst.
+
+
+12.02.2023
+In der am Anfang stehenden If-Abfrage von StradokuBoard.myKeyPressed() die letzten
+drei Bedingungen so umgestellt, dass sie nur geprüft werden müssen wenn zu den Tasten
+auch Strg gedrückt ist, also bei evt.isControlDown().
+
+ListenFrame.buttonCloseActionPerformed() so geändert, dass nur noch setVisible()
+ausgeführt wird. Damit wurde erreicht, dass auch unmittelbar nach einem Wechsel von
+der Liste in den Lösungsmodus die Suche im Archiv immer ausgeführt wird.
+
+
+02.02.2023
+In StradokuApp.aufgabeBearbeiten() für den Aufruf von strOrg.loeseStradoku() den 
+zweiten Parameter (Warten-Hinweis) auf true gesetzt. Damit kommt es nicht mehr vor, 
+dass es bei der Levelprüfung mit sehr wenig zu lösenden Zellen die Eindeutigeit
+nicht richtig angezeigt wird.
+
+
+Version 5.0.4
+
+26.01.2023
+Version von 5.0.4 auf 5.1.0 angehoben
+
+ListenFrame.deleteStradoku() so geändertt, dass nach dem Löschen einer oder mehrerer
+Zeilen beziehngsweise Zeileninhalte der Focus in der letzten vom Löschen betroffenen
+Zeile bleibt.
+
+
+25.01.2023
+In ListenFrame.sucheStradoku() wurde geändert:
+  - Flag weitersuche eingeführt
+  - nach if (op == JOptionPane.NO_OPTION) {break;}
+    else {continue;} eingefügt
+  - den Block if (gefunden == 0) {...} neu gestaltet.
+Damit wurde die Suche flüssiger.
+
+In ListenFrame.buttonCloseActionPerformed() für den Wechsel zum Hauptfenster
+wurde geändert:                                            
+  - strBoard.requestFocusInWindow() auskommentiert, da nicht erforderlich
+  - strApp.requestFocus() hinzugefügt
+Damit bekommt das Hauptfenster auch dann den Focus, wenn beim Klick auf den 
+Button für den Wechsel das Listenfenster selbst den Focus nicht hat.
+
+
+20.01.2023
+In StradokuApp.geloest() den Hinweis für Lösungstipps konkretisiert.
+
+
+16.01.2023
+In ListenFrame.deleteStradoku() den Text der Abfrage für das Entfernen von
+Stradokus aus der Liste gramatikalisch überarbeitet.
+
+
+18.12.2022
+Zuordnung der Kurztasten im Bearbeitungsmodus für die Entf-Taste geändert und
+die Hilfedatei entsprechend berichtigt.
+
+
+Version 5.0.3
+
+17.12.2022
+InfoTexte geringfügig überarbeitet.
+
+
+15.12.2022
+In StradokuBoard.myKeyPressed() die Entf-Taste im Bearbeitungsmodus für das 
+Entfernen eines Wertes eingesetzt und das Zurück zur Ausgangsstellung über die
+Kurztaste Alt+Entf realisiert.
+Außerdem einige formale Umstellungen vorgenommen.
+Hilfe-Datei entsprechend aktualisiert.
+
+
+Version 5.0.2
+
+13.12.2022
+In StradokuBoard.myKeyPressed() einige Umstellungen für die Kurztasten vorgenommen.
+Hilfe-Datei entsprechend berichtigt.
+
+
+Version 5.0.1
+
+12.12.2022
+In StradokuOrg.entferneVorgaben() wurde der Urzustand für die Zellen nicht mehr 
+wiederhergestellt. Das verhinderte in einem zweiten Durchgang, dass in Zellen,
+in denen im ersten Durgang Sperrwerte generiert wurden, noch einmal Sperrwerte
+über Strg+W erzeugt werden konnten. 
+Die Lösung bestand darin, nach jeder Zuweisung an aufgabe[i] den zugewisenen
+Wert auch an loesung[i] zuzuweisen. 
+
+
+11.12.2022
+Hilfe-Datei aktualisiert
+
+
+Version 5.0.0
+
+26.11.2022
+Dem Sub-Menü Markierung wurde der Eintrag "Automatische Markierung" hinzugefügt.
+Damit kann die Farbmarkierung für Lösungstipps abgestellt werden.
+
+In StradokuApp die Darstellung einer Zelle, für die ein Lösungstipp angezeigt
+wird, um eine Farbmarkierung erweitert und für einen Klick auf das Info-Feld 
+die Entfernung von Text sowie aller Markierungen hinzugefügt.
+
+
+Version 4.8.3
+
+25.11.2022
+Die Version wurde auf 5.0.0 angehoben
+
+LogLevelLoeser umfangreich überarbeitet, dabei auch die Ausgabe der Lösungsschritte
+in eine Datei aufgegeben. Nach einer Vielzahl von Tests können bis einschließlich
+Level 4 alle Stradokus über die Tipps zu 100% gelöst werden. Einigen Code, der
+offensichtlich nicht benötigt wird, konnte entfernt werden. Drei Codeteile sind
+bisher noch bei keinem der Tests benötigt worden, ob aus sie entfernt werden
+können, müssen weitere Tests zeigen.
+
+19.11.2022
+Die Suche nachh Lösungshinweisen weiter überarbeitet. Betroffen waren die drei
+Klassen StradokuApp, StradokuOrg und natürlich auch LogLevelLoeser.
+
+
+17.11.2022
+LogLevelLoeser umfangreich überarbeitet. Alle gängigen Lösungshinweise sind
+implementiert und funktionieren zufriedenstellend.
+
+Bug in LogLevelLoeser.check38erStra(), der die Textübergabe verhinderte, behoben. 
+
+
+08.11.2022
+Bug in LogLevelLoeser.check38erStra(), der eine Hinweisausgabe verhinderte, behoben. 
+
+
+06.11.2022
+StradokuApp.strListenImport() so erweitert, dass beim Löschen der Liste diese
+zunächst nur umbenannt und erst nach einem erfolgreichen Import gelöscht, 
+andernfalls wieder hergestellt wird. Außerdem wird nach einem erfolgreich 
+durchgeführtem Import eine Erfolgsmeldung in der Statuszeile ausgegeben.
+
+In StradokuApp.strListenImport() die Abfrage nach der Behandlung der aktuellen
+Liste anschließend an die Abfrage der zu importierenden Datei gesetzt. Damit wird 
+die aktuelle Liste bei einem Abbruch der Abfrage nach der zu importierenden Liste 
+nicht gelöscht.
+
+Den geänderten Code in SwImportStrListe.strListeLaden() durch ausschließliche 
+Verwendung des Dateinamens als relative Pfadangabe vereinfacht.
+
+
+05.11.2022
+SwImportStrListe.strListeLaden() so erweitert, dass die Datei "unberuecksichtigt.txt"
+nach einem Durchlauf ohne Archivfehler gelöscht wird.
+
+
+04.11.2022
+In StradokuOrg.gotoNaviPosition() die Zeile 1267 (strBoard.setSelect(40);) 
+auskommentiert. Damit soll erreicht werden, dass bei einem Wechsel in den 
+Bearbeitungsmodus die selektierte Zelle auch dann unverändert bleibt, wenn die
+Lösung gezeigt wird.
+
+In SwImportStrListe.add_internStradoku() für die Ausgabe nicht übernommener Stradokus
+in die Datei unberuecksichtigt.txt die jeweilige Zeilennummer hinzugefügt.
+
+
+18.10.2022
+In LogLevelLoeser wird nach jedem Entfernen von Kandidaten setSingles() aufgerufen.
+
+
+18.09.2022
+In StradokuOrg.loeseLogStradoku() den Aufruf von LogLevelLoeser um einigen Ballast 
+erleichtert und in Vorbereitung auf die Nutzung für die Ausgabe von Lösungstipps
+sichergestellt, dass nach dem Aufruf von strLogLoeser.loeseLogAufgabe() immer die
+Kandidatenliste angezeigt wird.
+
+In StradokuApp für die Symbolleiste einen Button für Tipps hinzugefügt.
+
+
+12.09.2022
+ToolTipText um die am Vortag eingeführte Kurztasten ergänzt.
+
+
+11.09.2022
+Für Stradoku in und aus Liste Kurztasten eingeführt. Hilfe überarbeitet.
+
+
+10.09.2022
+In StradokuOrg.setVSLwert() wurde bei VerlaufsIndex == 0 und einer Eingabe nur
+dann ein Neuanfang gemacht, wenn geloest true war. Das führte zu einem Problem bei 
+der Zeitanzeige wenn nach einer Generierung eines Stradoku die Anwendung ohne
+eine Eingabe geschlossen wurde. Nach einem Neustart wurde dann die Zeit nicht
+mehr angezeigt. Durch Entfernen von "geloest" in der Abfrage scheint das Problem
+damit behoben zu sein.
+
+
+Version 4.8.2
+
+01.09.2022
+Die Version wurde auf 4.8.3 gesetzt.
+
+Für die "Erfolgsanzeige" nach der Lösung eines Stradoku auch das Spicken
+berücksichtigt, wenn also während des Lösungsverlaufs die Lösung gezeigt wurde.
+Dafür wurde in StradokuApp die boolsche Variable "gespikt" eingeführt, die bei
+jeder Anzeige der Lösung auf True gesetzt wird und die Methode geloest() für
+die Anzeige entsprechend erweitert.
+***** überprüfen ****
+StradokuOrg.setVSLwert() wurde so angepasst, dass "gespikt" bei jeder ersten
+Eingabe eines Lösungswertes auf False gesetzt wird.
+
+
+28.08.2022
+In StradokuBoard.myKeyPressed() die Taste F10 für den Aufruf von loeseLogStradoku()
+freigegeben. Damit kann der Lösungsverlauf in Loesungsverlauf.txt gespeichert
+werden.
+
+
+29.06.2022
+In StradokuBoard.myKeyPressed() wurde auswertenNavigation() zu früh aufgerufen,
+was dazu führte, dass das Entfernen von Kandidaten über Shift+Nummernblocktaste
+nicht mehr funktionierte. Nachdem auswertenNavigation() ans Ende der Methode
+gesetzt wurde, scheint alles wieder zu funktionieren.<
+
+
+27.06.2022
+In ListenFrame.deleteStradoku() wurde beim Entfernen eines Datensatzes der
+Zähler für die noch vorhandenen Datensätze nicht heruntergezählt. Statt dessen
+wurde der aktuelle Index übernommen. Wenn also der erste Datensatz zu entfernen
+war, er hat den Index 0, wurde keine Neunummerierung vorgenommen. Dieser Bug
+wurde behoben.
+
+
+Version 4.8.1
+
+21.06.2022
+Version auf 4.8.2 erhöht.
+
+In SwImportStrListe.strListeLaden() den Warten-Hinweis mit der Fortschrittsanzeige
+ergänzt.
+
+
+20.06.2022
+ListenModel.datenSpeichern() so verändert, dass alle stradoku-Nummern vierstellig
+ausgegeben werden.
+
+
+31.05.2022
+In StradokuOrg.setMarkierung() die Markierung nicht mehr in aktStr[] sondern in
+stradoku[] gesetzt.
+In StradokuOrg.entferneMarkierungen() die Markierung auch für die Aufgabe entfernt,
+da ansonsten markierte Sperrwerte im Bearbeitugsmodus markiert angezeigt wurden.
+
+
+12.05.2022
+In StradokuOrg.entferneMarkierungen() die Markierung auch für die Lösung entfernt,
+da ansonsten markierte Sperrwerte im Bearbeitugsmodus markiert angezeigt wurden.
+
+08.05.2022
+In StradokuOrg.setSperrZellenWerte() den einleitenden Aufruf von loeseStradoku()
+entfernt. Er ist vermutlich in allen Fällen entbehrlich. Nun wird auch das Setzen 
+der Sperrwerte ermöglicht, wenn die Lösung bearbeitet werden soll und alle Zellen 
+belegt sind.
+
+
+03.05.2022
+In StradokuApp.setBearbeitungsModus() die Selektion abgefragt und nach dem Aufruf
+von setNavi(1) die abgefragte Selektion wieder gesetzt. Damit wird die Selektion
+beim Wechsel vom Lösungs- auf den Bearbeitungsmodus nicht mehr verändert.
+
+
+11.04.2022
+In StradokuApp.setzeSperrzelle() die Anzeige für Sperrzellenändungen im
+Bearbeitungsmodus hinzugefügt.
+
+
+20.03.2022
+ThreadZeitAnzeige.zeitAnzeigeStop() so geändert, dass mit dem Stopp der Zeitanzeige
+auch die aktuelle Zeit zurückgegeben wird. In stradokuApp.geloest() an Stelle von
+geltLoesungszeit() zeitAnzeigeStop() für die Zeitanzeige verwendet. Damit sollte
+die Zeitanzeige in der Statuszeile und der Erfolgsmeldung synchron sein.
+
+
+16.03.2022
+In ListenFrame.buttonCloseActionPerformed() den Aufruf von strApp.requestFocusInWindow()
+durch strBoard.requestFocusInWindow() ersetzt. Dadurch wurde ein Gug behoben, der
+beim Wechsel vom Listen- zum Hauptfenster verhinderte, dass Tastaturereignisse
+bearbeitet wurden.
+
+
+15.03.2022
+die Kurztasten Strg+B und Strg+E liefen im Bearbeitungsmodus ins Leere. Durch eine
+Überarbeitung von StradokuBoard.myKeyPressed() konnte das Problem behoben werden.
+
+
+12.03.2022
+Neue Klasse SetSperrWerte eingeführt. Damit können nun im Bearbeitungsmodus über 
+StrG+W in allen Sperrzellen ohne Sperrwerte, soweit möglich, Sperrwerte gesetzt
+werden. Für die Auswertung der Kurztaste wurde in StradokuBoard.myKeyPressed()
+eine Erweiterung der Tastaturabfrage vorgenommen. In StradokuOrg wurde die
+Methode setSperrZellenWerte() eingeführt und in setVSLwert(), zuvor setLoesungswert,
+im Bearbeitungsmodus für Sperrwerte die Eintragung aus aufgabe nach loesung
+übernommen.
+
+
+07.03.2022
+In StradfokuApp.ladenKonfiguration() die eingelesenen Positionswerte X und Y
+über abs() als positive Werte interpretiert, um zu verhindern, dass in bestimmten
+Situationen, wenn zum Beispiel das Programm bei mehreren Monitoren beim Schließen
+in einem negativen Bereich war und die Monitore so umgestellt wurden, dass es
+keinen negativen Bereich mehr gibt, das Programmfenster nicht mehr angezeigt
+wird.
+
+
+16.02.2022
+Wenn im Bearbeitungsmodus die Ausgangsstellung für die Bearbeitung über die
+Kurztaste Einfg wieder hergestellt wurde, wurde die Änderung für die Anzahl 
+der freien Zellen nicht berücksichtigt. 
+Durch eine Änderung von StradokuOrg.restoreVorgaben() wurde dies behoben.
+Wenn im Bearbeitungsmodus Vorgabewerte oder zusätzlich auch Sperrwerte entfernt
+wurden, wurde die Anzahl der freien Zellen ebenfalls falsch angezeigt. Dies wurde
+durch eine Änderung in StradokuOrg.entferneVorgaben() behoben.
+
+In StradokuBoard.myKeyPressed() wurde die Auswertung für die vorgenannten 
+Aktionen erst nach der Auswertung der Eingabe für Werte vorgenommen. Dies wurde
+geändert, indem der entsprechende Codeblock noch vorne gelegt wurde.
+
+
+09.02.2022
+In StradokuOrg.setLoesungsWert() für den Bearbeitungsmodus nach einer Änderung 
+der Anzahl freier Zellen die Ausgabe in der Statuszeile aktualisiert.
+Für die Bearbeitung der Lösung wird in StradokuOrg.sikStradoku() freieZellen
+auf 0 gesetzt und für den ersten Aufruf des Bearbeitungsmodus wird allgemein
+der Level in der Statuszeile ausgeblendet. Damit dies auch so erfolgt, wenn
+die Lösung gezeigt wird, wurde in StradokuOrg die Methode isLoesung() eingeführt,
+die in StradokuApp.aufgabeBearbeiten() abgefragt wird. Falls ja, wird zurück
+zum ungelösten Stradoku navigiert.
+
+
+31.01.2022
+In StradokuOrg.loeseStradoku() wurde die Prüfung auf freie Zellen vor den Aufruf
+von strLoeser.loeseAufgabe() gelegt und damit strLoeser.loeseAufgabe() von
+unnötiger Arbeit befreit.
+
+
+29.01.2022
+Am 15.01.2022 hatte ich in LevelLoeser.checkKandidatenfolge() die abschließend
+auszuführende Schleife auf leere Zellen deaktieviert, was bei Stradokus mit
+dem Level 5 zu einem schweren Bug führte. Deaktivierung also aufgehoben.
+
+In StradokuString2Matrix.makeStradokuString2Matrx() die Auswertung externer
+Stradokus mit HTML-URL den Beginn des Stradoku durch Abfrage des "="-Zeichens
+realisiert und damit vereinfacht.
+
+
+26.01.2022
+Die Verwendung des Testmodus wurde noch über die Konfigurationsdatei gespeichert
+und eingelesen. Dies wurde geändert. Speichern und Einlesen erfolgt nun über die
+beiden Klassen ExportStradoku und ImportStradoku. Dafür war auch eine Änderung 
+in GlobaleObjekte erforderlich.
+In diesem Zusammenhang wurde auch in StradokzApp die Methode beendeAnwendung() so
+überarbeitet, dass bei Bearbeitungs- und Testmodus ein Beenden mit diesen beiden
+Modis nicht möglich ist.
+
+
+15.01.2022
+Methode StradokuOrg.gotoNaviPosition() so geändert, dass von der Lösungsanzeige
+nur zur aktuellen Lösungsposition gewechselt werden kann, wenn verlaufsNdx > 0
+ist. Das ist nur dann der Fall, wenn das Stradoku teilgelöst angezeigt wird. 
+Der Rücksprung erfolgt natürlich an die tatsächlich aktuelle Lösungspositioon.
+
+LogLevelLoesr um die Ausgabe des Auschlusses der Kandidaten erweitert. Damit ist
+die Dokumentation des Losungsweges für Stradokus bis zum Level 4 abgeschlossen. 
+Der Aufruf erfolgt über die Kurztaste Strg+F11.
+
+
+Version 4.7.0
+
+08.01.2022
+Version auf 4.8.0 angehoben.
+
+In LevelLoeser.check9erStra() wurde für ein Objekt des Werte-Arrays ein Wert
+gesetzt und später auf dieses unveränderte Objekt eventuell noch einma zugegriffen
+und der bereits gesetzte Wert noch einmal gesetzt. Dieser Bug wurde behoben.
+
+
+07.01.2022
+Die Klasse LogLevelLoesr hinzugefügt. Damit ist es bisher möglich, über die 
+Kurztaste Alt+F11 das aktuelle Stradoku mit einem Level von 1 bis einschließlich 4
+im Hintergrund zu lösen und den Lösungsweg in der Datei Losungsverlauf.txt zu 
+dokumentieren, derzeit nur die Zuweisung der Kandidaten. In StradokuBoard wurde
+für die Auslösung in myKeyPressed() Code hinzugefügt. In StradokuOrg wurde die
+Methode loeseLogStradoku() hinzugefügt. Der gesamte Prozess läuft im Hintergrund ab.
+Der Lösungsverlauf soll später auch das Entfernen von Kandidaten dokumentieren.
+
+
+02.01.2022
+SwImportStrListe.add_internStradoku() so geändert, dass auch die Archiv-Liste
+oder Teile davon trotz der beiden führenden Statuswerte eingelesen werden kann.
+
+01.01.2022
+In LevelLoeser die Methode doppelCheck() durch die neue Methode endCheck()
+ersetzt und den Konstruktor für LevelLoeser überarbeitet.
+
+
+30.12.2021
+In LevelLoeser die Methode doppelCheckOK() komplett neu geschrieben und zu
+doppelCheck() umbenannt. Die Vorgängerversion arbeitete nicht einwandfrei
+und fand im Stradoku WE096 die doppelte 8 in Spalte 7, was dazu führte, dass
+dieses Stradoku als nicht eindeutig erkannt wurde.
+
+
+20.12.2021
+In LevelLoeser.loeseAufgabe() die Obergrenze für die Durchläufe von 100000 auf
+20000 herabgesetzt. Damit wird für die BackTracking die Suche für einen möglichen
+Zellwert früher abgebrochen und nach einer anderen Ziffer gesucht. Die Suche wird
+dadurch deutlich schneller, im Durchschnitt wird nur ein noch Drittel der Zeit 
+benötigt. Trotzdem wurden alle 408 Aufgaben mit Level 5 aus dem Archiv eindeutig 
+gelöst.
+
+
+17.12.2021
+In LevelLoeser.checkGeloest() Fehler bei der Abfrage auf Zellen mit Kandidaten
+und der Indizierung von strListe[i].geloest behoben.
+
+
+Anhebung der Version auf 4.7.0
+
+09.12.2021
+Filter nun wieder auch für Notizen ermöglicht. 
+Änderungen in StradokuBoard.myKeyPressed() und 
+StradokuApp,kandidat_ActionPerformed(),
+
+
+Version 4.6.3
+
+02.11.2021
+In StradokuBoard.myKeyPressed() wurde eine Fehlerhafte Auswertung für die
+Kandidatenbehandlung und für die Verwendung der Funktionstaste F12 behoben.
+
+In StradokuOrg.setLoesungsWert() die Zeitausgabe für bereits gelöste Stradokus
+auskommentiert. Damit wird für ein gelöstes Stradoku die Lösungszeit nicht mehr
+verändert wenn Lösungswerte entfernt und neu eingetragen werden. Außerdem tritt
+damit das Problem, dass Kommandos wie das Feststellen der Archivposition in
+undefinierten Situationen nicht ausgeführt werden, nicht mehr auf.
+
+Der eigene Odner für das Arbeitsverzeichnis wurde entfernt. Damit verwendet 
+NetBeans nicht mehr wie bisher den build-Ordner sondern der Projektordner 
+(kodelasStradoku) als Arbeitsordner.
+
+
+
+31.10.2021
+ListenFrame.getAnzahl() so geändert, dass die erste leere Zelle nicht gezählt 
+wird.
+
+Die Klasse Archiv so geändert, dass die Archivdatei sowohl mit der KAR- als auch 
+der ZIP-Erweiterung verwendet werden kann. Für künftige Versionen werde ich nur
+noch die ZIP-Erweiterung verwenden.
+
+
+24.10.2021
+Durch Änderungen in den beiden Methoden StradokuOrg.loeseStradoku() und
+StradokuApp.aufgabeBearbeiten() wird verhindert, dass ein Stradoku ohne mindestens
+einer freien Zelle als gültiges Stradoku mit dem Level 1 übernommen wird.
+
+
+22.10.2021
+In StradokuBoard.myKeyPressed() die Abfrage von Strg+F12 mit repaint() abgeschlossen, 
+da die Anzeige der Archivposition in einigen Fällen nicht erfolgte.
+
+
+21.10.2021
+In FromToClipboard.strFromClipboard() wird für eine ungültige Übernahme aus 
+Zwischenablage ebenfalls ein Hinweis in der Statuszeile ausgegeben.
+
+StradokuString2Matrix.makeStradokuString2Matrx() übernimt nun auch Stradoku-Strings
+aus der Archivliste (mit vorangestelltem Level und Status).
+
+
+11.10.2021
+In StradokuOrg.schrittZurueck() für gelöste Stradokus die Löschung des Hinweifeldes
+hinzugefügt.
+
+07.10.2021
+StradokuBoard.myMousePressed() so geändert, dass Werte per Doppelklick zugewiesen 
+werden können.
+
+
+25.09.21
+In ListenFrame.buttonCloseActionPerformed() strApp.requestFocus() hinzugefügt,
+damit sichergestellt ist, dass das Hauptfenster nach einem Wechsel vom Listenfenster
+den Focus bekommt.
+
+
+24.09.2021
+Stradokus mit dem Level 0, also nicht eindeutig lösbar, wurden nicht mehr
+übernommen. Um dies zu ermöglichen wurde in StrdodkuOrg.importStradokuString()
+der vorzeitige Rücksprung mit false nur für den Level < 0 angewandt.
+Außerdem wurde in StrodokuOrg.loeseStradoku() die Voraussetzung, dass mindestens
+ein Vorgabewert vorhanden sein muss, herausgenommen.
+
+11.09.2021
+Bug in Listenframe.deleteStradoku() behoben. Letzter Eintrag der Liste wurde auch
+dann komplett entfernt, wenn nur das Stradoku aber nicht die Zeile entfernt
+werden sollte.
+
+09.09.2021
+ListenModel.addStradoku() so geändert, dass beim Einfügen eines Stradokus eine
+bereits vorhandene Bemerkung nicht gelöscht wird.
+
+ListenModel.deleteStradoku() so geändert, dass für das blose Entfernen eines
+Stradoku die Bemerkung nicht entfernt wird.
+
+ListenFrame.sucheStradoku() funktionierte nicht, wenn keine Zeile selektiert war.
+Bug behoben.
+
+
+08.09.2021
+In ListenFrame.sucheStradoku(String) verhindert, dass es bei einem Suchstring,
+der mehr als 81 Zeichen hat, kann bei Kopien vorkommen, auf die zulässige Länge
+verkürzt wird und die Abfrage nach einer Weitersuche ausgeschlossen.
+
+
+07.09.2021
+Bug beim Überprüfen dwes Levels nach Bearbeitung (vorläufig) behoben. Trotz gestzter
+Vorgabe für Archievfähigkeit wurde diese zwar überprüft, aber nicht ausgewertet.
+Nach der Übernahme des Codes für die Methoden ArchivLevel.getArchivLevel() und 
+StradokuOrg.loeseStradoku() aus einer Sicherung vom 01.01.2021 funktioniert die
+Überprüfung auf Archivfähigkeit wieder.
+
+Bug in SwImportStrListe beim Abschneiden zu langer Zeilen behoben.
+
+
+06.09.2021
+Filter nur noch für Kandidatenliste verwendbar. Verwendung des Filters wird nun
+auch bei der Lösungsmeldung mit angezeigt. Dazu waren Änderungen in den Klassen
+StradokuApp, StradokuOrg, StradokuBoard, ExportStradoku, ImportStradoku und 
+GlobaleObjekte erforderlich.
+
+
+14.08.2021
+In Methode ListenModel.setValueAt() die Castings nach String durch die Methode
+toString() des Objekts eintrag ersetzt.
+
+04.08.2021
+Die Klasse ImportStradokuString zu StradokuString2Matrix und die Methode 
+importStradokuString() zu makeStradokuString2Matrix() umbenannt. Damit wird
+die Aufgabe dieser Objekte präziser vermittelt.
+
+
+30.07.2021
+In der Klasse Archiv die Methode checkDoppelVorkommen() plus weiterer Methoden
+hinzugefügt. Damit kann geprüft werden, ob um Archiv identische Stradokus sind.
+Für die Überprüfung werden alle 16 Varianten aller Stradokus berücksichtgigt.
+Es wurde damit ein Stradoku des Level 4 gefunden, welches in einer anderen Variante
+noch einmal vorhanden war. Das Doppel wurde entfernt.
+Der Aufruf von checkDoppelVorkommen()erfolgt über die F11-Taste. Der Code dafür
+wurde nach dem Test auskommentiert.
+
+
+23.06.2021
+Anhebung auf 
+Version 4.6.3.
+
+
+Version 4.6.2
+
+19.06.2021
+StrdokuApp.aufgabeInListeSpeichern() so geändert, dass bei einer Speicherung in
+der Liste der im Header angegebene Listenindex entsprechend dem neuen Index 
+angezeigt wird.
+
+
+14.06.2021
+Bug in strOrg.restoreVorgaben() behoben.
+
+
+09.06.2021
+Neue Funktionalität für Einfg-Taste hinzugefügt. Damit werden im Edit-Modus alle 
+gegenüber dem Aufruf geänderten oder entfernten Werte wieder hergestellt werden.
+Damit ist es nicht mehr erforderlich, bei einer größeren Änderung die Bearbeitung
+abzubrechen und erneut zu starten.
+
+
+28.05.2021
+Für die Liste die Texte in den Zeilen nach unten gesetzt, sie waren mit "CENTER"
+oberhalb der Mitte. Die Bemerkungen etwas nach vorne gesetzt.
+
+
+15.05.2021
+In ListenFrame.sucheStradoku(String) Abfrage auf leere Zeilen hinzugefügt.
+Damit wird bei einer leeren Zeile die Suche nicht mehr abgebrochen.
+
+
+14.05.2021
+In Hilfedatei den Abschnitt für die UR3-Regel überarbeitet.
+
+
+Version 4.6.1
+
+06.05.2021
+Version angehoben auf 4.6.2
+
+Für den Suchen-Button der Stradoku-Liste den Aufruf der Suche über Strg+F 
+ermöglicht.
+
+
+03.05.2021
+StradokuApp.mbTestModeCheck() so geändert, dass der Testmodus nur mit aktiviertem
+Kandidaten-Listenmodus gestartet werden kann.
+
+
+29.04.2021
+Während dem Testmodus waren die Navi-Symbole aktiv. Dies wurde durch eine Änderung
+von StradokuApp.mbTestModeCheck() abgestellt und gleichzeitig verhindert, dass der 
+Testmodus aktiviert wird, wenn nicht einer der beiden Kandidatenmodi aktiviert ist.
+
+
+15.04.2021
+In EingabeBeendenDialog den Titel von "Sicherheitsabfrage" zu "Bearbeitungsmodus 
+verlassen" geändert.
+
+
+14.04.2021
+Hilfedatei überarbeitet
+
+Meldug: "Die Eingabe konnte konnte nicht als gültiges Stradoku übernommen werden!"
+bei Übernahme vom Clippboard entfernt. Wird bereits von StradokuOrg.
+importStradokuString() erledigt.
+
+
+Version 4.6.0
+
+05.04.2021
+In StradokuApp fürBearbeiten-Menü zwischen Bearbeitungs- und Testmodus Trennstrich
+hinzugefügt.
+
+
+03.04.2021
+In Stradoku.loeseStradoku() wurde der Fall, dass in einem Stradoku keine 
+Vorgabewerte und / oder keine Sperrwerte vorhanden sind, nicht berücksichtigt.
+Bag behoben.
+
+
+02.04.2021
+StradokuApp.aufgabeBearbeiten() überarbeitet und Ablauf vereinfacht.
+
+
+Version 4.5.3
+
+01.04.2021
+Version angehoben.
+
+StradokuOrg.loeseStradoku() überarbeitet und die Aufrufreihenfolge verändert,
+so dass erst normale Lösung, dann die Eindeutigkeitsprüfung für Level 5 und
+zuletzt, wenn Archivtauglichkeit geprüft werden soll, dann diese.
+ 
+
+31.03.2021
+In StradokuApp setLevelBox() erheblich "verschlankt".
+
+In setLevel() Zuweisung des Level jetzt: level = (lvl > 5) ? lvl &= ZAHL : lvl;
+Damit Probleme mit Doppellevel behoben.
+
+In aufgabeBearbeiten() einige Änderungen vorgenommen, welche Eindeutigkeit und
+Archivtauglichkeit betroffen haben.
+
+
+29.03.2021
+Boolean als Rückgabewert für ImportStradokuString.importStradokuString(), in
+FromToClippboard.strFromClipboard() und StradokuOrg.importStradokuString() 
+eingeführt und Strdoku.App.einfuegenVonClipboard() um Fehlermeldung ergänzt.
+
+Abfrage nach der Position eines Stradoku im Archiv eingeführt. Änderungen in 
+StradokuBoard.myKeyPressed() für Kurztaste Strg+F12, in StradokuApp Methode
+getArchivPosition() und in Archiv Methode getArchivPosition() hinzugefügt.
+
+
+27.03.2021
+In StradokuApp die Statusmeldung für den Wechsel der Kandidatenanzeige (P/Z) von
+setKndAnzeigeMod() nach maKndAnzeigeActionPerformed() verlegt. Damit erfolgt die 
+Anzeige ausschließlich bei einem Wechsel.
+
+
+Version 4.5.2
+
+26.03.2021
+Nach größeren Änderungen der Hilfedatei Version auf 4.5.3 erhöht.
+
+24.03.2021
+In StradokuBoard myKeyPressed() so geändert, dass bei nur noch einem angezeigten
+Kandidaten, unabhängig ob Notiz oder KListe, diese mit Schift oder Enter zugewiesen
+werden kann.
+
+In StradokuBoard getAnzahlNotizen() umbeanannt zu getAnzahlKandidaten() und so
+geändert, dass sowohl für Kandidaten wie auch für Notizen die jeweilige Anzahl
+zurückgegeben wird.
+
+StradokuApp.setKndAnzeigeMod() mit Statusanzeige ergänzt.
+In StradokuApp.setKndListenMode() Statusmeldung bei Verlassen den Kandidaten-
+listenmodus hinugefügt.
+
+
+23.03.21
+In StradokuOrg .entferneNotizen nicht jeden bloßen Aufruf als Änderung gewertet.
+In .setKndFilter() einen Aufruf generell nicht mehr als Änderung gewertet.
+
+19.03.2021
+Die Klasse SwImportStrListe so umgearbeitet, dass auch die Standard-Liste 
+importiert werden kann.
+
+In SwImportStrListe die Fortschrittsanzeige herausgenommen. Grund:
+Wenn in der Liste Stradokus mit dem Level 5 sind, dann kann der Import Stunden
+dauern, da die Level 5 Stradokus nicht nur gelöst, sondern auch auf Eindeutigkeit
+überprüft werden müssen. Stradukus bis einschließlich Level 4 werden pro Sekunde
+dagegen etwa 1000 importiert. Damit läßt sich keine auch nur annähernd vernüftige
+Fortschrittsanzeige realisieren.
+
+
+18.03.2021
+Die Navigationssymbole während dem aktiven Testmodus deaktiviert.
+
+Version 4.5.1
+
+13.03.2021
+In StradokuApp die Selektion der beiden Notizen-Button überarbeitet.
+
+In StradokuOrg.gotoNaviPosition() den Aufruf von strApp.setKndModus(0, true)
+entfernt. Damit wurde in StradokuApp.resetKandAnzeige() die Rücksetzung nicht
+mehr ausgeführt.
+
+
+12.03.2021
+In den beiden Kandidatenmode-Methoden den Aufruf von strOrg.setFilterKnd(0) und
+markKndTaste(0) hinzugefügt, damit bei nicht aktivierter Kandidatenanzeige die
+Anzeige des gefilterten Kandidaten im Kandidatenblock entfernt wird.
+
+In StradokuOrg.copyKandidaten() den Aufruf von strApp.setTestModus(true) entfernt
+und damit die Aktivierung des Testmodus ausschließlich über die Menüoption bzw.
+die Kurztaste ermöglicht.
+
+
+10.03.2021
+In Konfigurationsdatei von StradokuApp für den erstmaligen Programmstart den
+Titel gesetzt (wurde bisher nicht angezeigt).
+
+In StradokuBoard.myMousePressed() die Zuweisung eines Singlekandidaten im
+Notizenmodus durch Doppelklick ermöglicht.
+
+Für Wechsel des Testmodus ohne Menübenutzung in StradokuApp die Methode
+modMenuBearbeitenTestmodus() für Änderung des Menüstatus eingeführt.
+ 
+
+Für den Testmodus den Aufruf über das Menü und die Kurztast Strg+T ertmöglicht
+
+
+09.03.2021
+Bei fehlerhaften Stradokus mit dem Level -1 gab es ein Problem mit der Levelbox.
+Durch Abfrage auf null in StradokuApp.ComplexCellRenderer() konnte der Bug
+behoben werden. Für die Erzeugung eines Stradokus musste noch ein Hinweis auf
+die Leveleinstellung aufgenommen werden.
+
+Beim Einfügen eines nicht eindeutig lösbaren Stradokus vom Clippboard wurde ein 
+eventuell angezeigter Dateiname des aktuellen Stradoku nicht überschrieben. Bug 
+durch Einfügen der entsprechenden Methoden in StradokuApp.einfuegenVonClipboard().
+
+
+08.03.2021
+In den Klassen ImportStradoku und ExportStradoku letzte Reste vom Dateityp '.txt'
+entfernt und die Statusmeldung vereinfacht.
+
+
+04.03.2021
+In StradokuOrg.bereinigeKandidaten() wurde bei einer Wertzuweisung aus allen
+Zellen im Sichtebereich der Zuweisungszelle, in denen der entsprechende Kandidat
+vertreten war, mit der Entfernung des Kandidaten auch eine eventuell vorhandene
+Markierung entfernt. Da Markierungen aber nicht zwingend an einen Kandidaten 
+gebunden sind, wurde das Entfernen der Markierung herausgenommen.
+
+
+Version 4.4.3
+
+03.03.2021
+Version auf 4.5.0 angehoben
+
+02.03.2021
+StradokuBoard.myMousePressed() so geändert, dass auch für die Notizen ein einzelner
+Kandidat über einen ungezielten Klick mit gedrückter Strg-Taste als Lösungswert
+zugewiesen werden kann. Zusätzlich musste dafür die Methode getAnzahlNotizen()
+erstellt und die Methode getSingleKandidat() geändert werden. Außerdem wurden 
+die Infotexte dafür entsprechend geändert.
+
+27.02.2021
+ImportStradoku war aus unerklärlichen Gründen auf den Stand von Februar 2020
+zurückgesetzt. Die zwischenzeitliche Änderung in der Größe des Verlaufs war
+damit nicht mehr berücksichtigt. Dies wurde rückgängig gemacht.
+
+Doppelten Aufruf von check38erStra() in LevelLoeser korrigiert.
+
+
+Version 4.4.2
+
+14.02.2021
+Hilfedatei umfangreich überarbeitet
+
+
+11.02.2021
+In ImportStradoku.strBinLaden() und in StradokuApp.setAufgabeAusListe() den 
+Aufruf von strApp.labelHinweisfeld.setText("") hinzugefügt.
+
+
+09.02.2021
+HinweisWarten-Dialog modal gemacht, damit nicht abgebrochen werden kann. 
+
+StradokuApp.aufgabeBearbeiten() so konfiguriert, dass beim Beenden mit gedrückter 
+Strg-Taste keine Eindeutigkeitsprüfung erfolgt.
+
+
+08.02.2021
+In Stradoku.loeseStradoku() mindestens eine freie Zelle als Bedingung für ein 
+gültiges Stradoku entfernt.
+
+Version 4.4.1
+
+06.02.2021
+Version angehoben
+
+Bug in FromToClipboard.imgToClipboard() behoben. Beschneidung war vor Paint!
+
+
+04.02.2021
+Bug in der Hilfedatei bei der Setti-Regel behoben.
+
+02.02.2021
+Version angehoben
+
+In Hilfedatei Beschreibung den Testmodus aufgenommen.
+ 
+
+01.02.2021
+in StgradokuOrg.notiereKandidat() wird nun nach jeder Entfernung eines notierten
+Kandidaten im Testmodus auf Single geprüft und gegebenenfalls setTestWert()
+aufgerufen.
+
+In StradokuOrg die beiden Methoden setTestWert() und checkNotKandSingle() eingeführt.
+setTestWert() behandelt die testweise Eingabe eines Kandidaten als Lösungswert mit
+Blick auf die Notizen so, wie Lösungswert behandelt wird. Es werden also alle im
+Sichtbereich der Zuweisungszelle befindlichen Notizen die gleich dem zugewiesenen
+sind, ausgeschlossen. Anschließend wird mit checkNotKandSingle() geprüft, ob durch 
+einen Ausshluss ein Zellensingle entstanden ist und gegebenenfalls durch rekursiven
+Aufruf von setTestWert() auch dieser als Zuweisung behandelt.
+
+In StradokuOrg die Methode setTestWert() eingeführt. Damit können im Testmodus
+notierte Kandidaten als zu testende Lösungswerte gesetzt werden.
+
+In StradokuBoard.ausgebenBoard() den Hintergrund für Testmodus hellgrün, wie im 
+Bearbeitungsmodus eingestellt.
+
+
+31.01.2021
+Testmodus eingeführt. Er wird geführt, wenn Kandidaten aus der Liste in den
+Notizenbereich kopiert werden und ist nur so lange aktiviert, bis der Notizenbereich
+mit den kopierten Kandidaten nicht verlassen wird.
+
+
+29.01.2021
+Das Kopieren des Stradoku-Feldes mit und ohne Rahmen in die Zwischenablage
+hinzugefügt. In diesem Zusammenhang verschiedene Änderungen im Menü vorgenommen.
+
+
+28.01.2021
+In StradokuOrg für die Naviagationstasten vor/zurück die Anzeige in der
+Statuszeile korrigiert.
+
+Neue Klasse 'FromToClipboard' erstellt, die alle Ein- und Ausgaben über das
+Clipboard übernehmen soll, also den bisherigen Im- und Export eines Stradokus.
+Hinzukommen soll die Ausgabe des Stradokufeldes als Image.
+
+
+26.01.2021
+Array für Verlauf auf 820 vergrößert. Damit gibt es auch bei Stradokus mit extrem
+vielen freien Zelle mit dem Verlauf keine Probleme. Änderungen in StradokuOrg und
+ImportStradoku.
+
+In StradokuApp aus den beiden Methoden sichernKonfiguration() und ladenKonfiguration()
+das Speichern und Laden für 'geaendert' herausgenommen. 
+
+
+Version 4.3.1
+
+24.01.2021
+Version auf 4.3.2 angehoben
+
+StradokuApp.einfuegenVonClipboard() so geändert, dass bei einem ungültigen
+Stradoku die Leveleinstellung entsprechend verändert wird.
+ 
+in StradekuApp.ladenKonfiguration() falsche Zuweisung an xPos korrigiert.
+
+In StradokuBoard.myKeyPressed() die Abfrage für einen gültigen Zuweisungswert
+nochmals geändert, damit auch das Setzen von Sperrzellen und Entfernen aller
+Werte berücksichtigt wird.
+
+In StradokuApp.strLaden() 'geaendert' auf false gesetzt, um eine nicht berechtigte
+Speichern-Abfrage zu vermeiden.
+
+
+23.01.2021
+In StradokuBoard.myKeyPressed() war die Abfrage für einen gültigen Zuweisungswert
+nur für den Lösungsmodus aktiv. Um den Fehler, der im Bearbeitungsmodus auftrat,
+abzufangen, war diese Abfrage in StradokuOrg.setzeWert(). Sie wurde dort entfernt
+und in myKeyPressed() auch für den Bearbeitungsmodus aktiviert.
+
+
+22.01.2021
+Wertebereich für Filterfarbe auf 50 vergrößert.
+
+Bei der Anzeige der Lösung die Navitaste 'aktuelle Lösungsposition' in 
+StradokuOrg.gotoNaviPosition() wieder zugelassen.
+
+Die testweise erstellte Möglichkeit, für den Verlauf 'Lösungsschritt wieder
+ausführen' das jeweilige Ereignis in eine Logdatei auszugeben wieder entfernt.
+Die in StradokuApp dafür erstellte Methode printLoesungsschritt() jedoch nur
+auskommentiert.
+
+
+Version 4.3.0
+
+18.01.2021
+Bei der Übernahme aus der Zwischenablage wurde ein zuvor gesetzter Filter nicht
+entfernt. Bug behoben.
+
+Meldung bei der übername eines fehlerhaften Stradokus geändert.
+
+Die Möglichkeit geschaffen, dass der Anwender den Grauwert für den Kandidatenfilter
+durch eine Änderung in der Konfigurationsdatei selbst bestimmen kann.
+
+
+16.01.2021
+In StradokuApp variable 'geaendert' wird nun in der Konfigurationsdatei gesichert.
+
+In StradokuBoard wird bei einem Klick auf den Rand der Selektionsrahmen entfernt.
+
+
+14.01.2021
+StradokuApp.strSpeichern() und ExportStradoku.exportStradoku() mit dem Ziel
+überarbeitet, dass in der Kopfzeile immer der komplette Pfad eines gespeicherten
+Stradoku angegeben und auch bei nochmaligem Speichern auf diesen zugegriffen sird.
+
+Die Möglichkeit, ein Stradoku auch als Textdatei zu speichern, wurde entfernt.
+
+In StradokuApp wurde die Klassenvariable für den Pfad eines gespeicherten Stradokus 
+zu 'filePath' geändert.
+
+
+Version 4.2.2
+
+11.01.2021
+Version auf 4.3.0 angehoben
+
+10.01.2021
+In StradokuApp.getAufgabeAusListe() den Aufruf von str.setFilterKnd(0) hinzugefügt,
+dass bei der Übernahme ein eventuell gesetzter Filter entfernt wird.
+
+In StradokuApp.strSpeichernAls() wurde 'geaendert' nicht zurückgesetzt. Bug behoben.
+
+
+09.01.21
+In StradokuApp.beendeAnwendung() die Abfrage nach bereits gespeichertem Stradoku so 
+geändert, dass überprüft wird, ob der StradokuName die Namenserweiterung ".str" hat.
+
+
+08.01.21
+Für den Import einer Stradokuliste Warten-Hinweis mit Fortschrittsanzeige
+erstellt. Dafür die Klasse ThreadImportStrListe durch die Klasse SwImportStrListe
+ersetzt.
+
+Aus StradokuOrg.entferneNotizen() den Aufruf von strApp.set_geaendert() enfernt.
+
+
+07.01.2021
+Im Konstruktor von StradokuApp die Feststellung des Arbeitsordners vereinfacht
+und einige Änderungen für Bezeichner vorgenommen.
+
+Mängel bei der Filteranzeige, die nicht immer zurück genommen wurde, behoben.
+
+
+05.01.2021
+Abfrage eingeführt, ob beim Beenden bei vorgeniommener Änderung einer bereits 
+gespeicherten Datei diese gespeichert werden soll.
+
+
+02.01.2021
+In StradekuBoard die Weiterschaltung eines gesetzten Kndfilters über dei
+SpitzeKlammer-Taste eingeführt. In dem Zusammenhang einige Änderungen in
+StradokuApp und StradokuOrg vorgenommen. Es wird nun intern nicht mehr
+zwischen Notizen und Kandidaten unterschieden. Die Eintragung der Notizen
+in Stradoku[] ist weggefallen. Für beide Kandidatenmodi wird immer der
+selbe Kandidat gefiltert.
+
+
+01.01.2021
+In StradokuApp strSpeichern() Sicherheitsabfrage hinzugefügt und in 
+ladenKonfiguration() gespeicherten Pfad auch für fileDir übernommen.
+
+
+31.12.2020
+In der Methode StradokuOrg.setKndFilter() die Anzeige für nicht mehr vorhandene
+Filter modifiziert.
+
+Im Konstruktor von StradokuApp der Var. fileDir für ein in arg[] übergebenes 
+Stradoku den vollständigen Pfad übergeben, damit es auch dort wieder gespeichert 
+werden kann.
+
+
+29.12.2020
+Bug in StradokuApp, durch den für ein bereits gelöstes Stradoku beim Navigieren
+weder der Notizen- noch der Kandidatenlistenmode aktiviert werden konnte, behoben.
+
+
+28.12.2020
+StradokuApp.ladenKonfiguration() komplett überarbeitet.
+
+
+Version 4.2.1
+
+27.12.2020
+ToolTipText vervollständigt. Es fehlte Hinweis auf Position zeigen.
+
+In StradokuApp.setSpeicherPos() den falschen Aufruf von setNavi(3) entfernt.
+
+
+25.12.2020
+Version auf 4.2.2 angehoben.
+
+Hilfe überarbeitet und vor allem Fehler korrigiert, die mir Rudi Lars gemeldet
+hatte.
+
+23.12.2020
+Erststartmeldung überarbeitet.
+
+In Stradoku.aufgabeAusListeLaden eine eventuell vorhandene Anzeige im
+Hinweisfeld gelöscht.
+
+
+21.12.2020
+Bug in StradokuApp.ladenKonfiguration(), durch den Eingabehinweise falsch
+angesteuert wurden, behoben.
+
+
+19.12.2020
+In StradokuApp den Code für die Eingabehinweise vollständig überarbeitet.
+
+
+12.12.2020
+Aufrufparameter für aufgabeBearbeiten() in StradokuApp geändert.
+
+
+22.11.2020
+In StradokuApp.geloest() vor der Überschrift zur Gratulation ein geschütztes
+Leerzeichen eingefügt. Damit steht die Überschrift etwa in gleicher Höhe wie
+die Texte der übrigen Zeilen.
+
+
+16.11.2020
+StradokuOrg.setKndFilter() so geändert, dass auf Kandidaten, die nicht mehr
+vertreten sind, für die aber der Filter gesetzt werden soll, hingewiesen wird.
+
+
+13.11.2020
+Version auf 4.2.0 geändert.
+
+In StradokuApp die Ereignismethoden für die Aktivierung eines Kandidatenmodus
+so geändert, dass eine Aktivierung für eine gelöste Aufgabe nicht mehr möglich
+ist, solange der Verlaufsindex größer Null ist. Für die Menüeinträge wurde der
+Typ von Checkbox auf normalen Menüeintrag geändert.
+
+
+11.11.2020
+In StradokuApp.geloest() den Filterkandidaten auf 0 gesetzt. Damit wird nun
+auch bei gesetztem Filter nach dem letzten Lösungszug auch der Filter und die
+Filteranzeige gelöscht-
+
+
+10.11.2020
+In StradokuApp.resetKandAnzeige() den Kandidatenmodus 0 an strBoard.setKandidatenModus(0)
+übermittelt. Damit werden nach einer Lösung mit aktivierter Kandidatenliste und 
+Rücksprung zur Ausgangsposition die Kandidaten nicht mehr angezeigt.
+
+
+08.11.2020
+Version auf 4.1.2 erhöht.
+
+Durch Aktivierung der Methode StradokuOrg.isNotizenLoesung() und entsprechende
+Anpassungen von setzeWert() sowie in StradokuBoard.myMousePressed() die Möglichkeit
+geschaffen, bei einer im Notizenmodus ausschließlich über Singele Kandidaten 
+gefundene Lösung die Kandidaten mit Strg+"ungezieltem" Mausklick in die Zelle
+als Lösungswert zuzuweisen.
+
+Stradoku.gotoNaviPosition() so geändert, dass beom Speichern einer Naviposition
+eine gesetzte Markierung nicht entfernt wird.
+
+
+07.11.2020
+StradokuApp.resetKandAnzeige() so erweitert, dass auch die Nichtanzeige von
+Kandidaten behandelt wird.
+In StradikuOrg.gotoNaviPosition() für die Anzeige der Lösung als Rücksprung
+nur noch die Startposition zugelassen.
+
+
+06.11.2020
+In StradokuApp die Methode markKndTaste() hinzugefügt, über die für gefilterte
+Kandidaten die entsprechende Taste des Kandidatenblockes markiert wird. Der Aufruf 
+von markKndTaste() erfolgt in StradokuOrg von den Methoden setKndFilter(), 
+setFilterKnd() und zeigeFilter().
+
+
+05.11.2020
+In StradokuApp einen Renderer für die Anzeige der LevelBox eingerichtet. Damit
+kann nun der Level 0 ausgegraut angezeigt werden.
+Der helfende Hinweis kam von LimDul (Java Forum):
+https://www.java-forum.org/thema/element-einer-jcombobox-ausgrauen.189787/post-1235738
+
+
+04.11.2020
+Änderung vom Vortag wieder rückgängig gemacht, da damit der Verlauf nicht mehr
+wie gewohnt verwendbar wäre. Zunächt Änderungen nur auskommentiert.
+
+
+03.11.2020
+Dem Anwender ermöglicht, einem Stradoku, welches über den Notizenmodus total
+gelöst wurde, ohne dass jedoch die Lösungswerte übernommen wurden, wie es für
+das Testen einer Lösungssituation vorkommen kann, alle Kandidatensingles als
+Lösungswerte über die Kurztaste Strg+Umschalt+N zuzuweisen.
+
+
+30.10.2020
+In StradokuBoard.myKeyPressed() die Zuweisung der Lösungswerte überarbeitet und
+damit das Problem der Zuweisung im Notizenmodus ohne Notizen behoben.
+
+29.10.2020
+In StradokuBoard.myMousePressed() und StradokuBoard.myKeyPressed() bei der
+Bestimmung der Anzahl der Kandiaten (anzKnd) nur die Anzahl der Listenlandidaten
+einer Zelle berücksichtigt.
+In StradokuBoard.myKeyPressed() Möglichkeit der Zuweisung eines Lösungswertes
+über die Enter- oder Space-Taste entfernt.
+
+
+Version 4.1.0
+
+26.10.2020
+Kandidatenfilter in StradokuOrg immer dann zurück gesetzt, wenn auch
+Markierungen zurück gesetzt werden.
+
+23.10.2020
+In StradokuOrg und StradokuApp die Naviagation überarbeitet.
+
+22.10.2020
+In ImportStradoku wurde die geänderte Verlaufsgröße nicht berücksichtigt.
+Dies war Ursache für alle Fehler beim Einlesen einer Stradokudatei. Um die 
+Änderung beim Einlesen zu berücksichtigen, habe ich in strBinLaden() die
+Dateilänge abgefragt. Ist sie größer oder gleich 3900, dann ist sie noch
+vor der Änderung der Verlaufsgröße angelegt. Dementsprechend viele Bytes
+werden daher eingelesen.
+In StradokuOrg.loeseStradoku() konnte daher die Konfigurationssicherung
+und in StradokuApp.strLaden() die Aufrufe für den Verlauf wieder entfernt 
+werden.
+
+
+21.10.2020
+Da für geöffnete Stradoku-Dateien die aktuelle Position wieder einmal nicht 
+gezeigt wurde habe ich erneut die Levelprüfung zwischen die Aufrufe von 
+strApp.sichernKonfiguration() und strApp.ladenKonfiguration(null, false)
+gelegt. Damit funktioniert es anscheinend.
+
+In StradokuOrg.copyKandidaten() vor der Übernahme der Kandidaten mit
+'stradoku[i] |= (tmp << 9' erst mit 'stradoku[i] &= ~ANKND' alle gesetzten
+Notizen entfernt.
+
+Bug 1: In StradokuOrg.getZelle() wurde der Wert für stradoku und nicht von
+aktStr zurückgegeben. Dadurch wurde die Lösung nicht mehr angezeigt.
+
+Bug 2: In StradokuBoard.myMousePressed() wurde anzKnd nicht auf 0 gesetzt.
+Dadurch wurde die Werteingabe über Strg+Mausklick nicht ausgeführt.
+
+
+20.10.2020
+Da die Einbeziehung eines Wechsels mit dem Kandidatenlistenmosus in den Verlauf
+Probleme bereitete, die in keinem Verhältnis zum Nutzen stand, habe ich diese
+wieder rückgängig gemacht und dafür bei einem Kandidatenwechsel mit gleich-
+zeitigem Moduswechsel auf beide, also dem Modus- und dem Kandidatenwechsel
+in der Statuszeile hingewiesen.
+
+Die Version habe ich auf 4.1.0 gehoben.
+
+
+19.10.2020
+Beim Öffnen einer gespeicherten Stradoku-Datei gab es ein Problem mit der 
+Navigation. Statt einen Schritt zurück wurde die Ausgangsstellung gezeigt.
+Die Ursache habe ich bisher noch nicht herausgefunden. Als funktionierende
+Zwischenlösung habe ich in StradokuApp.strLaden() nach der Abfrage
+    if (importStr.strLaden()) 
+diese beiden Aufrufe eingefügt:
+    str.gotoNaviPosition(1);    // gehe zur Startposition
+    str.gotoNaviPosition(2);    // gehe zur aktuellen Position
+Das scheint zu funktionieren, soll jedoch als Profisorium durch Behebung
+der Ursache wieder entfernt werden.
+
+Ursache gefunden. Durch den am 29.09.2020 in ImportStradoku.strLaden() 
+hinzugefügten Aufruf von str.loeseStradoku() wurde das gespeicherte
+Stradoku offensichtlich verändert, was dann zu dem geschilderten Problem
+führte. Um solche Veränerungen auszuschließen, wurde für den Aufruf von
+loeseStradoku() der Parameter 'save' hinzugefügt. Ist dieser 'true' erfolgt
+vor der Levelfeststellung ein Aufruf von strApp.sichernKonfiguration() und
+vor dem Rücksprung der Aufruf strApp.ladenKonfiguration(null, false).
+
+Diese Lösung wurde wieder verworfen, da die Navigation damit nicht
+mehr einwandfrei funktionierte.
+
+Es besteht ein grundsätzliches Problem: Werden Schritte zurück genommen
+und das Programm geschlossen, lassen sich diese nicht mehr wiederholen, 
+wenn damit Kandidaten angezeigt werden müssten.
+
+
+
+Version 4.0.3
+
+16.10.2020
+Im Bearbeitungsmodus können nun mit der Entf-Taste alle Werte und mit der
+zusätzlich gedrückten Strg-Taste auch die Sperrzellen entfernt werden. 
+Dafür wurden StradokuOrg.entferneVorgaben() und StradokuBoard.myKeyPressed()
+geändert.
+
+Verlaufsize von 800 auf 640 herabgesetzt.
+
+Version auf 4.0.4 gesetzt
+
+
+15.10.2020
+Das gesamte Projekt im Hinblick auf die Dokumentierung überarbeitet.
+
+
+14.10.2020
+Aus dem Konstruktor von HinweisWarten die zwei Aufrufe 
+    setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+    setModalityType(java.awt.Dialog.ModalityType.DOCUMENT_MODAL);
+entfernt. Sie beziehen sich nich auf einen Swing-, sondern auf einen awt-Dialog.
+Damit kommt es bei der Eindeutigkeitsprüfung nach bisherigen Beobachtungen zu 
+keinem Crash mehr, weshalb der Warten-Dialog mit Fortschrittsanzeige wieder
+aktiviert und auf den Warten-Cursor verzichtet werden konnte.
+
+
+13.10.2020
+In StradokuOrg.loeseStradoku() wurde in Zeile 254 der Inhalt von stradoku[]
+durch aufgabe[] überschrieben und die damit gelöschten Kandidaten nicht wieder
+hergestellt, was dazu führte, dass leere Zellen nicht mehr gelöst werden konnten.
+Nachdem in der nächsten Zeile mit erstelleKndListe(stradoku) die Kandidatenliste
+wieder generiert wurde, konnten die Lösungswerte wieder eingetragen werden.
+Testalber wurden aber in den Zeilen 242,243 und 254,255 das Kopieren mit
+System.arraycopy() und wieder Herstellen der Kandidatenliste auskommenbtiert.
+
+
+09.10.2020
+"Damit war das Problem mit den Java-System Abstürzen behoben." So dachte ich
+ich zunächst. Die Änderung der Bedingung für die Eindeutigkeitsprüfung war zwar 
+richtig und wichtig, aber brachte nur einen Teilerfolg. Also verzichtete ich 
+wieder auf die Fortschrittsanzeige und kehrte zum Warten-Cursor zurück.
+
+In StradokiOrg.loeseStradoku() änderte ich die Bedingung für die Akzeptanz
+eines Stradokus zu:
+
+getVorgabewerte() > 0 && getSperrzellen() > 1 && getFreiZellen(false) > 1
+
+Neu ist, dass es mindestens zwei freie Zellen geben muss.
+
+
+08.10.2020
+Da es auch mit dem Warte-Cursor nicht so klappte, wie ich es mir vorgestellt
+hatte,habe ich die Eindeutigkeitsprüfung noch einmal überprüft, nicht zuletzt
+auf den Hinweis von 'mrbela' vom Java-Forum 
+https://www.java-forum.org/thema/anzeige-des-warten-cursors.189570/ 
+hin und fand schließlich den entscheidenden Fehler. Die Eindeutigkeitsprüfung musste
+von lev > 0 auf lev >= 0 umgestellt werden. Damit war das Problem mit den
+Java-System Abstürzen behoben.
+
+
+01.10.2020
+Nachdem es mit der Fortschrittsanzeige für die Eindeutigkeitsprüfung immer noch
+ein Problem gab (Systemabsturz in extrem seltenen Fällen), habe ich auf sie
+verzichtet und dafür einen Hinweis in der Statuszeile gesetzt und für die
+Prüfungszeit den Warte-Cursor gesetzt.
+
+
+Version 4.0.2
+
+29.09.2020
+Projekt allgemein überarbeitet und dabei einige Auskommentierungen und die 
+Beschneidung der Versionsanzeige im Programmkopf entfernt.
+In ImportStradoku.strLaden() den Aufruf von str.loeseStradoku hinzugefügt,
+damit falsch abgespeicherte Stradokus richtig bewertet werden.
+Die Version auf 4.0.3 erhöht.
+
+
+28.09.2020
+Das Problem mit dem Warten-Dialog ohne Text ließ sich nicht beheben und so
+versuchte ich es noch einmal mit dem SwingWorker für die Klasse EindeutigkeitChecken,
+diesmal mit Erfolg. Nachdem mir aufgefallen war, dass es zu den Systemabstürzen
+immer dann kam, wenn sich bereits für die erste Zelle mehrere Lösungsmöglichkeiten
+boten, beendete ich damit die Überprüfungsschleife nicht und überprüfte alle
+Zellen bis zum Ende. Als Nebeneffekt konnte die Anzahl der Lösungen festgestellt
+Werden, die nun in der Ergebnismeldung auch gezeigt werden.
+
+
+27.09.2020
+Nachdem entgegen meiner Erwartung die Eindeutigkeitsprüfung doch noch immer 
+Probleme bereitete, habe ich in StradokuOrg und EindeutigkeitChecken die Anzeige 
+des Fortschritts herausgenommen und damit auch den SwingWorker. Nun sind die
+Probleme mit dem System behoben. Allerdings wird derzeit der Warten-Daialog
+noch ohne Text angezeigt.
+
+
+Version 4.0.1
+
+25.09.2020
+In StradokuOrg und StradokuApp diverse Änderungen im Zusammenhang mit der
+Eindeutigkeitsprüfung vorgenommen. Das Thema "Systemabstürze" scheint sich damit
+erledigt zu haben.
+Version auf 4.0.2 umgestellt.
+
+
+Version 4.0.0
+
+23.09.2020
+In StradokuApp.aufgabeBearbeiten() beim Aufruf von str.loeseStradoku() den ersten
+Parameter für die Überprüfung der Eindeutigkeit auf false gesetzt und die Prüfung
+auf Eindeutigkeit in die Methode übernommen. Damit wird vermieden, dass es teilweise 
+zu Systemabstürzen kommt.
+In StradokuApp.checkEindeutigkeit falsche Zuordnung der Ergebnisse korrigiert.
+Für den Bearbeitungsmodus alle nicht relevanten Menüoptionen deaktiviert.
+Version auf 4.0.1 umgestellt.
+
+
+22.09.2020
+Bugs in StradokuBoard.myKeyPressed() behoben. Im Bearbeitungsmodus wurden über
+die Zifferntasten die Werte nur gesetzt, aber nicht entfernt und die Navigation 
+durch die Zellen funktionierte nicht.
+
+Außerdem wurde die Eigenschaft resizable für beide Fenster, sie war offensichtlich 
+aus Versehen auf true gesetzt, wieder auf false gesetzt. Im Zusammenhang damit
+musste auch die Größe des Listenfenster neu justiert werden.
+
+
+20.09.2020
+Kurztaste für "Beenden ohne Sicherung" zu Alt+Q geändert. Alt+F4 wird seit 
+neuesten von Windows für das Beenden von Windows verwendet.
+
+
+18.09.2020
+StradokuOrg.entferneNotizen() auf das Entfernen von Notizen in der Statuszeile
+hingewiesen.
+
+
+17.09.2020
+Programm zu "kodelasStradoku" umbenannt und alle Erwähnungen von Str8ts entfernt,
+auch im Programmcode.
+
+
+Version 3.0.1
+
+07.09.2020
+In  Str8ts die Methode " showLoesung() " aktStr = loesung; " hinzugefügt, damit,
+wenn das Programm mit angezeigter Lösung beendet wurde, diese nach einem Neustart
+angezeigt wird. Der Aufruf erfolgt von ImportStr8ts.
+
+
+02.09.2020
+In Str8ts.notiereKandidat() Code für Zurücksetzung auf Neuanfang eingefügt.
+
+
+01.09.2020
+In Str8ts.setKndListe() Methode entferneFilter() vorläufig einmal auskommentiert.
+Damit wird vermieden, dass Markierungen durch den Wechsel der Kandidatenmodi
+entfernt werden.
+
+31.08.2020
+In Str8ts.loeseStr8ts() die Variable filterKnd auf 0 gesetzt. Damit wird für
+neue Str8ts ein vorhandener Filter verworfen.
+
+
+Version 3.0
+28.08.2020
+Nachdem alles rund zu laufen scheint, Version auf 3.0 gehoben.
+
+Version 2.2.8
+
+27.08.2020
+Kandidatenfilter noch einmal überarbeitet und die Möglichkeit der Mehrfachfilterung
+entfernt. Schien mir nicht von praktischem Nutzwert.
+
+
+26.08.2020
+Die Kandidatenfilter noch einmal umfangreich überarbeitet. Betroffen die Klassen
+Str8tsApp, Str8tsBoard, Str8ts und GlobaleObjekte.
+
+
+21.08.2020
+In Str8tsBoard.myKeyPressed() die Zuweisung eines Wertes für einen einzig angezeigten
+Kandidaten über die Enter- oder Leertaste wieder hinzugenommen.
+
+Die Anzeige der Filter und Markierungen so geändert, dass alle Filter und Markierunge
+bei jedem Moduswechsel für die Kandidatenanzeige entfernt werden.
+
+
+20.08.2020
+In Str8tsBoard die Methode myKeyPressed() neu geschrieben; dabei Funktionalitäten für
+VK_ENTER nicht mehr mit aufgenommen.
+
+In Str8ts die Filter-Funktionalität komplett überarbeitet.
+
+In Str8tsApp Version auf 2.2.8 erhöht.
+
+
+Version 2.2.7
+
+17.08.2020
+Die Alt-Taste für das Setzen der Kandidatenfilter mit der Strg-Taste ersetzt, da es mit 
+der Alt-Taste Probleme gab. Das Windows verwendet sie für das Menü.
+
+
+15.08.2020
+In Str8tsBoard.ausgebenWerte() musste noch eine Änderung vorgenommen werden, damit im 
+Notizenmodus und gesetztem Filter auch andere Markierungen möglich sind.
+Damit wurde die Version auf 2.2.6 gesetzt.
+
+
+Version 2.2.5
+
+14.08.2020
+Die Markierung und die Eingabe über die Tastatur umfangreich überarbeitet. Betroffen davon 
+waren die Klassen Str8tsApp, Str8ts, Str8tsBoard und ExportStr8ts. Für die Filterung der
+Kandidaten habe ich die Variable filterKnd eingerichtet. Damit kann bei der Anzeige eines 
+globalen Filters (über Alt+nTaste) im Notizenmodus geprüft werden, ob ein gefilteter Kandidat
+angezeigt wird und nur dann die Zelle auch gefiltert werden.
+
+
+11.08.2020
+Im Konstruktor von ListenFrame in Zeile 67/68 den Abstand der Eintragungen für Bemerkung 
+von 10 auf 12 Punkte erhöht. Damit ändert sich der Abstand nicht, wenn die Bemerkung
+editiert wird. Neuer Code:
+        ((JLabel) c).setBorder(
+                BorderFactory.createEmptyBorder(0, 12, 0, 0));
+
+
+07.08.2020
+In den Klassen Str8tsApp, ListenFrame und ListenModel eine Reihe Veränderungen für die diversen
+Größen (Frames, Positionen, Spaltenbreite und Höhe) vorgenommen.
+
+
+05.08.2020
+Die Kennzeichnung einer Str8ts Aufgabe durch ein "p/ ", wenn die Aufgabe ausgedruckt wird, wurde
+entfernt. War doch keine so gute Idee. Dafür wurden in der Klasse ThreadPrintStrSerie die Zeilen
+35, 44 und 45 und in der Klasse ListenFrame die Methode setBemerkung() auskommentiert. 
+Kann später entfernt werden
+
+31.07.2020
+Str8tsApp.ladenKonfiguration() wurde so erweitert, dass das Fesnster, wenn es im erweiterten
+Anzeigemodus außerhalb des primären Monitors geschlossen und nach einer Umstellung auf einen
+Monitor wieder geöffnet wird, die Anzeige im primären Monitor erfolgt. Den entscheidenden Tipp
+dafür bekam ich von mihe7: 
+https://www.java-forum.org/thema/breite-eines-erweiterten-monitors-feststellen.189169/post-1229251
+
+
+26.07.2020
+In Str8tsBoard.myKeyPressed die am 23.07.2020 vorgenommene Änderung rückgängig gemacht, 
+so dass nur Kandidaten der Kandidatenliste gefiltert werden. Bei einer Filterung in den 
+Notizen werden sonst auch Felder mit Filter-Markierung gezeigt, in denen zwar in der 
+Kandidatenliste Kandidaten vertreten sind, bei den Notizen jedoch nicht. 
+Jetziger Stand:
+
+        if (strApp.getKndModus() == KNDMODNOTIZ) {
+            if (code == KeyEvent.VK_K) {
+                str.swapNotizen();
+            } else if (code == KeyEvent.VK_0 || code == KeyEvent.VK_NUMPAD0) {
+                str.entferneNotizen();
+            }
+        } else ...
+
+23.07.2020
+In Str8tsBoard.myKeyPressed im Bereich der Zeilen 410 bis 415 folgende
+Auskommentierung vorgenommen:
+
+//                if (strApp.getKndModus() == KNDMODNOTIZ && k == 0) {
+//                    str.entferneNotizen();
+//                } else 
+                if (strApp.getKndModus() > 0) {
+                    str.kndFilter(k);
+                }
+Damit funktioniert die Kandidatenübernahme aus der Kandidatenliste in die
+Notizenanzeige wieder.
+
+In Str8ts.kndFilter(k) den Aufruf von entferneFilter() hinzugefügt, so dass 
+über Strg+0 alle Filter entfernt werden.
+
+Str8ts.swapNotizen() wurde weitgehend überarbeitet.
+
+
+12.03.2020
+In Str8ts.notiereKandidat() wurde der Aufruf von strApp.setNaviStatus() entfernt.
+Er führte zu einer fehlerhaften Anzeige der Verlaufs-Buttons.
+
+11.03.2020
+In Str8ts die Methode zum Kopieren von Kandidaten aus der Liste in den 
+Notizenbereich zu swapNotizen() umbenannt. Damit wird nur in freie Zellen
+kopiert. Um eine vollständige Kopie zu erhalten, müssen also erst mit 
+entferneNotizen() alle Notizen entfernt werden. Danach kann durch einen
+weiteren Aufruf von swapNotizen() die Kopie wieder entfernt werden.
+
+In Str8tsBoard wurde für die Navigation im Str8tsfeld die Taste 5 des 
+Ziffernbereiches mit einbezogen. Damit wird die Zelle im Zentrum selektiert.
+
+10.03.2020
+Die entfernte Methode in Str8ts zum Kopieren der Kandidatenliste in den
+Notizenbereich wieder hinzugenommen, allerdings nur für alle Kandidaten.
+Damit besteht die Möglichkeit, auch Lösungsketten auszutesten.
+
+
+Version 2.2.4
+
+10.03.2020
+Version erhöht auf 2.2.5
+Filterbehandlung überarbeitet. Maximal 3 Filter, Filter können einzeln 
+zurückgenommen werden. 
+
+Version 2.2.3
+
+10.03.2020
+In Str8ts.entferneKandidat() Bug behoben. setMarkierung() mit falscem Parameter
+aufgerufen.
+ 
+
+08.03.2020
+Folgende Änderungen vorgenommen:
+- Die Möglichkeit, Kandidaten aus der Liste in die Notizen zu kopieren, entfernt.
+  Dies erforderte eine Reihe von Änderungen in den Klassen Str8tsApp, Str8tsBoard
+  und am meisten in Str8ts.
+- Den Kode für das Aus- und Einblenden von Markierungen entfernt.
+  Dies erforderte Änderungen in den vorstehend genannten Klassen sowie in 
+  OmportStr8ts und ExportStr8ts.
+- Die Hilfedatei musste ebenfalls geändert werden.
+
+07.03.2020
+Die bereits bestehende Markierung für Kandidaten, die aus der Liste zu den
+Notizen kopiert werden, auf die Kandidaten in der Liste erweitert.
+
+
+06.03.2020
+In Str8tsBoard.myMousePressed() die Beschränkung der Zuweisung eines einzigen 
+Kandidaten in einer Zelle durch Strg+Mausklick in die Zelle auf Kandidaten der
+Kandidatenliste wurde entfernt.
+
+
+05.03.2020
+EingabeBeendenDialog, AbfrageAusListeLaden, AbfrageImportListe und HilfeDialog 
+modal gemacht.
+
+
+04.03.2020
+Im Konstruktor von Str8tsApp und Str8ts.ladenKonfiguration() Abfrage der 
+Konfigdatei so geandert, dass beim Erststart Willkomenmeldung angezeigt wird.
+
+In HilfeDialog.zeigeHilfe() die Abmessungen des Dialoges den Änderungen der
+Hilfe-Datei angepasst.
+
+
+03.03.2020
+Fehlerhafte Textausgabe bei Sicherheitsabfrage für Neu und Bearbeitung in
+Str8tsApp.aufgabeBearbeiten() korrigiert.
+
+
+28.02.2020
+Probleme mit Navigation nach Anzeige der Lösung behoben. Änderungen in:
+Str8tsApp.naviPosMousePressed() und Str8tsApp.setNavi()
+
+
+23.02.2020
+Str8tsApp überarbeitet und fehlende Kommentierungen für Methoden geschrieben.
+
+
+Version auf 2.2.2 gesetzt
+
+
+22.02.2020
+Falsche Anzeige beim Setzen der Navo-Position in Str8ts.gotoNaviPosition()
+behoben.
+
+Bei einem Brung zu einer gespeicherten Position wurde die Statusanzeige in
+Str8tsApp.setNavi() durch den Kandidaten-Modus überschrieben. Bug behoben.
+
+
+18.02.2020
+In Str8tsBoard.myMousePressed() die ungezielte Wertzuweisung für einen einzigen
+Notiz-Kandidaten ausgeschlossen. Damit wurde bei einem falschen Notiz-Kandidaten
+die Wertzuweisung per Maus verhindert.
+
+08.-17.02.2020
+Die Größe für den Verlauf von 600 auf 800 geändert.
+
+Diverse Änderungen am Code ohne Auswirkungen auf die Funktionalität.
+
+
+06.02.2020
+Aus UpdateCheck und UpdateDialog die unterschiedlichen Update-Möglichkeiten
+(Hilfedatei ect.) herausgenommen.
+
+Den Warten-Dialog aus dem UpdateCheck herausgenommen.
+
+In den Klassen GlobaleObjekte und LevelLoeser das Array BKND durch die zwei 
+Konstanten MINK und MAXK ersetzt.
+
+
+05.02.2020
+Im Konstruktor der Klasse Str8tsApp die Ermittlung des Arbeitsverzeichnis von
+userDir = propertiesFile.getAbsolutePath(); zu 
+userDir = System.getProperty("user.dir"); geändert. Damit wird auch unter
+NetBeans auf das eingestellte Arbeitsverzeichnis zugegriffen. 
+Für den Aufruf über ein Str8ts als Parameter musste allerdings das 
+Programm-Verzeichnis als User-Verzeichnis umgebogen werden.
+
+In der Klasse ThreadStrSerie Bug behoben, der bei Erstellung einer Str8ts-Serie
+ein Str8ts zu wenig erzeugte, wenn in der Liste genau ein Str8ts war.
+
+Klasse AbfrageAusListeLaden überarbeitet (Rückgabe von Int auf Bool umgestellt)
+und kommentiert.
+
+
+03.02.2020
+Alle Str8ts, welche nicht in allen Varianten gleich bewertet wurden und damit
+nicht archiftauglich waren, überarbeitet und archivtauglich gemacht.
+
+In LevelLoeser.loeseAufgabe() für die Bewertung von Str8ts mit den Leveln  
+3 und 4, die Anzahl der freien Zellen für eine Höherstufung berücksichtigt.
+
+
+29.01.2020
+Neue Klasse ArchivLevel eingeführt. Wenn die Option "archiftauglich" in der
+Konfigdatei auf 1 gesetzt ist werden damit Str9ts nach einer Bearbeitung und
+beim Import einer Liste auf die Archivtauglichkeit geprüft.
+
+
+26.01.2020
+In LevelLoeser erneut Levelbewertung geändert. Ziel: breiterer Bereich für 
+Level 3
+
+
+25.01.2020
+In Str8tsApp.ladenKonfiguration() wurde der Wert für archivtauglich nicht
+eingelesen. Bug behoben.
+
+18.01.2020
+Für die beiden Kandidatenmodi wurde eine Anzeige in der Statuszeile eingeführt.
+
+
+17.01.2020
+In LevelLoeser.check38erStr8ts() Bug behoben. geloest wurde zu früh auf true
+gesetzt.
+
+Hintergrundfarbe für den Editmodus etwas abgedukelt.
+
+
+16.01.2020
+In LevelLoeser.loeseAufgabe() Bewertung für Level 3 etwas leichter gemacht.
+
+In ThreadImportStrListe.add_internStr8ts die Ausgabe der aktuellen Zeile 
+während des Imports eingefügt.
+
+
+11.01.2020
+Im Modul LevelLoeser die beiden Methoden setGeloest() und checkGeloest eingeführt.
+setGeloest() prüft vor den Lösungsmethoden, welche Bereiche bereits gelöst sind
+und setzt für sie das geloest-Flag. checkGeloest() wird nach jeder Prüfung eines 
+Bereiches aufgerufen wenn Änderungen vorgenommen wurden und setzt, falls der
+Bereich gelöst ist, das geloest-Flag.
+
+
+Version 2.1.0
+
+
+05.01.2020
+Der aktuelle Level für die Serienerstellung von Str8ts wurde in Str8tsAppe,
+Methode aufgabenSerieErstellen() falsch interpretiert. Bug behoben
+
+In Str8ts.kopiereKListe2Notizen() und in Str8tsApp einige Änderungen zur
+Verbesserung der Anzeige vorgenommen.
+
+Return nach evt.isAltDown() in Str8tsBoard.myKeyPressed() weiter nach hinten
+verlegt, damit die Übernahme aller Kandidaten aus der Liste zu den Notizen
+durchgeführt wird.
+
+
+04.01.2020
+Tastenbelegung für Verlauf und Navigation überarbeitet
+
+
+02.01.2020
+Bug in Str8tsBoard.myKeyPressed() bei der Übernahme von Kandidaten aus der
+Kandidatenliste behoben. 
+
+Für die Übernahme von Kandidaten aus der Kandidatenliste in die Notizen die 
+Option eingeführt, Zellen mit übernommenen Kandidaten bei gedrückter Alt-Taste
+grün einzufärben.
+
+
+29.12.2019
+Für das Navigieren im Str8tsfeld folgende Erweiterung eingeführt:
+   Strg+POS1 -> go Zelle 0 und Strg+Ende -> go Zelle 80
+Betroffen Str8tsBoard.myKeyPressed() und Str8tsBoard.auswertenNavigation().
+
+Für das Öffnen des Kapitels "Lösungsstrategien" in der Hilfe-Datei die 
+Kurztaste F2 eingeführt.
+
+
+Version 2.0.3
+
+28.12.2019
+Die Lösungsstrategien wurden in die Hilfedatei aufgenommen und HilfeDialog sowie
+Str8tsApp entsprechend angepasst. Die Version wurde auf 2.1.0 erhöht.
+
+
+17.12.2019
+Eingabefehler für Kandidaten, welche nicht vorhanden sind, werden nach einer 
+entsprechenden Änderung in Str8ts.setzeWert() nicht mehr als solche gewertet.
+
+Im Zusammenhang mit eigenständigen Behandlung der Anzeige der Kandidatenliste
+wurde der Verlauf gründlich überarbeitet.
+
+
+16.12.2019
+In Str8ts.setKndListe() für Aktivierung der Kandidatenliste Überprüfung auf
+unmittelbar vorhergehende Deaktivierung eingeführt und für diesen Fall den
+Verlauf vor die Deaktivierung zurückgesetzt. Damit wird für die kurzzeitige
+Verwendung des Notizenmodus mit Übernahme von Kandidaen aus der Kandidatenliste
+die Umschaltung aus dem Verlauf herausgenommen.
+
+
+15.12.2019
+Aktivierung und Deaktivierung der Kandidatenliste als Vorgang für dei Navigation
+aufgenommen. Damit wird nach einer Wiederholung des Verlaufs der erste Schritt 
+nach der Aktivierung der Kandidatenliste erst dann angezeigt, wenn die
+Kandidatenliste auch zu sehen ist.
+
+
+14.12.2019
+In Str8tsApp alle if-Abfragen vor Aufruf von zeigeTipp() entfernt.
+
+
+12.12.2019
+Durch Änderungen in Str8tsBoard.myKeyPressed() und Str8ts.kopiereKListe2Notizen()
+die Möglichkeit geschaffen, übst Strg+Alt+0 alle Kandidaten aus der Kandidaten-
+liste als Notizen zu übernehmen.
+
+
+01.12.2019
+Beim Wechsel von der Lösungsanzeige zu gespeicherter Position wurden die
+Kandidaten-Modi Symbole nicht mehr aktiviert. "Aufruf setNavi(3)" in 
+Str8tsApp.naviPosMousePressed() eingefügt. Bug behoben.
+
+Bei Abbruch des Bearbeitungsmodus wurde der vorherige Dateiname verworfen.
+Ursache war die Anweisung 'strName = "unbenannt"' am Ender der Methode 
+resetBearbeitungsModus() in Str8tsApp. Anweisung entfernt.       
+
+
+19.11.2019
+Bug in Str8ts.loeseStr8ts(), durch den bei der Eingabe eines neuen Str8ts mit 
+weniger als 2 Sperrzellen und einem Vorgabewert beabsichtigt nicht versucht
+wird, eine solche Aufgabe zu lösen, es zu völlig falschen Ergebnissen kam.
+Nachdem als erste Aktion in dieser Methode der Level auf -1 gesetzt wurde, 
+kam es zu diesem Bug nicht mehr.
+
+
+18.11.2019
+Wenn der Programmaufruf mit einem Str8ts als Parameter erfolgte, wurde die
+Konfigurationsdatei nicht aufgerufen. Im Konstruktor vom Str8tsApp den Aaufruf
+der Methode ladenKonfiguration() durch Änderung er if-Abfrage für Parameter
+für jeden Start eingerichtet.
+
+
+15.11.2019
+In GlobaleObjekte Konstante ZELLNAME für Zeile 9 von "I" auf "J" geändert.
+
+
+14.11.2019
+Wenn über die entsprechende Menüoption die Eindeutigkeit für ein teilgelöstes
+Str8ts geprüft werden sollte, wurde die aktuelle Konstellation zerstört. 
+Durch den Aufruf von sichernKonfiguration() in Str8tsApp und nach der Prüfung 
+von ladenKonfiguration() konnte das Problem behoben werden.
+
+
+13.11.2019
+In Str8tsBoard die Methode ausgebenWerte() so geändert, dass Sperrwerte markiert 
+werden können.
+
+In Str8ts.java Methode setMarkierung() so geändert, dass für Sperrzelen ohne 
+Sperrwert keine Markierung behandelt wird. 
+
+Für Zeile 9 die alpha-Bezeichnung von "I" wieder auf "J" umgestellt. Dafür
+in Str8tsBoard.java die Auskommentierung der Zeilen 141 und 144-147 entfernt.
+
+
+Version 2.0.2
+11.11.2019
+Bug bei der Ausgabe des Dialogfensters in der Methode bearbeiteKndButton() 
+beseitigt (Verweis auf Objekt von null zu this geändert).
+
+In Str8tsApp noch einige durch die Einführung der 0 als Level entstandene Bugs
+behoben.
+
+
+04.11.2019
+Archiv-Fehlermeldungen überarbeitet.
+
+Den Level 0 für nicht eindeutig lösbare Str8ts auch im Menü und in der LevelBox
+eingeführt.
+
+
+02.11.2019
+Wenn aus der Lösungsanzeige in den Edit-Modus gewechselt wurde und diese 
+abgebrochen wurde, kam es zu einer falschen Anzeige für die Navi-Tasten. 
+Durch die Sicherung in KNAVISTATUS wurde Problem behoben.
+
+Alles was mit den Lösungstipps in Zusammenhnag stand entfernt.
+
+
+29.10.2019
+Im Konstruktor von Str8tsApp wurde beim Aufruf des Programms mit einem 
+gespeichertem Str8ts anstatt importStr.strBinLaden() ladenKonfiguration()
+aufgerufen. Dadurch wurden weder der Verlauf noch Markierung übernommen.
+Durch die Änderung ist dieses Problem behoben.
+
+
+Version 2.0.1
+
+In Str8tsApp den Aufruf von zeigeTipp() in den meisten Fällen mit einer if-Abfrage
+(zeigeInfo) verbunden. Damit konnten unsichere Anzeigezustände beseitigt werden.
+
+In Str8ts.kopiereKListe2Notizen() "strBoard.requestFocusInWindow()" hinzugefügt,
+da ansonsten die betätigte Zifferntaste den Fokus behielt.
+
+Für das Kopieren von der KndListenansicht zu den Notizen zusätzlich zur Eingabe
+über die Tastatur auch den Kandidaten-Ziffernblock eingebunden. Änderung in
+Str8tsApp.kandidat_ActionPerformed().
+
+
+Version 2.0.0
+
+28.10.2019
+Info bei erstem Start zu den Eingabehilfen integriert.
+
+
+Version 1.7.5 beta
+
+27.10.2019
+Die Entfernung von Markierungen erheblich eingeschränkt. 
+Betroffen: Str8tsApp, Str8ts, Str8tsBoard und ImportStr8ts
+
+
+26.10.2019
+Aus Text für gelöstes Str8ts den Hinweis auf Lösungstipps entfernt.
+
+Menpoption "Str8tsliste zeigen" war doppelt in Datai und Anzeige. 
+Aus Datei entfernt. Im Zusammenhang damit einige Umbenennungen durchgeführt.
+
+
+25.10.2019
+In Str8ts.loeseStr8ts() die Bedingung für ein Str8ts auf mindestens einen 
+Vorgabewert und zwei Sperrzellen festgelegt.
+
+
+24.10.2019
+Alle Möglichkeiten für Lösungshinweise entfernt. Betroffen die Klassen:
+Str8tsApp, Str8ts, ImportStr8ts und ExportStr8ts
+
+Durch Änderung in DobuDish erreicht, dass im Hilfefenster von Anfang an
+der Navibereich erweitert angezeigt wird. Dafür in DobuDish\system\custom-xsl\
+in der Datei javahelp-commons.xsl alle Zeilen mit
+<tocitem target="{$id}"> zu <tocitem target="{$id}" expand="true"> geändert).
+
+
+23.10.2019
+Für die Konfigurationssicherung wurde der Verlaufsindex nicht berücksichtigt.
+Str8tsApp.sichernKonfiguration() und Str8tsApp.ladenKonfiguration() entsprechend
+geändert.
+
+Leveleinteilung für nicht lösbare (von 0 zu -1) und nicht eindeutige Str8ts
+(von -5 zu 0) geändert.
+Änderungen in: LevelLoeser, ThreadImportStrListe, Str8ts und Str8tsApp
+
+Bug bei der Zuweisung eines falschen Wertes in Str8ts.setzeWert() behoben.
+
+
+22.10.2019
+Den Einsprung in den Bearbeitungsmodus überarbeitet. Jetzt kann nur mit den
+Vorgabewerten, den Vorgabewerten plus aktuellen Lösungswerten und mit der
+Lösung die Bearbeitung erfolgen. 
+Änderungen in: Str8tsApp.aufgabeBearbeiten() und Str8ts.str8ts2aufgabe().
+
+
+21.10.2019
+Für nicht eindeutig lösbare Str8ts wurde für die Eingabe von Werten und die
+Entfernung von Kandidaten aus der Kandidatenliste die Überprüfung, ob die
+betreffende Aktion mit der Lösung vereinbar ist, deaktiviert.
+
+
+19.10.2019
+Menüoption "Markierung ausblenden" entfernt.
+
+
+16.10.2019
+Hilfedatei von "kodelasStr8tsHlp.jar" zu "kodelasZPHlp.jar" umbenannt, was
+mit sehr viel Aufwand verbunden war.
+
+
+15.10.2019
+In HilfeDialog die Breite für den Naviagationsbereich festgelegt.
+
+
+08.10.2019
+In HilfeDialog die Fenstergröße für das Hilfefenster vergrößert und für alle 
+Aufrufe Navigationsbereich entfernt. Außerdem die Position so eingestellt,
+dass das Hilfefenster immer über dem Programmfenster liegt.
+
+
+Version 1.7.3 beta
+
+05.10.2019
+In Str8ts-Klasse für den Verlauf die Berücksichtigung der Notizen entfernt.
+
+
+04.10.2019
+Die Berücksichtigung notierter Kandidaten für den Verlauf wurde aufgehoben.
+Jede Navigation entfernt alle bisher gesetzten Notizen.
+
+
+03.10.2019
+Der Str8ts-Name von Str8ts, welche aus der Liste übernommen wurden, wurde nach
+der ersten Eingabe eines Lösungswertes verworfen. Nach einer Entfernung des
+Aufrufs von setStrName() aus resetVerlauf() und setzeWert() im Modul Str8ts ist
+dieser Fehler behoben.
+
+Wenn der Notizenmodus aktiviert war, ließen sich Lösungswerte nicht durch
+Mausklicks setzen. Nachdem im Modul Str8tsBoard in der MethodemyMouseÜressed()
+die if-Abfrage nach isNotiz geändert wurde, ist der Fehler behoben.
+
+Für die Methode getEinzigerKnd() im Modul Str8ts wurde der Aufruf-Parameter pos
+entfernt. Er erfüllte keinen Zweck.
+
+
+02.10.2019
+Archiv auf 3125 Basis-Str8ts erweitert, davon 294 für Level 1, 898 fürLevel 2,
+894 für Level 3, 631 für Level 4 und 408 für Level 5. Damit lassen sich
+50.000 verschiedene Str8ts generieren.
+
+
+23.09.2019
+Abfrage eingeführt, ob nur archivtaugliche Ster8ts importiert werden sollen.
+Die Festlegung kann über die Konfig-Datei, Option "archivtauglich", erfolgen.
+0 übernimmt alle gültigen Str8ts, 1 nur die archiftauglichen. Eine Änderung muss
+manuell über die Konfig-Datei erfolgen.
+
+In ThreadImportStrListe einige Änderungen für die Ausgabe der unberücksichtigten
+Str8ts vorgenommen.
+
+18.09.2019
+Testhalber vorgenommene Entfernung der Verlaufsbehandlung für Notizen wieder
+aktiviert,
+
+
+13.07.2019
+Die Klasse ThreadImportStrListe so erweitert, dass bei Bedarf nur solche Str8ts
+übernommen werden, bei denen es zu keinem Levelkonflickt kommt, bei denen also
+für alle 16 möglichen Varianten der LevelLoeser den selben Level feststellt.
+
+Das neue Archiv ist damit eindeutig, hatt 2232 Aufgaben, davon mit 
+Level 1: 234, 2: 603, 3: 501, 4: 492 und 5: 402
+
+Im LevelLoeser den Generator für die Kandidatenliste so modifiziert, dass auch
+in Zellen mit eingetragenen Kandidaten neu bewertet werden.
+
+
+09.07.2019
+ToolTippText für Symbol "Neues Str8ts generieren" berichtigt.
+
+In der Methode loeseStr8ts() der Klasse die Eindeutigkeitsprüfung auf Str8ts 
+mit dem Level 5 oder nicht zu lösenden Str8ts beschränkt.
+
+
+08.07.2019
+In ThreadPrintSdkSerie.java den Ausdruck so erweitert, dass für jedes
+ausgedruckten Str8ts in Bemerkung ein führendes "p" eingetragen wird.
+Dafür in ListenFrame.java die Methode setBemerkung(String bemerkung, int zeile)
+hinzugefügt.
+
+
+07.07.2019
+In Klasse Str8ts die Methode getLoesungsZellen() geändert. Nunmehr wird die
+Anzahl der Lösungszellen explizit festgestellt.
+
+In der Klasse Str9tsApp eine fehlerhafte Anzeige in der Statuszeile bei der
+Eingabe einer neuen Str8tsaufgabe durch Änderung der die Methoden 
+aufgabeBearbeiten() und setBearbeitungsModus() behoben.
+
+Neues Archiv mit 3131 Aufgaben erzeugt, davon mit 
+Level 1: 274, 2: 578, 3: 1223, 4: 586 und 5: 470
+
+
+19.06.2019
+Für den Ausdruck der Sperrzeilen in Klasse PrintStrSeite von darkGray auf 
+Color SZ_DGRAU = new Color(100, 100, 100) umgestellt.
+
+
+27.05.2019
+In Str8ts den Aufruf von importStr8ts() um den Parameter eCheck erweitert,
+damit bei der Übernahme aus der Liste kein Eindeutigkeitscheck gemacht
+werden muss.
+
+In loeseAufgabe() von LevelLoeser Bereich für Level 4 zugunsten von Level 3 
+um einen Punkt beschnitten (maximale Bewertung für Level 3 von 12 auf 13).
+
+
+12.04.2019
+In der gelöst-Meldung "Angeforderte Tipps" ausgegraut.
+
+
+10.04.2019
+Bug bei Verlassen des Edit-Modus (Navi-Button Lösung nicht aktiv) behoben.
+
+
+05.04.2019
+In Str8tsBoard Möglichkeit, Sperrzelle per Doppelklick zu setzen, entfernt.
+
+
+04.04.2019
+In Str8ts für das Entfernen aller Notizen eine Sicherheitsabfrage eingeführt.
+
+In Str8ts das Setzen von Notizen im Verlauf (testhalber) deaktiviert.
+
+
+03.04.2019
+In Str8tsBoard für den Notizenmodus die Übernahme von Kandidaten aus der 
+Kandidatenliste ermöglicht. Mit Strg+1-9 werden die Kandidaten übernommen,
+mit Str+0 alle Kandidaten wieder entfernt und mit Alt+1-9 übernommene Kandidaten
+selektiv wieder entfernt. Außerdem werden die Zellen mit Kandidaten farblich
+markiert.
+
+Bug bei der Anzeige der Lösung im E-Modus behoben.
+
+
+02.04.2019
+Für den Bearbeitungsmodus das Entfernen aller Vorgabewerte über die Entf-Taste
+eingeführt. 
+
+In Str8tsApp die beiden Methoden für Neueingabe und Bearbeitung eines Str8ts
+zusammengelegt.
+
+
+30.03.2019
+Beim Import der Str8tsListe wurden 2 Str8ts falsch bewertet (Level 5 statt 4).
+Ursache war eine zu frühe Auswertung der 4er - 8er Str8ts. Durch eine erweiterte
+Bedingung mit "d > 1)" in
+    else if (d > 1 && strListe[i].len > 3 && strListe[i].len < 9) {
+        geaendert += check38erStr8ts(strListe[i]);}
+konnte der Bug behoben werden.
+
+
+28.03.2019
+Bug in der Str8ts-Klasse mit den freien Zellen behoben.
+
+
+26.03.2019
+Eindeutigkeitstest noch einmal überarbeitet und eine Abfrage für die
+Eindeutigkeit eingeführt. Dafür für einige Fälle Abfrage deaktiviert.
+
+25.03.2019
+Jetzt hatte ich von über 3000 Str8ts noch immer zwei, die angeblich nicht
+eindeutig zu lösen sein sollten, was sich aber bei genauer Betrachtung als
+sehr fragwürdig herausstellte. Durch zwei Überprüfungen in der Methode 
+endCheck() von LevelLoeser konnten die verantwortlichen Ursachen ausgeschlossen 
+werden.
+
+
+Version 1.7.2 beta
+24.03.2019
+Im LevelLoeser trat in sehr seltenen Fällen ein Fehler auf, wenn für den 
+Eindeutigkeitstest fehlerhafte Str8ts getestet wurden. Es lag an der Methode
+check38erStr8ts(), die erst ab dem dritten Durchlauf aufgerufen wurde. Nach
+Herausnahme dieser Bedingungen trat dieser Fehler nicht mehr auf.
+
+
+23.03.2019
+Im LevelLoeser trat ein Fehler auf, wenn er ,it einem  Str8ts mit zwei 
+identischen Vorgabewerten in einer Reihe aufgerufen wurde. Durch den Aufruf von 
+doppelCheckOK vor der Lösungssuche mit Rücksprung bei Fehler konnte dieses 
+Problem behoben werden.
+
+
+22.03.2019
+In der Str8ts-Klasse den Bereich der gültigen Str8ts vom Vorhandensein von
+Vorgabewerten oder auf das Vorhandensein von Sperrwerten ausgedehnt.
+
+
+21.03.2019
+In der Klasse LevelLoeser die Aufgabe nach der Kandidatenerzeugung zurück
+kopiert, damit beim Import von extremen Str8ts die Eindeutigkeitsprüfung
+funktioniert.
+
+In ThreadImportStrListe für extreme Str8ts die Eindeutigkeitsprüfung
+eingebunden. 
+
+Die HinweisWarten-Klasse um Fortschrittsanzeige erweitert.
+
+
+Version 1.7.1 beta
+19.03.2019
+Bug bei der Levelanzeige nach Eingabe einer Str8ts behoben.
+
+
+Version 1.7.0 beta
+18.03.2019
+- Wegen urheberrechtlicher Bedenken den Namen des Programmes geändert. Es
+  nennt sich nun KODELAs ZiffernPuzzle.
+
+- Bug im Zusammenhang mit der Eingabe einer Str8ts-Aufgabe bei der Darstellung
+  der Navigationssymbole behoben.
+
+- Problem mit dem Warten-Hinweis für die Eindeutigkeitsprüfung durch die
+  Änderung des Typs der Klasse EindeutigkeitChecken von Thread auf SwingWorker
+  behoben.
+
+
+Version 1.6.x beta
+
+14.03.2019
+Die Eindeutigkeitsprüfung in eigenen Thread gelegt und damit wesentlich
+beschleunigt.
+
+Folgende Möglichkeiten für die Anzeige von Notizen eingeführt:
+- einzelne Kandidaten aus der Kandidatenliste in die Notizen übernehmen,
+- einzelne Kandidaten in den Notizen entfernen
+- alle Notizen entfernen
+
+
+11.03.2019
+Setzen und Entfernen von Sperrzellen über die S-Taste eingeführt.
+
+
+10.03.2019
+Für den Import von Str8tsString Zeilenumbrüche entfernt.
+
+
+08.03.2019 - V 1.6.2
+Archiv auf Extreme erweitert. Bei Übernahme aus dem Archiv auf Eindeutigkeits-
+prüfung verzichtet. 
+
+Bug beim Rücksprung aus dem Bearbeitungsmodus, durch den die Navigationstasten
+nicht immer korrekt angezeigt wurden, behoben.
+
+
+07.03.2019 - V 1.6.1
+Leveleinteilung auf fünf Level umgestellt
+
+
+Version 1.6.x beta
+
+06.03.2019 - V 1.6.0
+In der Klasse Str8ts wurde die Eindeutigkeitsprüfung eingeführt.
+
+
+Version 1.5.1 beta
+
+03.03.2019
+In der Klasse LevelLoeser die Methode leerCheck() hinzugefügt, damit es zu 
+keinem Konflikt kommt, wenn in einer auszuwertenden Str8ts kein einziger Wert
+eingetragen ist.
+
+
+25.02.2019
+Nach der anfänglichen Euphorie über die Fertigstellung der Backtracking-Suche 
+führten bald einige massive Bugs zur Ernüchterung. Nach einer strukturellen
+Totalumstellung, die zu einer besseren Übersichtlickeit führte, konnte ich 
+heute, soweit die ersten Versuche zeigen, den letzten der Bugs ausmerzen.
+Was noch fehlt ist die Feststellung der Eindeutigkeit. Dazu habe ich aber auch
+schon einige Gedanken, wie die geprüft werden könnte. Das ist dann eine andere
+Hochzeit. 
+
+
+19.02.2019
+Die Erstellung der Klasse BackTrackLoeser wurde beendet und die Klasse 
+LevelLoeser so geändert, dass bei nicht gelösten Str8ts, soweit kein Fehler
+aufgetreten ist, mit der BackTrackingsuche weiter nach einer Lösung gesucht 
+wird. Damit können nun auch die meisten der mir bekannten extremen Str8ts 
+gelöst werden. Es wird dabei allerdings nicht beachtet, ob die Lösung eindeutig 
+ist. Für Str8ts, welche von Andrew Stuart kommen, kann dies vermutlich 
+unterstellt werden. Ein Problem sind allerdings Str8ts aus anderen Quellen und 
+solche, die vom Anwender im Bearbeitungsmodus verändert und dabei mit dem 
+Level 6 bewertet wurden.
+
+
+Version 1.4.12 beta
+
+10.02.2019
+Wenn ListeFrame nach der Änderung einer Bemerkung deaktiviet wurde, wurde 
+die Änderung verworfen. Durch eine Änderung in formWindowDeactivated() konnte
+dieser Bug behoben werden.
+
+04.02.2019
+Die Suche für die Liste so geändert, dass sie erst ab der aktuellen Zeile 
+beginnt und wenn bis zum Ende nichts gefunden wird, am Anfang fortsetzt.
+
+
+Version 1.4.11 beta
+
+30.01.2019
+Bug bei der Anzeige des gespeicherten Navigationsstandes behoben.
+
+
+14.01.2019
+Ausgabe der Tooltipp-Texte für den Eingabe- und Bearbeitungsmodus berichtigt.
+
+Den Rücksprung aus dem Bearbeitungsmodus über das Edit-Symbol so verändert, 
+dass für den Wegfall der Abfrage neben der Strg-Taste nun auch die Shift-Taste
+gedrückt sein muss.
+
+
+Version 1.4.10 beta
+
+12.01.2019
+Im Bearbeitungsmodus können Sperrzellen nun auch per Doppelklick gesetzt bzw.
+enfernt werden.
+Bug mit freien Zellen nach Bearbeitung behoben.
+
+
+10.01.2019
+Bug für die Farbmarkierung der Lösungswerte behoben.
+
+
+08.01.2019
+In der LevelLoeser Klasse Bug behoben, der verhinderte, dass bei Str9ts der
+Länge zwei eine fehlerhafte Folge der Bereichsziffern erkannt wurde.
+
+
+24.12.2018
+Im Bearbeitsmodus werden der jeweils aktuelle Level und die Anzahl der freien
+Zellen angezeigt.
+
+
+22.12.2018
+- Leveländerung im Bearbeitungsmodus wird in der Statuszeile angezeigt.
+
+- In der Klsse ThreadStrSerie die Levelabfrage herausgenommen, da sie für die 
+  Erstellung der Liste wegen der Eindeutigkeit jeder Str8ts-Aufgabe nicht mehr 
+  benötigt wird.
+
+
+19.12.2018
+Durch Rotation oder Spiegelung veränderte Str8ts-Aufgaben wurden nicht 
+durchgehend gleich bewertet. Um dies zu erreichen habe ich die Klasse 
+LevelLoeser komplett überarbeitet. Damit werden nach bisherigen Feststellungen
+alle von einer Aufgabe abgeleiteten Aufgaben gleich wie die Basis-Aufgabe
+bewertet.
+
+
+10.12.2018
+Bug im Naviagationsverlauf behoben. Bei der Entfernung eines Wertes
+wurde der Kandidat für diesen Wert in der Zelle des Wertes doppelt gezählt.
+
+
+09.12.2018
+- Kandidaten- und Lösungswerteblöcke vertauscht.
+- Für beide Arten von Kandidaten (Liste und Notizen) ermöglicht, dass bei 
+  nur einem vorhanden Kandidaten dieser für eine Zuweisung nicht "gezielt"
+  angeklickt werden muss.
+
+
+Version 1.4.9 beta
+
+23.11.2018
+Gespeicherte Verlaufsposition nun auch bei Speicherung berücksichtigt.
+
+
+13. - 20.11.2018
+Bug beim Bewerten von 2 aus 1250 Str8ts gesucht und behoben.
+
+
+Version 1.4.8 beta
+
+12.11.2018
+In der Klasse LevelLoeser die Methode check_nackteZellGruppen() für 
+2er- und 3er-Gruppe deutlich stärker bewertet.
+
+
+11.11.2018
+Die Verwendung der Kandidatenliste wurde nicht erkannt, wenn nach einer 
+Lösung mit Notizen eine mit der Kandidatenliste versucht wurde. Als Lösung
+bei jeder Entfernung eines Kandidaten in der Str8ts-Klasse die Methode
+strApp.set_usedKListe(true) aufgerufen.
+
+
+08.11.2018
+- Das Archiv für den Verlauf von 998 auf 1200 vergrößert, da ich bei einer
+  Aufgabe auf über 1000 Einträge kam und damit das Program zum Absturz brachte.
+
+- Beim Abbruch der Abfrage zum Start des Bearbeitungsmodus für ein neu
+  übernommenes Str8ts wurde nicht das letzte sondern das vorletzte Str8ts
+- angezeigt. Bug behoben.
+
+- Die Verwendung der Kandidatenliste bzw. der Notizen sowie die Anzeige für
+  die Lösungszeit wurde zurückgesetzt, wenn zum Start navigiert und von dort
+  die erste Zuweisung eines Lösungswertes vorgenommen wird.
+
+
+Version 1.4.7 beta
+
+31.10.2018
+Da für den Verlauf noch immer nicht alle Bugs behoben waren wurde in der
+Klasse Str8ts der Verlauf nahzu komplett neu geschrieben.
+
+
+Version 1.4.06 beta
+
+26.10.2018
+Der Notizenmodus verursachte mit der Navigation eine Reihe von Problemen.
+Die meisten sind nun behoben.
+
+
+Version 1.4.05 beta
+
+14.10.2018
+- In Str8tsApp die beiden Methoden set_KndListenMode() und set_NotizenMode()
+  überarbeitet.
+- In Str8tsApp die KandidatenModi von boolean auf int umgestellt.
+
+10.10.2018
+Die Kandidatenanzeige für die Navigation aktiviert und umfangreich
+überarbeitet.
+
+
+06.10.2018
+Im Notizenmodus wurde ein Wert zugewiesen, wenn in der Kandidatenliste nur
+noch ein Kandidat vertreten war und mit Strg+MK irgendwo in die Zelle 
+geklickt wurde. Das sollte nicht sein und wurde geändert.
+
+24.09.2018
+Für den Lösungs- und Bearbeitungsmodus sowie für den Kandidatenlisten- und 
+den Notizenmodus Infotexte eingeführt.
+
+
+23.09.2018
+- Bug beseitigt, der verhinderte, dass ein bereits gespeichertes Str8ts durch 
+  einfachen Klick auf das Speichern-Symbol noch einmal gespeichert wird
+- Wegen Anzeigeprobleme gespeicherter Str8ts wurden die beiden Klassen 
+  ImportStr8ts und ExportStr8ts umfangreich überarbeitet. Außerdem wurde
+  auch in der Klasse Str8tsApp das Handling für die Wiederherstellung der
+  ursprünglichen Kandidatenanzeige nach einer Speicherung überarbeitet.
+- Version auf 1.4.03 beta geändert.
+
+
+22.09.2018
+- Bug bei der Symbolanzeige nach Rückkehr aus dem Bearbeitungsmodus beseitigt.
+- Bug bei der Versionsabfrage beseitigt.
+- Bug bei der Übernahme von Lösungswerten in den Editmodus behoben.
+- Version auf 1.4.02 beta geändert.
+
+
+20.09.2018
+UpdateCheck aktiviert.
+
+
+19.09.2018
+In der Methode aufgabeNeuEingeben() der Klass Str8tsApp wurde bei der 
+Neueingabe einer Aufgabe der Level nicht gesetzt. Bug behoben.
+
+
+02.09.2018
+Methode addStr8ts() der Klasse ListenFrame so geändert, dass nach dem
+Hinzufügen eines Str8ats dieses den Fokus bekommt.
+
+
+28.08.2018
+Da vom Archiv übernommene Str8ts durch die Veränderung nicht immer den Level
+der Basis-Aufgabe hatten wurde am 08.08.2018 bereits eine Anpassung des Levels
+vorgenommen. Nun kam es aber bei einer Übernahme von über das Archiv erzeugten
+Str8ts aus der Liste teilweise zu Levelveränderungen. Dies habe ich durch eine
+Änderung der Methode importStr8ts() in der Str8ts-Klasse behoben.
+
+
+27.08.2018
+Den Bearbeitungsmodus so konzipiert, dass wahlweise entweder die blanke Aufgabe
+oder die Aufgabe mit den aktuellen Lösungswerten übernommen wird. Dazu in
+der Klasse Str8tsApp im Bearbeiten-Menü einen Menüeintrag hinzugefügt, die 
+Funktionalität des entsprechenden Symbols erweitert und in der Klasse Str8ts
+die Methode aktStr8ts2aufgabe() hinzugefügt. 
+
+
+26.08.2018
+In der Klasse Str8tsApp durch diverse Änderungen Bug beseitigt, durch den bei
+gespeicherten Str8ts die Kandidatenliste bzw. die Notizen nicht so gezeigt
+wurden, wie sie gespeichert wurden.
+
+In der Methode setzeWert() der Klasse Str8ts für die Zuweisung im 
+Bearbeitungsmodus Bug beseitigt, der verhinderte, dass ein Sperrwert über
+die Blocktasten zwar zugewiesen, aber nicht entfernt werden konnte.
+
+
+18.08.2018
+Die Generierung der Str8ts-Liste aus der Klasse LevelLoeser herausgenommen
+und als eigene Klasse Str8tsListe eingeführt. Damit kann diese Funkionalität
+auch von anderen Klassen, zum Beispiel von LoesungsTipps, verwendet werden.
+
+
+17.08.2018
+Methode myMousePressed() der Klasse Str8tsBoard vollständig überarbeitet.
+
+
+14.08.2018
+Schlussanzeige mit Verwendung der Kandidatenliste, den Notizen, der Tipps
+und Eingabefehler integriert.
+
+
+12.08.2018
+In Str8tsApp Methoden set_KndListenMode() und set_NotizenMode() sowie 
+setZeigeKnd() gründlich überarbeitet und damit einige Bugs entfernt.
+
+
+10.08.2018
+Um zu verhindern, dass es durch Mausklicks auf eine Gitterlinie zu Fehleingaben
+kommt, habe ich für die Methode myMousePressed() der Klasse Str8tsBoard die
+Methode isLinienklick() eingeführt, über die Linienklicks abgefangen werden.
+
+
+09.08.2018
+Verschiedentlich kam es vor, vor allem im Bearbeitungsmodus, dass bei der 
+Eingabe unmögliche Werte (z.B 10 oder 11) eingetragen wurde. Durch eine
+Überarbeitung der Methode getPosKandidat() in der Str8tsBoard-Klasse konnte
+dieses Fehlverhalten (vermutlich) abgestellt werden.
+
+
+08.08.2018
+Verschiedene Umbenennungen vorgenommen. Hauptsächlich betroffen die Klassen
+für das Listenfenster, aber auch die Klasse für die Erstellung von Str8ts 
+Strings, jetzt MakeStr8tsString. Letztere wurde völlig neu geschrieben und
+kann Strings im internen wie auch externen Format erzeugen. Damit können
+jetzt in beiden Formaten in die Zwischenablage kopiert und aus ihr auch
+übernommen werden.
+Für die Serienerstellung ergab sich das Problem, dass gleiche Aufgaben je 
+nach Modifizierung mit einem unterschiedlichen Level bewertet wurden. Daher
+wurde für alle Varianten einer Aufgabe der Level der Basisaufgabe beibehalten.
+
+
+07.08.2018
+Aus dem Archiv und der Liste die Lösungen herausgenommen. Sie werden in jedem
+Einzelfall über die Klasse LevelLoeser ermittelt.
+
+Die Erstellung einer Aufgabenserie realisiert.
+
+
+04.08.2018
+Filter total entfernt. Sie sind im Gegensatz zu Sudoku unwichtig.
+
+
+03.08.2018
+Von der Klasse LevelLoeser wurden unmögliche Sperr-, Vorgabe- und oder
+Lösungswerte nicht als solche nicht immer erkannt, zum Beispiel die 4 und 7 
+in einer Zweier-Str8ts, nicht als Fehler erkannt. Deshalb habe ich die Methode 
+loeseAufgabe() so erweitert, dass der kleinste und größte Wert einer 
+"gelösten" Str8ts festgestellt und ausgewertet werden. max - min + 1 muss 
+der Str8ts-Länge entsprechen. Ist dies nicht der Fall, liegt ein Fehler vor.
+
+
+22.07.2018
+in der Methode get_moeglicheKnd() der Klasse Level die Anzahl der möglichen
+Kandidatengruppen von 2 auf 6 erhöht, da ein niedrigerer Wert bei 2er Gruppen
+in bestimmten Fällen zu Fehlern führte.
+
+21.07.2018
+In der Str8ts-Klasse die Referenzvariable aktStr wird zwar weiter noch für den 
+Zugriff auf str8ts verwendet, sonst aber nur noch für das Zeigen der Lösung.
+
+
+07.7.2018
+In der Klasse LevelLoeser Methode doppelCheckOK() wurden Sperrwerte nicht 
+berücksichtigt. Bug behoben.
+
+06.07.2018
+Die Klasse Archiv so erweitert, dass nun auch gespiegelte Str8ts-Aufgaben
+generiert werden. Damit werden zu einer Aufgabe 15 weitere Varianten erzeugt.
+
+
+05.07.2018
+In der Klasse Str8tsBoard Methode myKeyPressed() Zeile 470 für 
+evt.isControlDown() evt.consume() entfernt, da damit Kurztasten mit der
+Strg-Taste blockiert wurden.
+
+
+28.06.2018
+In der Klasse Str8tsBoard, Methode myMousePressed() nach dem Aufruf von 
+str.setzeSperrzelle(i) das Ereignis für die gedrückte Alt-Taste per "consume" 
+als behandelt markiert. 
+
+20.06.2018
+Der Klasse LevelLöser die Methode bereinigeKndListe() hinzugefügt. Damit können
+(derzeit über F11) alle ofensichtlich nicht möglichen Kandidaten aus der Liste
+entfernt werden. In diesem Zusammenhang wurde in der Methode get_moeglicheKnd() 
+die zu berücksichtigenden Kandidatengruppen von zwei auf drei erhöht.
+
+
+15.06.2018
+In der Methode loeseAufgabe() der Klasse LevelLoeser führten in der 
+while-Schleife while (strListe[i].len > 0) {} 
+die Bedingungen der if-Abfrage:
+    if (!strListe[i].geloest
+            && strListe[i].len > 2
+            && strListe[i].len < 9)
+bei Str8ts mit der Länge 2 oder 9 zu Problemen. Als ich diese if-Abfrage
+testhalber deaktivierte, stellte ich fest das die Probleme (fehlerhafte
+Aufgaben wurden in Str8ts der Länge 2 nicht erkannt) nicht mehr auftraten.
+Also entfernte ich diese if-Abfrage komplett.
+
+
+12.06.2018
+In der Klasse Str8ts Methode setzeWert() wurde eine markierte Zelle mit einer 
+Sperrzelle gleichgesetzt und deshalb der Wert nicht gesetzt. Korrigiert.
+
+Im Modul Str8ts wurde von der Methode entferneKandidat() Kandidaten für den
+Lösungswert nicht als solche erkannt und daher, wenn sie entfernt werden
+sollten, dies nicht verhindert.
+
+
+11.06.2018
+Kandidatenliste wird auch deaktiviert, wenn die Navigation auf die Starposition 
+gesetzt wird.
+
+08.06.2018
+Nachdem die Aufgabe gelöst ist, neu erzeugt oder überarbeitet wurde wird nun, 
+falls eine Kandidatenliste aktiv ist, diese deaktiviert.
+
+
+04.05.2018
+Im Modul LevelLoeser die Methode doppelCheckOK() hinzugefügt. Damit wird das
+mehrfache Vorkommen eines Wertes in einer Reihe verhindert.
+
+
+02.05.2018
+Im Modul Str8tsApp, Methode getAufgabeAusListe() für die Übernahme einer Str8t
+auch die Deaktivierung des reduktiven KndModus eingeführt.
+
+Im Konstruktor und den beiden Methodrn set_reduktivKndMode() und 
+set_additivKndMode() die Anzeige des Kandidatenblockes grundsätzlich
+deaktiviert. Die Aktivierung erfolgt nur, wenn die Kandidaten über eine
+der beiden genannten Methoden bearbeitet werden.
+
+
+30.04.2018
+Im Modul StrListenFrame Methode deleteStr8ts() für ein vollständige Leerung der
+Liste den Aufruf von listeDaten.setDefaultData() hinzugefügt, da andernfalls
+entweder die Liste nicht geleert wurde oder im Modul StrListenFrame der sorter
+einen Fehler verursachte.
+
+Im Modul Str8tsApp die Kandidatenanzeige in den beiden Modi reduktiv und additiv
+grundlegend überarbeitet. Beide Modi können nun wechselweise aufgerufen werden.
+
+
+25.04.2018
+Die automatische Weiterschaltung zur nächsten Zelle bei der Neueingabe eine
+Str8ts-Aufgabe in der Methode myKeyPressed() der Klasse Str8tsBoard deaktiviert.
+Das wirkte, vor allem, wenn man experimentieren wollte, störend.
+
+
+17.04.2018
+Die Klasse Archiv ist fertig. Das Archiv wird über eine gezipte Datei 
+beim Programmstart eingelesen. Beim Schließen des Programms wird sie wieder
+abgespeichert, wobei die einzelnen Aufgaben in der jeweils letzten Form
+übernommen werden. Damit ist auch der Abruf einer Sr8ts-Serie möglich.
+
+
+12.04.2018
+Die Klasse Archiv erstellt. Sie liest beliebig viele Str8ts-Aufgaben samt 
+Lösung ein und soll daraus, bis ein spezieller Str8ts-Generator erstellt ist,
+aus dem vorhandenen Pool Str8ts liefern, die über Rotationen und Zahlensturz
+erzeugt werden
+
+
+10.04.2018
+Fehlerhafte Str8ts wurden von der Klasse LevelLoeser teilweise als solche nicht
+erkannt. Als erste Gegenmaßnahme habe ich in der Methode checkKandidatenfolge() 
+einen Check auf leere Zellen eingeführt. Bei Erkennen einer leeren Zelle wird
+der Lösungsversuch mit dem Level 0 sofort abgebrochen.
+
+
+05.04.2018
+Im Bearbeitungsmodus wurde die Kandidatenliste nicht korrekt geführt. Es kam
+deshalb, wenn in einer Reihe zwei Vorgabewerte ausgetauscht wurden zu einem
+Problem, für einen der Vorgabewerte fehlte der Kandidat in den betroffenen
+Zellen. Deshalb habe ich in der Klasse Str8ts in der Methode loeseStr8ts()
+den Aufruf von erstelleKndListe() hinzugefügt. Außerdem musste die Methode
+erstelleKndListe() so überarbeitet werden, dass auch Sperrzellen berücksichtigt
+wurden.
+
+
+04.04.2018
+In der Methode setKndListenMod() der Klasse Str8tsApp habe ich die Einstellung 
+in den Zeilen 1316-1319 deaktiviert und damit ausgeschlossen, dass nach der 
+Übernahme einer Str8tsaufgabe die Kandidatenliste angezeicgt wird wenn sie vor 
+der Übernahme angezeigt wurde.
+
+In der Klasse Str8tsApp zu den Tooltipp-Texten für die Navigationstasten die
+Kurztasten hinzugefügt.
+
+
+28.03.2018
+In den Klassen Str8tsApp und Str8ts die Ausgabe für die Statuszeile der noch 
+nicht geloesten Zellen so modifiziert, dass neben den noch freien Zellen auch 
+die Gesamtzahl der zu lösenden Zellen angezeicgt wird.
+
+
+27.03.2018
+In der Klasse Str8tsApp die Methode getAufgabeAusListe() überarbeitet und damit
+das unvollständige Überschreiben der statusanzeige verhindert.
+
+
+27.02.2018
+In der Klasse LevelLoeser Methode loeseAufgabe() die Bewertung etwas verändert,
+um den Level 1 etwas zu erweitern.
+
+
+19.02.2018
+In der Klasse ImportStr8tsString den Import einer Str8ts-Aufgabe im externen 
+String-Format (81 Zeichen für die Werte und 81 Zeichen für die Zellen) 
+eingeführt. Damit können nun auch Str8ts im von Andre Stuart verwendeten 
+Format über die Zwischenablage übernommen werden.
+
+
+05.02.2018
+In der Methode importStr8ts() der Klasse Str8ts wurde die Methode initStr8ts(()
+mit true aufgerufen. Dies führte dazu, dass beim Bereinigen der Kandidatenliste
+festgestellte Zellsingles als Vorgabewerte behandelt wurden. 
+
+
+27.01.2018
+Die Methode strListeLaden() der Klasse ThreadImportStrListe so überarbeitet,
+dass nun auch für Listen mit UTF-8 Kodierung die erste Zeile übernommen
+werden kann.
+
+
+25.01.2018
+Der Klasse LevelLoeser die Methode check_versteckteZellGruppen() hinzugefügt.
+Damit werden von den knapp 800 Str8ts meiner Sammlung 100% gelöst.
+
+
+17.01.2018
+In der Klasse Str8ts die Dimension für verlaufSize nocheinmal deutlich auf 600
+erhöht, damit es für schwierige Str8ts wirklich zu keinem Überlauf mehr kommt.
+
+
+16.01.2018
+Die Klasse ThreadImportStrListe geschrieben. Damit können Listen mit Str8ts
+Aufgaben im externen Format importiert werden, entweder durch Löschen oder 
+Erweiterung der aktuellen Liste.
+
+
+08.01.2018
+Die Klasse ImportStr8tsListe bearbeitet. Das externe Str8ts-Format wird nun
+in das interne umgesetzt und für die Feststellung des Levels auch in ein
+int-Array übertragen.
+
+In StrListenModel und StrListenEditor eine Reihe von Änderungen vorgenommen,
+damit die Überschriften und Werte ansprechend angezeigt werden.
+
+
+06.01.2018
+Die Klasse ImportStr8tsListe erezuegt und erste Funktionalitäten für den
+Import von Str8tslisten geschrieben und getestet.
+
+
+05.01.2018
+In der Methode check2erStr8ts der Klasse LevelLoeser den Aufruf von 
+get_sicheretKnd() mit anschließendem delKnd4Reihe() entfernt, das dies in 
+Fällen zu einem Fehler führte.
+
+
+03.01.2018
+In der Klasse ExportStr8ts die Methode strBildSpeichern() so geändert, dass
+die auszugebenden Images mit dem Rand ausgegeben werden.
+
+
+
+Version 1.1
+
+02.01.2018
+myMousePressed() der Klasse Str8tsBoard so verändert, dass auch bei
+User-Kandidaten, falls nur noch einer in einer Zelle vertreten ist,
+versucht wird, diesen auf Strg+Mausklick zuzuweisen.
+
+
+31.12.2017
+In der Klasse Str8ts die Dimension für verlaufSize von 360 auf 500 deutlich
+erhöht, damit es für schwierige Str8ts zu keinem Überlauf mehr kommt.
+
+
+26.12.2017
+In der Klasse str8tsApp, Methode aufgabeNeuEingeben() den Aufruf von 
+str.uebernehmeNeueAufgabe() entfernt. Er führte dazu, dass bei einem
+Eingabefehler keine Korrektur mehr möglich war.
+
+
+25.12.2017
+In der Klasse LevelLoeser, Methode checkZellGruppen() Bug beseitigt, durch den 
+bereits gesetzte Werte überschrieben wurden. 
+
+
+22.12.2017
+Für die Str8ts-Tabelle wurde die Klasse TableColumnRenderer eingeführt. Damit
+kann der Inhalt einer Zelle auch zentriert ausgegeben werden, was für die
+Aufgabennummer, den Level und die Anzahl der Lösungszellen genutzt wurde.
+
+
+21.12.2017
+In der Klasse Str8ts die Methode checkStr8ts() in loeseStr8ts() umbenannt, 
+den Inhalt von aufgabe[] nach str8ts[] kopiert und den Level über str8ts[]
+bestimmt. 
+Außerdem den boolschen Parameter 'bearbeitungsmodus' eingeführt, damit die 
+Kopie von aufgabe[] nach str8ts[] nur im Bearbeitungsmodus gemacht wird.
+
+In der Klasse Str8ts aus der Methode uebernehmeNeueAufgabe() einige zum Tei
+doppelt ausgeführte Verwaltungsaufgaben nach initStr8ts() verlagert.
+
+In der Klasse Str8tsApp in der Methode aufgabeBearbeiten() für die Abfrage
+zum Beenden die Levelanzeige integriert.
+
+
+20.12.2017
+In der Klasse Str8ts die Verwaltung der freien Zellen neu gestaltet. Auf die
+Vorgabewerte wurde verzichtet. Die Anzahl der freien Zellen wird nun über
+die Variablen 'freieZellen' für die aktuell freien Zellen und 'loesungsZellen'
+für die von Anfang an freien Zellen verwaltet.
+
+In der Klasse Str8ts die Methode entferneWert() grundlegend überarbeitet.
+
+
+18.12.2017
+Im Modul Str8tsApp für den Erststart des Programms Default-Str8ts implantiert.
+
+
+17.12.2017
+Im Modul StrListenFrame wurden die beiden Suchmethoden komplett überarbeitet.
+
+
+16.12.2017
+In den Modulen Str8tsApp und Str8ts die Anzeige der Navigationssymbole nach 
+Übernahme eines Str8ts überarbeitet.
+
+
+15.12.2017
+- Das Modul LevelLoeser wurde um eine Überprüfung auf ungelöste Zellen 
+  erweitert.
+
+- Die Schaltsymbole für noch nicht eingeführte Funktionalitäten (Erzeugen von
+  Str8ts, Lösungshinweise) wurden deaktiviert.
+
+
+12.12.2017
+Die Klasse PrintStrSeite wurde so geändert, dass nun auch Str8ts ausgedruckt
+werden können.
+
+
+11.12.2017
+Die Version 1.1.145 erfüllt zwar wesentliche Möglichkeiten noch nicht, 
+es können zum Beispiel noch keine Str8ts erzeugt werden und die 
+Hilfemöglichkeiten fehlen noch, aber die Implementierung der meisten
+Eigenschaften von kodeku ist im wesentlichen abgeschlossen. 
+Hier Eine Aufzählung dazu:
+
+- Str8ts können eingegeben und bearbeitet, geladen und gespeichert werden,
+- sie können in die interne Liste aufgenommen und von dort übernommen werden,
+- nach einer Eingabe, Bearbeitung oder Übernahme von Str8ts werden sie
+  in praktisch allen Fällen gelöst und der Level bestimmt,
+- im Lösungsmodus stehen die selben Fähigkeiten wie bei kodeku zur Verfügung,
+- die Navigationssteuerung funktioniert
+
+
+01.12.2017
+Modul Str8tsLoeser in LevelLoeser umbenannt. Es werden alle bisher getesteten 
+Aufgaben gelöst. Der Level wird über die Anzahl der erforderlichen Durchläufe
+ermittelt und zurückgegeben.
+
+
+26.11.2017
+Änderungen in Str8ts und str8tsBoard zur Verhinderung, dass Sperrzellen 
+bearbeitet werden können. 
+
+
+13.11.2017
+Die Str8tsAuswertung kann nun alle getesteten Str8ts lösen.
+
+
+01.11.2017
+Die Hilfedatei von kodeku wurde so weit angepasst, dass sie im Prinzip auch
+von diesem Projekt verwendet werden kann. 
+
+
+14.09.2017
+Das Modul Str8tsAuswertung wurde so erweitert, dass ein Großteil aller Str8ts
+gelöst werden können
+
+
+05.08.2017
+Für die Straßenauswertung wurde das Modul Str8tsAuswertung erstellt.
+Derzeit werden alle Straßen in der Liste strList erfasst. Alle 2er-Straßen
+können ausgewertet werden.
+
+
+01.08.2017
+Nach einer Reihe von Überarbeitungen funktionieren nun:
+    - der Lösungsmodus einschließlich Kandidatenanzeige und Kandidatenfilter
+    - der Modus für Neueingabe und Bearbeitung
+    - die Navigation mit Ausnahme der Lösungsanzeige
+    - das binäre Speichern und Öffnen von Aufgaben
+
+
+Version 1.0
+
+16.07.2017
+Die Eingabe musste noch einmal gründlich überarbeitet werden. Die Eingabe
+kann über die Maus erfolgen. Ein Str8ts kann jetzt nach der Übernahme mit 
+und ohne Kandidatenanzeige per Maus oder Ziffernblock bearbeitet werden. 
+Auch das Speichern einer Aufgabe ist möglich.
+
+
+13.07.2017
+Die Eingabe und Übernahme einer neuen Str8ts, einschließlich der noch
+möglichen Kandidaten funktioniert, allerdings ohne Prüfung auf Korrektheit.
+
+
+08.07.2017
+Ein neu eingegebenes Str8ts wird übernommen, allerdings ohne Prüfung auf 
+Gültigkeit und ohne Erstellung der Kandidatenliste. Ein so eingegebenes 
+Str8ts wird auch gespeichert, allerdings ohne die Sperrzellen. 
+
+
+06.07.2017
+In Str8tsBoard die dickeren Blocklinien von Sudoku durch einfache Zelllinien ersetzt.
+
+
+05.07.2017
+Rein optische Eingabe eines neuen Str8ts realisiert.
+
+
+04.07.2017
+Die Struktur für ein Str8ts, ehemals Sudoku, an die geänderten Verhältnisse angepasst. 
+Mit Bit 23 wird in str8ts[] das Flag für Sperrzelle gesetzt.
+
+
+03.07.2017
+Heute habe ich damit begonnen, mein sudoku-Programm so umzuarbeiten, dass damit 
+auch Str8ts bearbeitet werden können, wenn möglich im gleichen Umfang wie es 
+für Sudokus möglich ist.
+
+Zunächst habe ich erst einmal eine Vielzahl von Bezeichnern umbenannt. 
