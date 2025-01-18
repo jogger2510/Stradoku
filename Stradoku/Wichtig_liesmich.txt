@@ -1,0 +1,302 @@
+
+Wichtige Informationen zu kodelasStradoku
+==============================================
+
+
+1 Inhalt des Programmpaketes
+==============================
+
+Das Programmpaket mit dem Ordner "Stradoku" enhält:
+
+- Datei "Wichtig_liesmich.txt" (diese Datei)
+- Datei "kodelasStradoku.jar" (Programm-Datei)
+- Datei "arche.zip" (Archiv-Datei)
+- Datei "stradoku.ico" (Icon für Verknüpfung auf dem Desktop)
+- Datei "lizenz.txt" (Auszug aus den Lizenz-Bestimmungen)
+- Datei "Ext_str-file.reg.txt" (siehe: 8. Registrierung unter Windows)
+- Datei "Ext_str-File_entfernen.reg.txt" (siehe: 8. Registrierung unter Windows)
+- Datei "GNU_GeneralPublicLicense.zip" (Original der Lizenzbestimmungen)
+- Datei "StradokuAufruf.bat"
+- Unterordner lib mit den 
+  - Dateien hsviewer.jar, jh.jar und StradokuHelp.jar (Hilfepaket)
+  
+
+
+2. Installation
+===============
+
+kodelasStradoku muss nicht installiert werden. Es genügt, wenn dieses Programmpaket
+in ein Verzeichnis Ihrer Wahl entpackt wird. Es sollte allerdings ein Verzeichnis 
+sein, in welchem keine anderen Dateien gespeichert sind.
+
+Beim ersten Aufruf der Programmdatei (kodelasStradoku.jar) werden im Programmordner 
+folgende Dateien angelegt:
+- Datei "stradoku.cfg" (Konfigurations-Datei)
+- Datei "letztes.str" (letztes in Bearbeitung befindliches Stradoku)
+
+Später werden bei Bedarf noch folgende Unterordner angelegt:
+- Aufgaben (für das Speichern von Stradokus-Aufgaben)
+- PNGs (für das Speichern des Stradoku-Feldes als Bilddatei)
+
+
+
+3. Deinstallation
+=================
+
+Um kodelasStradoku vollständig zu entfernen, ist nur der Ordner, in den
+dieses Programmpaket kopiert wurde zu löschen.
+
+Sollten Sie, wie in Abschnitt 8 hier beschrieben, eine Registrierung vorgenommen
+haben, so kann diese über die beigefügte Datei Ext_str-File_entfernen.reg wieder
+entfernt werden.
+
+
+
+4. Java Laufzeit-System (Runtime-System)
+========================================
+
+Damit ein Java-Programm wie kodelasStradoku ausgeführt werden kann, muss
+unter dem verwendeten Betriebssystem auch das Java-Laufzeit-System
+installiert sein.
+
+Auf den meisten neueren Computern ist dieses System bereits installiert.
+Sollte dies aber nicht der Fall sein, so kann man sich unter der Adresse
+
+    "http://www.java.com/de/download/manual.jsp"
+
+das Java-Laufzeit-System herunterladen und anschließend installieren.
+
+Unter dieser Adresse kann man aber auch prüfen lassen, ob das Java-
+Laufzeit-System installiert ist. Dabei wird gleichzeitig auch überprüft,
+ob das Java-Laufzeit-System eventuell aktualisiert werden sollte.
+
+
+
+5. Programm ausführen
+=====================
+
+Die Datei "kodelasStradoku.jar" ist eine ausführbare Datei, über die das
+Programm geöffnet und damit auch ausgeführt wird. 
+
+Unter Windows kann zum Beispiel eine ausführbare Datei auf folgende Weisen 
+geöffnet werden:
+
+- im Windows-Explorer durch Doppelklick mit der linken Maustaste, oder
+
+- über "öffnen" oder "Open" im Kontext-Menü, dazu Datei im Windows-Explorer
+  mit der rechten Maustaste anklicken
+
+- wenn man zu "kodelasStradoku.jar" auf dem Desktop eine Verknüpfung erstellt hat,
+  durch Doppelklick mit der linken Maustaste auf das Icon der Verknüpfung
+
+- wenn man zu "kodelasStradoku.jar" im Startmenü eine Verknüpfung erstellt hat,
+  durch Klick auf die angelegte Verknüpfung
+
+
+
+6. Verknüpfung erstellen
+========================
+
+6.1 Verknüpfung auf dem Desktop
+-------------------------------
+
+Am leichtesten ist es, von "kodelasStradoku.jar" eine Verknüpfung auf den Desktop
+zu legen. Dazu geht man unter Windows wie folgt vor:
+
+- Windows Explorer öffnen,
+
+- im Navigationsbereich des Explorers (linke Seite mit der Ordner-Hierarchie)
+  den Ordner selektieren, in welchen das Programmpaket kopiert worden ist,
+
+- den Explorer auf dem Desktop so anordnen, dass ein Teil des Desktop
+  zu sehen ist,
+
+- die Datei "kodelasStradoku.jar" mit der rechten Maustaste anklicken und 
+  sie mit gedrückter Maustaste vom Explorer auf den Desktop ziehen,
+
+- wird dann die rechte Maustaste losgelassen, erscheint ein Kontext-Menü,
+
+- in diesem Kontext-Menü den Menüpunkt "Verknüpfung hier erstellen" auswählen.
+
+Danach hat man auf dem Desktop ein neues Icon. Wenn man darauf einen 
+Doppelklick mit der rechten Maustaste macht, wird kodelasStradoku geöffnet.
+
+
+Wer will, kann für dieses Icon ein Stradoku-Symbol festlegen. Dazu geht man
+wie folgt vor:
+
+- Bisheriges Icon für die Verknüpfung mit "kodelasStradoku.jar" mit der 
+  rechten Maustaste anklicken.
+
+- Im daraufhin erscheinenden Kontextmenü die Option "Eigenschaften" (letzter
+  Eintrag) anklicken.
+
+- Im sich daraufhin öffnenden Dialogfenster die im unteren Bereich befindliche
+  Schaltfläche "Anderes Symbol" anklicken.
+
+- Im sich nun öffnenden Dialogfenster "Anderes Symbol" auf die Schaltfläche
+  "Durchsuchen" klicken und in dem sich nun öffnen Windows-Explorerfenster 
+  auf der linken Seite den Installationsordner für kodelasStradoku suchen und 
+  selektieren.
+
+- Jetzt im rechten Anzeigebereich des Windows-Explorers die Datei "stradoku.ico"
+  durch einen Mausklick selektieren und das Dialogfenster über die Schaltfläche
+  "Öffnen" rechts unten schließen.
+
+- Nun kann das Dialogfenster "Anderes Symbol" in dem jetzt das ausgew�hlte Icon 
+  zu sehen ist, über die Schaltfläche "OK" geschlossen werden.
+
+- Jetzt kann auch das Dialogfenster "Eigenschaften von "kodelasStradoku.jar", in dem das 
+  ausgewählte Icon nun ebenfalls zu sehen ist, mit "OK" beendet werden.
+
+- Danach sollte das Icon auf dem Desktop das Stradoku-Symbol zeigen.
+  
+
+Man kann nun noch den Namen der Verknüpfung ändern, entweder indem man
+
+- das Icon mit der rechten Maustaste anklickt und im daraufhin erscheinenden
+  Kontext-Menü den Menüpunkt "Umbenennen" auswählt, oder
+
+- das Icon mit einem Klick der linken Maustaste selektiert und dann die
+  Taste "F2" drückt.
+
+In beiden Fällen kann man nun den Namen der Verknüpfung ändern.
+
+
+
+6.2 Verknüpfung im Start-Menü
+-----------------------------
+
+Man kann sich auch eine Verknüpfung im Start-Menü anlegen. Dazu muss man 
+sich allerdings mit der Systematik, die Windows für das Start-Menü verwendet,
+etwas auskennen.
+
+Das Startmenü besteht im einfachsten Fall aus einem Ordner, meist jedoch
+aus mehreren, einem Ordner für alle Anwender und dann noch ein Ordner für
+jeden registrierten Benutzer.
+
+Es gibt ausserdem zwischen den einzelnen Windows-Versionen noch Unterschiede.
+
+Hier eine Adresse, unter der man zum Beispiel unter Windows-Vista den Ordner 
+des Start-Menüs für Spiele findet:
+
+    C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Games
+
+Um hier eine Verknüpfung zu kodelasStradoku anzulegen, öffnet man im
+Windows-Explorer zuerst den Ordner, in den kodelasStradoku kopiert wurde.
+
+Man muss jetzt im Inhalts-Bereich des Explorers (rechts vom Naviagations-
+Bereich) die Ordner und Dateien des Programmpaketes sehen.
+
+Danach manöveriert man im Navigationsbereich des Explorers über C:\
+ProgramDate\ und so weiter bis zu "Games" (oder zu deutsch "Spiele").
+
+Keiner dieser Ordner darf geöffnet werden, jeder darf (und muss) aber über
+das kleine Symbol links des Ordner-Icons vor dem Namen des Ordners erweitert
+werden, so dass man im Navigationsbereich die Unterordner des jeweiligen
+Ordners sehen kann.
+
+Hat man das Ziel erreicht, zieht man die Datei "kodelasStradoku.jar" vom Inhalts-
+Bereich mit der gedrückten rechten Maustaste auf den Zielordner, lässt dort
+die Maustaste los und entscheidet sich im erscheinenden Kontext-Menü für
+die Option "Verknüpfung hier erstellen".
+
+Danach kann kodelasStradoku auch über das Start-Menü geöffnet werden.
+
+
+
+7. Beim ersten Start
+====================
+
+Man sollte bereits beim ersten Start sich über die Hilfe-Datei einen
+Überblick zum Programm verschaffen.
+
+Die Hilfe-Datei wird entweder über den Menüpunkt 
+
+    "Hilfe - Infos zu diesem Programm"
+
+oder einfach über die Taste F1 geöffnet.
+
+Auf jeden Fall sollte man sich aber die Verwendung der Maustasten erklären
+lassen. Diese Erklärung findet sich in der Hilfe-Datei, kann aber auch,
+da sie so wichtig ist, über den eigenen Menüpunkt
+
+    "Hilfe - Verwendung der Maustasten"
+
+Wer lieber mit der Tastatur arbeitet, findet dazu in der Hilfedatei die
+entsprechenden Hinweise.
+
+
+
+8. Registrierung unter Windows
+==============================
+
+Wer möchte, dass die bisher gespeicherten Stradoku-Aufgaben im Windows-Explorer 
+mit einem kleinen Stradoku-Icon gekennzeichnet werden und über einen Doppelklick
+kodelasStradoku mit dieser Aufgabe gestartet wird, kann dies unter Windows durch 
+eine Registrierung erreichen. Man braucht dazu die beiliegende Registrierungsdatei
+"Ext_str-File_setzen.reg.txt" nach Entfernung der Namenserweiterung ".txt" nur 
+durch einen Doppelklick mit der linken Maustaste starten.
+
+Zuvor muss in Zeile 2 dieser Datei jedoch mit einem beliebigen Texteditor das 
+Verzeichnis "D:\Tools\Stradoku" durch das von Ihnen gewählte Verzeichnis für 
+"kodelasStradoku.jar" ersetzt werden.
+
+Das hier beschriebene Verfahren empfehle ich allerdings nur erfahrenen Anwendern
+und warne ausdrücklich davor, dass eine fehlerhafte Registrierung zu schwerwiegenden
+Systemstörungen führen kann.
+
+Hier der Inhalt von "Ext_str-File_setzen.reg" mit zusätzlich varangestellter Zeilennummerierung:
+
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.str]
+@="str-File"
+
+[HKEY_CLASSES_ROOT\str-File]
+@="binäre Str8tsdatei"
+"AlwaysShowExt"=""
+"EditFlags"=dword:00000000
+
+[HKEY_CLASSES_ROOT\str-File\DefaultIcon]
+@="D:\\Tools\\Stradoku\\stradoku.ico,0"
+
+[HKEY_CLASSES_ROOT\str-File\shell]
+@="Open"
+
+[HKEY_CLASSES_ROOT\str-File\shell\Open]
+@="Open"
+
+[HKEY_CLASSES_ROOT\str-File\shell\Open\command]
+@="\"D:\\Tools\\Stradoku\\StradokuAufruf.bat\" \"%1\""
+
+
+Was muss angepasst werden:
+
+- In Zeile 12 ist "D:\\Tools\\kodelasStradoku" durch die entsprechende Angabe des 
+  Installationsverzeichnisses, also dem Verzeichnis, in welches das Programmpaket 
+  kopiert wurde, zu ersetzen.
+
+- In Zeile 21 ist der komplette Pfad für die Datei "StradokuAufruf.bat" einzutragen.
+
+
+
+9. Schlussbemerkung
+===================
+
+Obwohl das Programm von mir umfangreich getestet wurde, kann ich Fehler und
+Mängel nicht ausschließen. Im Gegenteil, ich bin mir sogar sicher, dass es
+davon noch eine Menge gibt.
+
+Daher bitte ich Sie, mich über alle Probleme, die Sie mit dem Programm haben, 
+aber auch über alle Fehler und Mängel, welche Sie entdecken, zu informieren. 
+
+Wer am Projekt selbst interessiert ist, also am gesamten Quellmaterial, kann
+sich mit mir diesbezüglich in Verbindung setzen.
+
+Im Impressum meiner Homepage (http://kodela.w4f.eu/) finden Sie meine Kontaktdaten.
+
+
+
+
