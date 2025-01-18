@@ -40,7 +40,7 @@ public class UpdateCheck extends Thread implements Runnable{
      */
     @Override
     public void run() {
-        String spversion = downloadVersion("http://kodela.w4f.eu/strpversion");
+        String spversion = downloadVersion("https://github.com/jogger2510/Stradoku/version.txt");
         if (spversion.length() >= 3) {
             int stand = 0;
             if (prversion < getNum(spversion)) {
@@ -49,7 +49,7 @@ public class UpdateCheck extends Thread implements Runnable{
             // Programmversion und eingetragene letzte Version sind gleich
             if (stand == 0) {
                 JOptionPane.showMessageDialog(mainFrame, "<html><b>" +
-                        "Sie haben die neueste Version von kodelasStradoku.",
+                        "Sie haben die neueste Version von Stradoku.",
                         "Hinweis", 1);
             }
             else {
