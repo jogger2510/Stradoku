@@ -40,7 +40,7 @@ public class UpdateCheck extends Thread implements Runnable{
      */
     @Override
     public void run() {
-        String spversion = downloadVersion("https://github.com/jogger2510/Stradoku/version.txt");
+        String spversion = downloadVersion("https://github.com/jogger2510/Stradoku/blob/main/version.txt");
         if (spversion.length() >= 3) {
             int stand = 0;
             if (prversion < getNum(spversion)) {
