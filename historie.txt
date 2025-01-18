@@ -9,9 +9,10 @@ Version 6.6.4
 
 16.1.25
 - Referenzen auf "arche.kar" entfernt
-- Abhängigkeit zu Java 8 entfernt
-- Abhängigkeit zu Windows entfernt
-- Code zur Bestimmung und Verwendung des aktuellen Verzeichnisses überarbeitet
+- Abhängigkeit zu Java 8 entfernt (redundanter und abgekündigter getClass())
+- Abhängigkeit zu Windows entfernt (hart kodierte "\" und fixe Verzeichnisnamen angepaßt) 
+- Code zur Bestimmung und Verwendung des aktuellen Verzeichnisses überarbeitet (homePath wird von Stradoku.jar abgeleitet)
+- Refactoring auf einheitlichen Namen Stradoku (statt StradokuApp und kodelasStradoku)
 
 Version 6.6.3
 
