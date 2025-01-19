@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 /**
  * Übernimt den Ausdruck von Stradokus
  */
-class ThreadPrintStrSerie extends Thread implements Runnable {
+class ThreadPrintStrSerie extends Thread {
 
     private final HinweisWarten msgHinweisWarten;
     private final int anzahl;

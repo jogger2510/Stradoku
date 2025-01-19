@@ -69,14 +69,12 @@ public class TippLoeser implements GlobaleObjekte {
    public boolean loeseLogAufgabe() throws IOException {
       int geaendert;
       int i;
-      int d = 0;
       int anzahl = 0;
       while (strListe[anzahl].len > 0) {
          anzahl++;
       }
       setGeloestFlag();
       do {
-         d++;
          i = 0;
          geaendert = 0;
          // alle ungelösten Bereiche der Liste checken

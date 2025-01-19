@@ -61,7 +61,7 @@ public class UpdateDialog extends JDialog {
     /**
      * Initialisiert den Dialog
      */
-    @SuppressWarnings({"unchecked", "Convert2Lambda"})
+    @SuppressWarnings({"Convert2Lambda"})
     private void initComponents() {
 
         labelTxt = new HtmlLabel(this, 

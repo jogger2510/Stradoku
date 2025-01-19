@@ -11,7 +11,7 @@ package stradoku;
 /**
  * Übernimt die Zeitanzeige in der Statuszeile
  */
-public class ThreadZeitAnzeige extends Thread implements Runnable {
+public class ThreadZeitAnzeige extends Thread {
     
     private final Stradoku strApp;
     private long startZeit;

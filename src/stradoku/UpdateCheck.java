@@ -8,17 +8,16 @@
 
 package stradoku;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
 import javax.swing.JOptionPane;
 
 /**
  * Update-Abfrage
  */
-public class UpdateCheck extends Thread implements Runnable{
+public class UpdateCheck extends Thread {
 
     private final String programmVersion;
     private final Stradoku mainFrame;
@@ -73,8 +72,7 @@ public class UpdateCheck extends Thread implements Runnable{
     private String downloadVersion(String url) {
         String version = "";
         try {
-            HttpURLConnection con = (HttpURLConnection) new URL(url)
-                .openConnection();
+            HttpURLConnection con = (HttpURLConnection) new URI(url).toURL().openConnection();
             con.connect();
             InputStream stream = con.getInputStream();
             InputStreamReader isr =
@@ -86,7 +84,7 @@ public class UpdateCheck extends Thread implements Runnable{
                 c = isr.read();
             }
             version = buffer.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
         }
         return version;
     }

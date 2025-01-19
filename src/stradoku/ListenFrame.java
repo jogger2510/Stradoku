@@ -360,8 +360,11 @@ public class ListenFrame extends JFrame {
 
     public int getLevel(int num) {
         // nur erste Ziffer (ev. einmal Level + Wert)
-        String tmp = (String) listenModel.getValueAt(num, 3); 
-        return Integer.parseInt(tmp.substring(0, 1));
+        String tmp = (String) listenModel.getValueAt(num, 3);
+        try {
+            return Integer.parseInt(tmp.substring(0, 1));
+        } catch (NumberFormatException nfe) {}
+        return 0;
     }
 
     public void setLevel(int z, String lvl) {
@@ -624,7 +627,6 @@ public class ListenFrame extends JFrame {
         jHilfe.zeigeHilfe("listenFenster", true);          
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

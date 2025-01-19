@@ -13,7 +13,7 @@ package stradoku;
  * Steuert die Bereitstellung einer Stradoku-Serie. Die Stradoku werden von der 
  * Archiv Klasse abgerufen.
  */
-class ThreadStrSerie extends Thread implements Runnable {
+class ThreadStrSerie extends Thread {
 
     private final int anzahl;
     private final int lev;

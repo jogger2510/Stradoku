@@ -218,9 +218,9 @@ public final class Stradoku extends JFrame
       } else {
          importStr.strBinLaden(para);
       }
+      BufferedReader in = null;
       try {
-         BufferedReader in = new BufferedReader(
-               new FileReader(homePath + File.separator + iniDat));
+         in = new BufferedReader(new FileReader(homePath + File.separator + iniDat));
          String zeile = in.readLine();           // ersten Eintrag ignorieren
          if (!zeile.contains("Konfigurations-Datei")) {
             return false;
@@ -302,6 +302,11 @@ public final class Stradoku extends JFrame
          }
       } catch (IOException e) {
          return false;
+      } finally {
+         try {
+            in.close();
+         } catch (Exception e) {
+         }
       }
       return true;
    }
@@ -2418,7 +2423,6 @@ public final class Stradoku extends JFrame
         jMenuItem1 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jSeparator13 = new javax.swing.JSeparator();
         stradokuFeld = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
         seperatorLabel8 = new javax.swing.JLabel();
@@ -4806,7 +4810,6 @@ public final class Stradoku extends JFrame
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
-    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;

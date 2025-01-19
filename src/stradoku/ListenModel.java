@@ -39,7 +39,7 @@ public class ListenModel extends DefaultTableModel {
      * Konstruktor
      * @param mf Verweis auf das Hauptfenster der Anwendung
      */
-    @SuppressWarnings({"unchecked", "CollectionWithoutInitialCapacity"})
+    @SuppressWarnings({"CollectionWithoutInitialCapacity"})
     public ListenModel(Stradoku mf) {
         mainFrame = mf;
         userDir = mainFrame.getHomePath();
@@ -111,11 +111,12 @@ public class ListenModel extends DefaultTableModel {
         if (geaendert) {
             int s = 1;
             int z = 0;
+            BufferedWriter bw = null;
             try {
                 String fileName = pfad + File.separator;
                 OutputStreamWriter writer = new OutputStreamWriter(
                         new FileOutputStream(fileName + datei), "UTF-8");
-                BufferedWriter bw = new BufferedWriter(writer);
+                bw = new BufferedWriter(writer);
                 try {
                     bw.write("Stradoku-Liste\r\n");
                     String sLine = "";
@@ -146,6 +147,11 @@ public class ListenModel extends DefaultTableModel {
                 } catch (IOException ex) {
                 }
             } catch (IOException ex) {
+            } finally {
+                try {
+                    bw.close();
+                } catch (Exception e) {
+                }
             }
             geaendert = false;
         }

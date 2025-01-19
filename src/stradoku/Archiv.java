@@ -98,8 +98,9 @@ public class Archiv implements GlobaleObjekte {
          errorTxt = "die Datei " + zipName + " konnte nicht gefunden werden";
       }
       if (zipFile != null) {
-         Enumeration enu = zipFile.entries();
-         ZipEntry zipEntry = (ZipEntry) enu.nextElement();
+         @SuppressWarnings("unchecked")
+         Enumeration<ZipEntry> enu = (Enumeration<ZipEntry>) zipFile.entries();
+         ZipEntry zipEntry = enu.nextElement();
          zipDatei = zipEntry.getName();
          BufferedInputStream bis = null;
          byte[] buffer = null;

@@ -10,8 +10,6 @@
 package stradoku;
 
 import javax.swing.SwingWorker;
-import static stradoku.GlobaleObjekte.LWF;
-import static stradoku.GlobaleObjekte.LWRT;
 import static stradoku.GlobaleObjekte.kopieren;
 
 /**

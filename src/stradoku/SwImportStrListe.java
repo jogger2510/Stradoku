@@ -24,7 +24,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
-import static stradoku.GlobaleObjekte.SZELLE;
 import static stradoku.GlobaleObjekte.rotiereFeld;
 import static stradoku.GlobaleObjekte.spiegleFeld;
 import static stradoku.GlobaleObjekte.tauscheZellWerte;
@@ -34,7 +33,7 @@ import static stradoku.GlobaleObjekte.tauscheZellWerte;
  * @author Konrad
  */
 public class SwImportStrListe extends SwingWorker<Boolean, Integer>
-      implements Runnable, GlobaleObjekte {
+      implements GlobaleObjekte {
 
    private final Stradoku strApp;
    private final ListenFrame strListe;
