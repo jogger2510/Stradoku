@@ -43,17 +43,13 @@ public class PrintStrSerie {
         aset.add(MediaSizeName.ISO_A4);
         try {
             // Drucker initialisieren
-            PrintService prservDflt = 
-                    PrintServiceLookup.lookupDefaultPrintService();
-            PrintService[] prservices = 
-                    PrintServiceLookup.lookupPrintServices(flavor, aset);
-            if (prservices == null || prservices.length <= 0) {
-                if (prservDflt == null) {
-                    return false;
-                }
-            }
-            PrintService prserv = 
-                    PrintServiceLookup.lookupDefaultPrintService();
+            PrintService prserv = null;
+            PrintService[] prservices =  PrintServiceLookup.lookupPrintServices(flavor, aset);
+            if (prservices != null && prservices.length > 0)
+                prserv = prservices[0];
+            PrintService prservDflt = PrintServiceLookup.lookupDefaultPrintService();
+            if (prservDflt != null)
+                prserv = prservDflt;
             if (prserv != null) {
                 PrintStrSeite stradokuSeite = new PrintStrSeite(info);
                 for (int s = 0; s < seiten; s++) {

@@ -108,7 +108,11 @@ public class UpdateCheck extends Thread {
         if (tmp.length() == 2) {
             tmp.append("0");
         }
-        version = tmp.toString();        
-        return Integer.parseUnsignedInt(version);
+        version = tmp.toString();
+        try {
+            return Integer.parseUnsignedInt(version);
+        } catch (NumberFormatException nfe) {
+        }
+        return 0;
     }
 }
