@@ -4,11 +4,11 @@ Ich habe die Weiterentwicklung von Stradoku vom Autor Konrad Demmel übernommen.
 
 Auf dieser Plattform wird die Anwendung aktuell gehalten, letzte Verbesserungen sind die Entfernung der Abhängigkeit zu Java 8 und Windows. Solange Java (JDK oder JRE) installiert ist, startet ein Doppelklick auf `Stradoku.jar` die Anwendung.
 
-Die aktuelle Version kann hier heruntergeladen werden: [Stradoku.jar](https://github.com/jogger2510/Stradoku/blob/main/Stradoku/Stradoku.jar). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
+Die aktuelle Version kann hier heruntergeladen werden: [Stradoku.jar](https://github.com/jogger2510/Stradoku/raw/refs/heads/main/Stradoku/Stradoku.jar). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
 
-Der komplette Programmordner zum Herunterladen: [Stradoku.zip](https://github.com/jogger2510/Stradoku/blob/main/Stradoku.zip). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
+Der komplette Programmordner zum Herunterladen: [Stradoku.zip](https://github.com/jogger2510/Stradoku/raw/refs/heads/main/Stradoku.zip). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
 
-Windows-Anwender finden im Ordner "[Windows](https://github.com/jogger2510/Stradoku/tree/main/Release/Windows)" weitere Informationen. Die alte Java 8 Version dazu gibt es [hier](https://www.java.com/de/download/). Alle nachfolgenden Versionen sind aber schneller.
+Windows-Anwender finden im Ordner "[Windows](https://github.com/jogger2510/Stradoku/tree/main/Stradoku/Windows)" weitere Informationen. Die alte Java 8 Version dazu gibt es [hier](https://www.java.com/de/download/). Alle nachfolgenden Versionen sind aber schneller.
 
 Auf dem **Mac** leitet das Betriebssystem Euch, wenn Ihr kein Java installiert habt, sobald Ihr eine `.jar`-Datei doppelklickt.
 
