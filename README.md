@@ -2,7 +2,7 @@
 
 Ich habe die Weiterentwicklung von Stradoku vom Autor Konrad Demmel übernommen. Stradoku ist eine Anwendung zum Verwalten und Lösen von **Str8ts**-Rätseln nach dem Erfinder Andrew Stuart. Lauffähig auf **Mac**, **Windows**, **Linux**, natürlich auch **Raspberry**.
 
-Auf dieser Plattform wird die Anwendung aktuell gehalten, letzte Verbesserungen sind die Entfernung der Abhängigkeit zu Java 8 und Windows. Solange Java (JDK oder JRE) installiert ist, startet ein Doppelklick auf `Stradoku.jar` die Anwendung.
+Auf dieser Plattform wird die Anwendung aktuell gehalten, letzte Verbesserungen sind die Entfernung der Abhängigkeit zu Java 8 und Windows. Solange Java (JDK oder JRE) installiert ist, startet ein Doppelklick auf `Stradoku.jar` die Anwendung. Drucken ist aber sehr systemabhängig, je nach Plattform funktioniert es derzeit nicht.
 
 Die aktuelle Version kann hier heruntergeladen werden: [Stradoku.jar](https://github.com/jogger2510/Stradoku/raw/refs/heads/main/Stradoku/Stradoku.jar). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
 
