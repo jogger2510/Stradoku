@@ -2423,6 +2423,7 @@ public final class Stradoku extends JFrame
         jMenuItem1 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JSeparator();
         stradokuFeld = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
         seperatorLabel8 = new javax.swing.JLabel();
@@ -2673,7 +2674,7 @@ public final class Stradoku extends JFrame
         });
         toolBar.add(naviTasteZurueck);
 
-        naviPos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        naviPos.setFont(naviPos.getFont().deriveFont(naviPos.getFont().getStyle() | java.awt.Font.BOLD));
         naviPos.setText("0");
         naviPos.setToolTipText("<html><b>Index-Anzeige der aktuellen Lösungsposition</b><ul>\n<li>Klick mit linker Maustaste+<b>Strg</b>: Lösungsposition speichern\n<li>Klick mit linker Maustaste+<b>Umschalt</b>: Lösungsposition zeigen\n<li>Klick mit linker Maustaste: Zu gespeicherter Position gehen</ul></html>\n");
         naviPos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2747,7 +2748,7 @@ public final class Stradoku extends JFrame
         seperatorLabel2.setRequestFocusEnabled(false);
         toolBar.add(seperatorLabel2);
 
-        levelBox.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        levelBox.setFont(levelBox.getFont().deriveFont(levelBox.getFont().getStyle() | java.awt.Font.BOLD, levelBox.getFont().getSize()-2));
         levelBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Level 0 - Ungültig", "Level 1 - Leicht", "Level 2 - Mittel", "Level 3 - Schwer", "Level 4 - Teuflisch", "Level 5 - Extrem" }));
         levelBox.setToolTipText("Level-Auswahl");
         levelBox.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2956,27 +2957,28 @@ public final class Stradoku extends JFrame
         panelStatusBar.setBackground(new java.awt.Color(224, 226, 235));
         panelStatusBar.setName(""); // NOI18N
 
-        statusBarHinweis.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        statusBarHinweis.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         statusBarHinweis.setMaximumSize(new java.awt.Dimension(480, 24));
-        statusBarHinweis.setMinimumSize(new java.awt.Dimension(480, 22));
+        statusBarHinweis.setMinimumSize(new java.awt.Dimension(480, 24));
         statusBarHinweis.setName(""); // NOI18N
         statusBarHinweis.setPreferredSize(new java.awt.Dimension(480, 24));
 
-        labelLevel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        labelLevel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelLevel.setMaximumSize(new java.awt.Dimension(32767, 24));
-        labelLevel.setMinimumSize(new java.awt.Dimension(34, 22));
+        labelLevel.setMinimumSize(new java.awt.Dimension(34, 24));
         labelLevel.setPreferredSize(new java.awt.Dimension(34, 24));
         labelLevel.setText("Level:");
 
-        labelFehler.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        labelFehler.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelFehler.setMaximumSize(new java.awt.Dimension(32767, 24));
         labelFehler.setMinimumSize(new java.awt.Dimension(85, 24));
         labelFehler.setName(""); // NOI18N
+        labelFehler.setPreferredSize(new java.awt.Dimension(87, 24));
         labelFehler.setText("Eingabefehler:");
 
-        statusBarFehler.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        statusBarFehler.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         statusBarFehler.setMaximumSize(new java.awt.Dimension(32767, 24));
-        statusBarFehler.setMinimumSize(new java.awt.Dimension(16, 22));
+        statusBarFehler.setMinimumSize(new java.awt.Dimension(16, 24));
         statusBarFehler.setPreferredSize(new java.awt.Dimension(16, 20));
         statusBarFehler.setText("0");
         statusBarFehler.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2987,7 +2989,7 @@ public final class Stradoku extends JFrame
 
         statusBarZeit.setAlignment(java.awt.Label.CENTER);
         statusBarZeit.setBackground(new java.awt.Color(51, 0, 0));
-        statusBarZeit.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        statusBarZeit.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         statusBarZeit.setForeground(new java.awt.Color(51, 204, 0));
         statusBarZeit.setMaximumSize(new java.awt.Dimension(40, 21));
         statusBarZeit.setMinimumSize(new java.awt.Dimension(40, 21));
@@ -2998,10 +3000,10 @@ public final class Stradoku extends JFrame
             }
         });
 
-        statusBarLevel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        statusBarLevel.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         statusBarLevel.setMaximumSize(new java.awt.Dimension(32767, 24));
-        statusBarLevel.setMinimumSize(new java.awt.Dimension(10, 22));
-        statusBarLevel.setPreferredSize(new java.awt.Dimension(16, 22));
+        statusBarLevel.setMinimumSize(new java.awt.Dimension(10, 24));
+        statusBarLevel.setPreferredSize(new java.awt.Dimension(16, 24));
         statusBarLevel.setText("0");
 
         javax.swing.GroupLayout panelStatusBarLayout = new javax.swing.GroupLayout(panelStatusBar);
@@ -3016,23 +3018,21 @@ public final class Stradoku extends JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelFehler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelFehler, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(statusBarZeit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelStatusBarLayout.setVerticalGroup(
             panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelStatusBarLayout.createSequentialGroup()
-                .addGroup(panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusBarHinweis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFehler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusBarZeit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
+            .addComponent(statusBarZeit, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+            .addGroup(panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(statusBarHinweis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelFehler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelStatusBarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {statusBarFehler, statusBarLevel});
@@ -3050,6 +3050,7 @@ public final class Stradoku extends JFrame
         hinweisPanel.setVerifyInputWhenFocusTarget(false);
 
         labelHinweisfeld.setBackground(new java.awt.Color(102, 102, 102));
+        labelHinweisfeld.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
         labelHinweisfeld.setForeground(new java.awt.Color(255, 255, 255));
         labelHinweisfeld.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelHinweisfeld.setToolTipText("");
@@ -3079,20 +3080,21 @@ public final class Stradoku extends JFrame
                 .addContainerGap())
         );
 
-        labelKandidaten.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelKandidaten.setFont(labelKandidaten.getFont().deriveFont(labelKandidaten.getFont().getStyle() | java.awt.Font.BOLD, labelKandidaten.getFont().getSize()-1));
         labelKandidaten.setForeground(new java.awt.Color(255, 255, 255));
         labelKandidaten.setText("  Kandidaten");
 
         kandidat_1.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_1.setFont(kandidat_1.getFont().deriveFont(kandidat_1.getFont().getStyle() | java.awt.Font.BOLD, kandidat_1.getFont().getSize()+1));
         kandidat_1.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_1.setText("1");
         kandidat_1.setToolTipText("");
+        kandidat_1.setBorder(null);
         kandidat_1.setBorderPainted(false);
         kandidat_1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_1.setMaximumSize(new java.awt.Dimension(25, 25));
-        kandidat_1.setMinimumSize(new java.awt.Dimension(20, 20));
         kandidat_1.setPreferredSize(new java.awt.Dimension(25, 25));
+        kandidat_1.setSize(new java.awt.Dimension(30, 30));
         kandidat_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kandidat_ActionPerformed(evt);
@@ -3100,10 +3102,11 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_2.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_2.setFont(kandidat_2.getFont().deriveFont(kandidat_2.getFont().getStyle() | java.awt.Font.BOLD, kandidat_2.getFont().getSize()+1));
         kandidat_2.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_2.setText("2");
         kandidat_2.setToolTipText("");
+        kandidat_2.setBorder(null);
         kandidat_2.setBorderPainted(false);
         kandidat_2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_2.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3116,10 +3119,11 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_3.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_3.setFont(kandidat_3.getFont().deriveFont(kandidat_3.getFont().getStyle() | java.awt.Font.BOLD, kandidat_3.getFont().getSize()+1));
         kandidat_3.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_3.setText("3");
         kandidat_3.setToolTipText("");
+        kandidat_3.setBorder(null);
         kandidat_3.setBorderPainted(false);
         kandidat_3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_3.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3132,9 +3136,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_4.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_4.setFont(kandidat_4.getFont().deriveFont(kandidat_4.getFont().getStyle() | java.awt.Font.BOLD, kandidat_4.getFont().getSize()+1));
         kandidat_4.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_4.setText("4");
+        kandidat_4.setBorder(null);
         kandidat_4.setBorderPainted(false);
         kandidat_4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_4.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3147,9 +3152,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_5.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_5.setFont(kandidat_5.getFont().deriveFont(kandidat_5.getFont().getStyle() | java.awt.Font.BOLD, kandidat_5.getFont().getSize()+1));
         kandidat_5.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_5.setText("5");
+        kandidat_5.setBorder(null);
         kandidat_5.setBorderPainted(false);
         kandidat_5.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_5.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3162,9 +3168,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_6.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_6.setFont(kandidat_6.getFont().deriveFont(kandidat_6.getFont().getStyle() | java.awt.Font.BOLD, kandidat_6.getFont().getSize()+1));
         kandidat_6.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_6.setText("6");
+        kandidat_6.setBorder(null);
         kandidat_6.setBorderPainted(false);
         kandidat_6.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_6.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3177,9 +3184,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_9.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_9.setFont(kandidat_9.getFont().deriveFont(kandidat_9.getFont().getStyle() | java.awt.Font.BOLD, kandidat_9.getFont().getSize()+1));
         kandidat_9.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_9.setText("9");
+        kandidat_9.setBorder(null);
         kandidat_9.setBorderPainted(false);
         kandidat_9.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_9.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3192,9 +3200,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_8.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_8.setFont(kandidat_8.getFont().deriveFont(kandidat_8.getFont().getStyle() | java.awt.Font.BOLD, kandidat_8.getFont().getSize()+1));
         kandidat_8.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_8.setText("8");
+        kandidat_8.setBorder(null);
         kandidat_8.setBorderPainted(false);
         kandidat_8.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_8.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3207,9 +3216,10 @@ public final class Stradoku extends JFrame
         });
 
         kandidat_7.setBackground(new java.awt.Color(102, 102, 0));
-        kandidat_7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kandidat_7.setFont(kandidat_7.getFont().deriveFont(kandidat_7.getFont().getStyle() | java.awt.Font.BOLD, kandidat_7.getFont().getSize()+1));
         kandidat_7.setForeground(new java.awt.Color(0, 0, 204));
         kandidat_7.setText("7");
+        kandidat_7.setBorder(null);
         kandidat_7.setBorderPainted(false);
         kandidat_7.setMargin(new java.awt.Insets(0, 0, 0, 0));
         kandidat_7.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3221,14 +3231,15 @@ public final class Stradoku extends JFrame
             }
         });
 
-        labelWerte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelWerte.setFont(labelWerte.getFont().deriveFont(labelWerte.getFont().getStyle() | java.awt.Font.BOLD, labelWerte.getFont().getSize()-1));
         labelWerte.setForeground(new java.awt.Color(255, 255, 255));
         labelWerte.setText("      Werte");
 
         setzeWert_1.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_1.setFont(setzeWert_1.getFont().deriveFont(setzeWert_1.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_1.getFont().getSize()+1));
         setzeWert_1.setText("1");
         setzeWert_1.setToolTipText("Zuweisung der 1");
+        setzeWert_1.setBorder(null);
         setzeWert_1.setBorderPainted(false);
         setzeWert_1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_1.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3241,9 +3252,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_2.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_2.setFont(setzeWert_2.getFont().deriveFont(setzeWert_2.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_2.getFont().getSize()+1));
         setzeWert_2.setText("2");
         setzeWert_2.setToolTipText("Zuweisung der 2");
+        setzeWert_2.setBorder(null);
         setzeWert_2.setBorderPainted(false);
         setzeWert_2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_2.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3256,9 +3268,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_3.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_3.setFont(setzeWert_3.getFont().deriveFont(setzeWert_3.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_3.getFont().getSize()+1));
         setzeWert_3.setText("3");
         setzeWert_3.setToolTipText("Zuweisung der 3");
+        setzeWert_3.setBorder(null);
         setzeWert_3.setBorderPainted(false);
         setzeWert_3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_3.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3271,9 +3284,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_4.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_4.setFont(setzeWert_4.getFont().deriveFont(setzeWert_4.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_4.getFont().getSize()+1));
         setzeWert_4.setText("4");
         setzeWert_4.setToolTipText("Zuweisung der 4");
+        setzeWert_4.setBorder(null);
         setzeWert_4.setBorderPainted(false);
         setzeWert_4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_4.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3286,9 +3300,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_5.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_5.setFont(setzeWert_5.getFont().deriveFont(setzeWert_5.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_5.getFont().getSize()+1));
         setzeWert_5.setText("5");
         setzeWert_5.setToolTipText("Zuweisung der 5");
+        setzeWert_5.setBorder(null);
         setzeWert_5.setBorderPainted(false);
         setzeWert_5.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_5.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3301,9 +3316,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_6.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_6.setFont(setzeWert_6.getFont().deriveFont(setzeWert_6.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_6.getFont().getSize()+1));
         setzeWert_6.setText("6");
         setzeWert_6.setToolTipText("Zuweisung der 6");
+        setzeWert_6.setBorder(null);
         setzeWert_6.setBorderPainted(false);
         setzeWert_6.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_6.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3316,9 +3332,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_7.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_7.setFont(setzeWert_7.getFont().deriveFont(setzeWert_7.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_7.getFont().getSize()+1));
         setzeWert_7.setText("7");
         setzeWert_7.setToolTipText("Zuweisung der 7");
+        setzeWert_7.setBorder(null);
         setzeWert_7.setBorderPainted(false);
         setzeWert_7.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_7.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3331,9 +3348,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_8.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_8.setFont(setzeWert_8.getFont().deriveFont(setzeWert_8.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_8.getFont().getSize()+1));
         setzeWert_8.setText("8");
         setzeWert_8.setToolTipText("Zuweisung der 8");
+        setzeWert_8.setBorder(null);
         setzeWert_8.setBorderPainted(false);
         setzeWert_8.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_8.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3346,9 +3364,10 @@ public final class Stradoku extends JFrame
         });
 
         setzeWert_9.setBackground(new java.awt.Color(102, 102, 0));
-        setzeWert_9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setzeWert_9.setFont(setzeWert_9.getFont().deriveFont(setzeWert_9.getFont().getStyle() | java.awt.Font.BOLD, setzeWert_9.getFont().getSize()+1));
         setzeWert_9.setText("9");
         setzeWert_9.setToolTipText("Zuweisung der 9");
+        setzeWert_9.setBorder(null);
         setzeWert_9.setBorderPainted(false);
         setzeWert_9.setMargin(new java.awt.Insets(0, 0, 0, 0));
         setzeWert_9.setMaximumSize(new java.awt.Dimension(25, 25));
@@ -3361,7 +3380,7 @@ public final class Stradoku extends JFrame
         });
 
         menuZeile.setAlignmentX(5.0F);
-        menuZeile.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        menuZeile.setFont(menuZeile.getFont());
         menuZeile.setMaximumSize(new java.awt.Dimension(243, 30));
         menuZeile.setMinimumSize(new java.awt.Dimension(243, 24));
         menuZeile.setOpaque(false);
@@ -3369,10 +3388,11 @@ public final class Stradoku extends JFrame
 
         menuDatei.setText("Datei");
         menuDatei.setToolTipText("");
-        menuDatei.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuDatei.setPreferredSize(new java.awt.Dimension(45, 19));
+        menuDatei.setFont(menuDatei.getFont().deriveFont(menuDatei.getFont().getStyle() | java.awt.Font.BOLD));
+        menuDatei.setPreferredSize(null);
 
         mdEingabe.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mdEingabe.setFont(mdEingabe.getFont());
         mdEingabe.setText("Neues Stradoku eingeben");
         mdEingabe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3382,6 +3402,7 @@ public final class Stradoku extends JFrame
         menuDatei.add(mdEingabe);
 
         mdiErzeugen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mdiErzeugen.setFont(mdiErzeugen.getFont());
         mdiErzeugen.setText("Neues Stradoku generieren");
         mdiErzeugen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3547,8 +3568,8 @@ public final class Stradoku extends JFrame
         menuBearbeiten.setText("Bearbeiten");
         menuBearbeiten.setToolTipText("");
         menuBearbeiten.setAutoscrolls(true);
-        menuBearbeiten.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuBearbeiten.setPreferredSize(new java.awt.Dimension(75, 19));
+        menuBearbeiten.setFont(menuBearbeiten.getFont().deriveFont(menuBearbeiten.getFont().getStyle() | java.awt.Font.BOLD));
+        menuBearbeiten.setPreferredSize(null);
 
         mbEditieren.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mbEditieren.setText("Stradoku bearbeiten");
@@ -3590,8 +3611,8 @@ public final class Stradoku extends JFrame
         menuZeile.add(menuBearbeiten);
 
         menuAnzeige.setText("Anzeige");
-        menuAnzeige.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuAnzeige.setPreferredSize(new java.awt.Dimension(61, 19));
+        menuAnzeige.setFont(menuAnzeige.getFont().deriveFont(menuAnzeige.getFont().getStyle() | java.awt.Font.BOLD));
+        menuAnzeige.setPreferredSize(null);
 
         maStart.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         maStart.setText("Startposition");
@@ -3662,8 +3683,8 @@ public final class Stradoku extends JFrame
 
         menuLevel.setText("Level");
         levelGroup.add(menuLevel);
-        menuLevel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuLevel.setPreferredSize(new java.awt.Dimension(45, 19));
+        menuLevel.setFont(menuLevel.getFont().deriveFont(menuLevel.getFont().getStyle() | java.awt.Font.BOLD));
+        menuLevel.setPreferredSize(null);
 
         ml_0.setText("Level 0 - Ungültig");
         ml_0.setEnabled(false);
@@ -3719,8 +3740,10 @@ public final class Stradoku extends JFrame
 
         menuNavi.setText("Navigieren");
         menuNavi.setActionCommand("  Navigieren");
-        menuNavi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuNavi.setPreferredSize(new java.awt.Dimension(75, 19));
+        menuNavi.setFont(menuNavi.getFont().deriveFont(menuNavi.getFont().getStyle() | java.awt.Font.BOLD));
+        menuNavi.setMaximumSize(null);
+        menuNavi.setMinimumSize(null);
+        menuNavi.setPreferredSize(null);
 
         mnStart.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnStart.setText("Ausgangsstellung");
@@ -3789,8 +3812,8 @@ public final class Stradoku extends JFrame
         menuZeile.add(menuNavi);
 
         menuFarbMarkierung.setText("Markierung");
-        menuFarbMarkierung.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuFarbMarkierung.setPreferredSize(new java.awt.Dimension(79, 19));
+        menuFarbMarkierung.setFont(menuFarbMarkierung.getFont().deriveFont(menuFarbMarkierung.getFont().getStyle() | java.awt.Font.BOLD));
+        menuFarbMarkierung.setPreferredSize(null);
 
         mmBlau.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, 0));
         mmBlau.setText("Blau für aktuelle Zelle");
@@ -3862,8 +3885,9 @@ public final class Stradoku extends JFrame
 
         menuInfo.setText("Hilfe");
         menuInfo.setToolTipText("");
-        menuInfo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuInfo.setPreferredSize(new java.awt.Dimension(43, 19));
+        menuInfo.setFont(menuInfo.getFont().deriveFont(menuInfo.getFont().getStyle() | java.awt.Font.BOLD));
+        menuInfo.setMaximumSize(null);
+        menuInfo.setPreferredSize(null);
 
         mhInfoProgramm.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         mhInfoProgramm.setText("<html>Infos zu diesem Programm &#160;</html>");
@@ -4810,6 +4834,7 @@ public final class Stradoku extends JFrame
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;
