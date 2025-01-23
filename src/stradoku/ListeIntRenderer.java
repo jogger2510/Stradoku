@@ -40,7 +40,7 @@ public class ListeIntRenderer extends DefaultTableCellRenderer {
         this.colorNormal = new Color(255, 255, 255);
         list = lst;
         lstFrame = lstFrm;
-        setFont(new Font("Courier New", Font.PLAIN, 12));
+        setFont(new Font("Monospaced", Font.PLAIN, 12));
         setOpaque(true);
     }
 

@@ -76,10 +76,12 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.DOCUMENT_MODAL);
         setResizable(false);
 
-        anzeigeLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        anzeigeLabel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel2.setText("Aktueller Level:");
 
+        eingabeFeld.setFont(new java.awt.Font("DialogInput", 0, 13)); // NOI18N
         eingabeFeld.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         eingabeFeld.setText("0");
         eingabeFeld.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -88,8 +90,10 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel3.setText("Anzahl der zu erzeugenden Aufgaben:");
 
+        buttonAbbrechen.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonAbbrechen.setText("Abbrechen");
         buttonAbbrechen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +101,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
             }
         });
 
+        buttonOK.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonOK.setText("Erzeugen");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +109,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
             }
         });
 
+        labelVorhanden.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         labelVorhanden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelVorhanden.setText("3");
 
@@ -124,7 +130,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelVorhanden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonOK, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 85, Short.MAX_VALUE)
                             .addComponent(eingabeFeld))))
                 .addGap(31, 31, 31))
         );
@@ -150,7 +156,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
                         .addComponent(eingabeFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buttonOK)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, labelVorhanden});

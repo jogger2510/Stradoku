@@ -72,6 +72,7 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
         setName("dialogEingabefehler"); // NOI18N
         setResizable(false);
 
+        ueberarbeitenButton.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         ueberarbeitenButton.setText("Überarbeiten");
         ueberarbeitenButton.setActionCommand("1");
         buttonGroup.add(ueberarbeitenButton);
@@ -81,6 +82,7 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
             }
         });
 
+        beendenButton.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         beendenButton.setText("Abbrechen");
         beendenButton.setActionCommand("3");
         buttonGroup.add(beendenButton);
@@ -90,7 +92,7 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
             }
         });
 
-        ueberschrift_Lbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ueberschrift_Lbl.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         ueberschrift_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ueberschrift_Lbl.setText("Eingabe beendet");
 
@@ -99,10 +101,12 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
         begruendung_Lbl.setMinimumSize(new java.awt.Dimension(380, 28));
         begruendung_Lbl.setPreferredSize(new java.awt.Dimension(380, 28));
 
+        frage_Lbl.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         frage_Lbl.setText("<html>Soll diese Aufgabe noch einmal überarbeitet, übernommen oder die Eingabe abgebrochen werden?");
         frage_Lbl.setMaximumSize(new java.awt.Dimension(380, 28));
         frage_Lbl.setPreferredSize(new java.awt.Dimension(380, 28));
 
+        uebernehmenButton.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         uebernehmenButton.setText("Übernehmen");
         uebernehmenButton.setActionCommand("2");
         buttonGroup.add(uebernehmenButton);
@@ -117,7 +121,7 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -146,14 +150,14 @@ public class EingabeBeendenDialog extends javax.swing.JDialog {
                 .addComponent(ueberschrift_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(begruendung_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(frage_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(frage_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(beendenButton)
                     .addComponent(uebernehmenButton)
                     .addComponent(ueberarbeitenButton))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {beendenButton, ueberarbeitenButton, uebernehmenButton});

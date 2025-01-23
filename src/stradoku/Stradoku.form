@@ -46,13 +46,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Datei"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuDatei" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -286,13 +281,8 @@
             <Property name="text" type="java.lang.String" value="Bearbeiten"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="autoscrolls" type="boolean" value="true"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuBearbeiten" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -350,13 +340,8 @@
         <Menu class="javax.swing.JMenu" name="menuAnzeige">
           <Properties>
             <Property name="text" type="java.lang.String" value="Anzeige"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuAnzeige" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -449,13 +434,8 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="levelGroup"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuLevel" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -527,19 +507,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Navigieren"/>
             <Property name="actionCommand" type="java.lang.String" value="  Navigieren"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuNavi" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -626,13 +595,8 @@
         <Menu class="javax.swing.JMenu" name="menuFarbMarkierung">
           <Properties>
             <Property name="text" type="java.lang.String" value="Markierung"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuFarbMarkierung" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -724,16 +688,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Hilfe"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="menuInfo" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
-            </Property>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="null"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
           </Properties>
           <SubComponents>
@@ -1185,10 +1141,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="naviPos">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="naviPos" property="font" relativeSize="true" size="0"/>
-              </FontInfo>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;Index-Anzeige der aktuellen L&#xf6;sungsposition&lt;/b&gt;&lt;ul&gt;&#xa;&lt;li&gt;Klick mit linker Maustaste+&lt;b&gt;Strg&lt;/b&gt;: L&#xf6;sungsposition speichern&#xa;&lt;li&gt;Klick mit linker Maustaste+&lt;b&gt;Umschalt&lt;/b&gt;: L&#xf6;sungsposition zeigen&#xa;&lt;li&gt;Klick mit linker Maustaste: Zu gespeicherter Position gehen&lt;/ul&gt;&lt;/html&gt;&#xa;"/>
@@ -1310,10 +1264,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="levelBox">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-              <FontInfo relative="true">
-                <Font bold="true" component="levelBox" property="font" relativeSize="true" size="-2"/>
-              </FontInfo>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="11" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="6">
@@ -1727,9 +1679,6 @@
               <Dimension value="[480, 24]"/>
             </Property>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[480, 24]"/>
-            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1744,9 +1693,6 @@
               <Dimension value="[32767, 24]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[34, 24]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[34, 24]"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Level:"/>
@@ -1927,26 +1873,20 @@
     </Container>
     <Component class="javax.swing.JLabel" name="labelKandidaten">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="labelKandidaten" property="font" relativeSize="true" size="-1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="  Kandidaten"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Kandidaten"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_1" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
@@ -1954,15 +1894,17 @@
         <Property name="text" type="java.lang.String" value="1"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -1976,13 +1918,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_2">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_2" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
@@ -1990,9 +1927,10 @@
         <Property name="text" type="java.lang.String" value="2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2002,6 +1940,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2012,13 +1951,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_3">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_3" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
@@ -2026,9 +1960,10 @@
         <Property name="text" type="java.lang.String" value="3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2038,6 +1973,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2048,22 +1984,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_4">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_4" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="4"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2073,6 +2006,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2083,22 +2017,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_5">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_5" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="5"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2108,6 +2039,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2118,22 +2050,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_6">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_6" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="6"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2143,6 +2072,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2153,22 +2083,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_9">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_9" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="9"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2178,6 +2105,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2188,22 +2116,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_8">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_8" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="8"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2213,6 +2138,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2223,22 +2149,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="kandidat_7">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="kandidat_7" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="7"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2248,6 +2171,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2258,33 +2182,27 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelWerte">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="labelWerte" property="font" relativeSize="true" size="-1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="12" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="      Werte"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Werte"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_1" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="1"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2294,6 +2212,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2304,20 +2223,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_2">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_2" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="2"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 2"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2327,6 +2241,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2337,20 +2252,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_3">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_3" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="3"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 3"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2360,6 +2270,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2370,20 +2281,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_4">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_4" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="4"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 4"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2393,6 +2299,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2403,20 +2310,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_5">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_5" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="5"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 5"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2426,6 +2328,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2436,20 +2339,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_6">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_6" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="6"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 6"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2459,6 +2357,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2469,20 +2368,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_7">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_7" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="7"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 7"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2492,6 +2386,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2502,20 +2397,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_8">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_8" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="8"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 8"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2525,6 +2415,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>
@@ -2535,20 +2426,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="setzeWert_9">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
-          <FontInfo relative="true">
-            <Font bold="true" component="setzeWert_9" property="font" relativeSize="true" size="1"/>
-          </FontInfo>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="9"/>
-        <Property name="toolTipText" type="java.lang.String" value="Zuweisung der 9"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[0, 0, 0, 0]"/>
         </Property>
@@ -2558,6 +2444,7 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[20, 20]"/>
         </Property>
+        <Property name="opaque" type="boolean" value="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>

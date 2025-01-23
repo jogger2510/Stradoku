@@ -66,7 +66,7 @@ public class ListeEditor extends JTextField
         // Abstand von links - siehe auch Kl. ListenFrame Z. 71
         setBorder(BorderFactory.createEmptyBorder(5, 8, 0, 0));
         // gleicher Font wie im übrigen Bereich
-        setFont(new Font("Courier New", Font.PLAIN, 12));
+        setFont(new Font("Monospaced", Font.PLAIN, 12));
         // Der Editor hört sich selbst ab, so kann er auf 
         // jede Benutzereingabe reagieren
         getDocument().addDocumentListener(this);

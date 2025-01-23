@@ -20,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListenModel extends DefaultTableModel {
 
-    private final Spalte selekt = new Spalte(" selekt.", 20);
-    private final Spalte num = new Spalte("   ANr.", 20);
-    private final Spalte aufgabe = new Spalte("  Aufgabe", 350);
+    private final Spalte selekt = new Spalte("selekt.", 20);
+    private final Spalte num = new Spalte("ANr.", 20);
+    private final Spalte aufgabe = new Spalte("Aufgabe", 350);
     private final Spalte level = new Spalte("Level", 8);
-    private final Spalte frei = new Spalte("  frei", 8);
-    private final Spalte bemerkung = new Spalte("  Bemerkung", 200);
+    private final Spalte frei = new Spalte("frei", 8);
+    private final Spalte bemerkung = new Spalte("Bemerkung", 200);
     private final Spalte header[] = {
                                 selekt, num, aufgabe, level, frei, bemerkung};
     private final ArrayList<Object> liste;

@@ -53,9 +53,10 @@ public class AbfrageImportListe extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.DOCUMENT_MODAL);
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel1.setText("<html>Sollen die Stradokus der zu importierende Liste der aktuellen Liste hinzugefügt oder soll die aktuelle Liste gelöscht werden?");
 
+        buttonAbbrechen.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonAbbrechen.setText("Abbrechen");
         buttonAbbrechen.setMaximumSize(new java.awt.Dimension(87, 23));
         buttonAbbrechen.setMinimumSize(new java.awt.Dimension(87, 23));
@@ -65,6 +66,7 @@ public class AbfrageImportListe extends javax.swing.JDialog {
             }
         });
 
+        buttonHinzufuegen.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonHinzufuegen.setText("Hinzufügen");
         buttonHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +74,7 @@ public class AbfrageImportListe extends javax.swing.JDialog {
             }
         });
 
+        buttonLoeschen.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonLoeschen.setText("Löschen");
         buttonLoeschen.setMaximumSize(new java.awt.Dimension(87, 23));
         buttonLoeschen.setMinimumSize(new java.awt.Dimension(87, 23));
@@ -87,15 +90,15 @@ public class AbfrageImportListe extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonHinzufuegen, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonLoeschen, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(buttonAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(buttonHinzufuegen)
+                        .addGap(9, 9, 9)
+                        .addComponent(buttonLoeschen, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +110,7 @@ public class AbfrageImportListe extends javax.swing.JDialog {
                     .addComponent(buttonAbbrechen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonHinzufuegen)
                     .addComponent(buttonLoeschen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();

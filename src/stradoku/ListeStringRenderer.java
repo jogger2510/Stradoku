@@ -35,7 +35,7 @@ public class ListeStringRenderer extends DefaultTableCellRenderer {
         strListe = lst;
         colorSchwarz = strListe.getForeground();
         colorWeiss = strListe.getBackground();
-        setFont(new Font("Courier New", Font.PLAIN, 12));
+        setFont(new Font("Monospaced", Font.PLAIN, 12));
         setOpaque(true);
     }
     

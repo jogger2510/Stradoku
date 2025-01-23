@@ -37,7 +37,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="2" attributes="0">
@@ -71,15 +71,15 @@
               <Component id="ueberschrift_Lbl" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="begruendung_Lbl" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="frage_Lbl" min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="frage_Lbl" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="beendenButton" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="uebernehmenButton" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ueberarbeitenButton" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +87,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="ueberarbeitenButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#xdc;berarbeiten"/>
         <Property name="actionCommand" type="java.lang.String" value="1"/>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -99,6 +102,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="beendenButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Abbrechen"/>
         <Property name="actionCommand" type="java.lang.String" value="3"/>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -112,7 +118,7 @@
     <Component class="javax.swing.JLabel" name="ueberschrift_Lbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="1"/>
+          <Font name="SansSerif" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Eingabe beendet"/>
@@ -134,6 +140,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="frage_Lbl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="13" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;Soll diese Aufgabe noch einmal &#xfc;berarbeitet, &#xfc;bernommen oder die Eingabe abgebrochen werden?"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 28]"/>
@@ -145,6 +154,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="uebernehmenButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#xdc;bernehmen"/>
         <Property name="actionCommand" type="java.lang.String" value="2"/>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">

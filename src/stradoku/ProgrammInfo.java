@@ -50,7 +50,7 @@ public class ProgrammInfo extends javax.swing.JDialog {
         setName(""); // NOI18N
         setResizable(false);
 
-        labelTitel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTitel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelTitel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         buttonBeenden.setText("Beenden");

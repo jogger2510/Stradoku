@@ -98,10 +98,10 @@ public class PrintStrSeite implements Printable {
                     dSI++;
                 }
                 fontSize = 12;
-                g.setFont(new Font("Arial", Font.PLAIN, fontSize * RES_MPL));
+                g.setFont(new Font("SansSerif", Font.PLAIN, fontSize * RES_MPL));
                 setzeTitel(g2, x, y);
                 fontSize = 18;
-                g.setFont(new Font("Arial", Font.BOLD, fontSize * RES_MPL));
+                g.setFont(new Font("SansSerif", Font.BOLD, fontSize * RES_MPL));
                 setzeWerte(g2, x, y);
             }
             g.dispose();

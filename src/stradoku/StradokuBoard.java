@@ -33,10 +33,10 @@ public class StradokuBoard extends javax.swing.JPanel implements GlobaleObjekte 
    private static final Color SEL_B = new Color(240, 0, 0);
    private static final Color SEL_W = new Color(220, 0, 0);
    private static final Color HGREEN = new Color(220, 235, 220);
-   private static final Font WERT_FONT = new Font("Arial", Font.BOLD, 26);
-   private static final Font KND_FONT = new Font("Ebrima", Font.PLAIN, 13);
-   private static final Font KNDP_FONT = new Font("Arial", Font.BOLD, 18);
-   private static final Font LABEL_FONT = new Font("Arial", Font.BOLD, 12);
+   private static final Font WERT_FONT = new Font("SansSerif", Font.BOLD, 26);
+   private static final Font KND_FONT = new Font("Serif", Font.PLAIN, 13);
+   private static final Font KNDP_FONT = new Font("SansSerif", Font.BOLD, 18);
+   private static final Font LABEL_FONT = new Font("SansSerif", Font.BOLD, 12);
 
    private static final int ALINIE = 3;
    private static final int BORDER = 21 + ALINIE;

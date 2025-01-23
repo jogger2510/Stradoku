@@ -71,7 +71,7 @@ public class HilfeDialog extends javax.swing.JFrame {
         // Darzustellenden Abschnitt festlegen, ID muss im XML existieren!
         help.setCurrentID(aktID);
         help.setNavigatorDisplayed(naviBereich);
-        help.setFont(new java.awt.Font("Tahoma", 0, 12));
+        help.setFont(new java.awt.Font("Serif", 0, 12));
         BorderLayout layout = (BorderLayout) help.getLayout();
         JSplitPane splitPane = (JSplitPane)layout.getLayoutComponent(help, BorderLayout.CENTER);
         JFrame frame = new JFrame();

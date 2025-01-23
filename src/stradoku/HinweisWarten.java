@@ -68,11 +68,12 @@ public class HinweisWarten extends JDialog {
         setName("dialogWarten"); // NOI18N
         setResizable(false);
 
-        labelText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelText.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         labelText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelText.setText("<html><center><b>Importiere Stradoku-Aufgaben.<br><br>Bitte solange warten.</b></center></html>");
         labelText.setMaximumSize(new java.awt.Dimension(116, 45));
 
+        fortschrittsAnzeige.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         fortschrittsAnzeige.setPreferredSize(new java.awt.Dimension(146, 20));
         fortschrittsAnzeige.setRequestFocusEnabled(false);
 

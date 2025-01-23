@@ -89,9 +89,10 @@ public class ListenFrame extends JFrame {
                 new ListeIntRenderer(this, jTable, listenModel));
         jTable.setDefaultRenderer(String.class, 
                 new ListeStringRenderer(jTable, listenModel));
-        jTable.setFont(new Font("Courier New", Font.PLAIN, 12));
+        jTable.setFont(new Font("Monospaced", Font.PLAIN, 12));
         JTableHeader header = jTable.getTableHeader();
-        header.setFont(new Font("Default", Font.BOLD, 12));
+        header.setFont(new Font("SansSerif", Font.BOLD, 12));
+        header.setForeground(Color.white);
         header.setUpdateTableInRealTime(true);
         header.setReorderingAllowed(true);
         header.setBackground(Color.BLACK);
@@ -670,7 +671,6 @@ public class ListenFrame extends JFrame {
             }
         });
 
-        symbolLeiste.setFloatable(false);
         symbolLeiste.setRollover(true);
         symbolLeiste.setMaximumSize(new java.awt.Dimension(829, 30));
         symbolLeiste.setMinimumSize(new java.awt.Dimension(829, 30));
@@ -804,9 +804,6 @@ public class ListenFrame extends JFrame {
         buttonHilfe.setToolTipText("Hilfe für das Listenfenster aufrufen");
         buttonHilfe.setFocusable(false);
         buttonHilfe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        buttonHilfe.setMaximumSize(new java.awt.Dimension(27, 27));
-        buttonHilfe.setMinimumSize(new java.awt.Dimension(27, 27));
-        buttonHilfe.setPreferredSize(new java.awt.Dimension(27, 27));
         buttonHilfe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         buttonHilfe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -822,40 +819,41 @@ public class ListenFrame extends JFrame {
         symbolLeiste.add(seperatorLabel12);
 
         scrollPanel.setBorder(null);
+        scrollPanel.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         scrollPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         scrollPanel.setPreferredSize(new java.awt.Dimension(830, 640));
 
-        labelDatenSaetze.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelDatenSaetze.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelDatenSaetze.setMaximumSize(new java.awt.Dimension(62, 15));
         labelDatenSaetze.setMinimumSize(new java.awt.Dimension(62, 15));
         labelDatenSaetze.setText("Datensätze:");
 
-        labelAnzahlDS.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelAnzahlDS.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelAnzahlDS.setMaximumSize(new java.awt.Dimension(36, 19));
         labelAnzahlDS.setMinimumSize(new java.awt.Dimension(36, 19));
         labelAnzahlDS.setName(""); // NOI18N
         labelAnzahlDS.setText("0000");
 
-        labelMarkiert.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelMarkiert.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelMarkiert.setForeground(new java.awt.Color(0, 0, 0));
         labelMarkiert.setText("Markiert:");
 
-        labelAnzahlM.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelAnzahlM.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelAnzahlM.setForeground(new java.awt.Color(0, 0, 0));
         labelAnzahlM.setMaximumSize(new java.awt.Dimension(36, 19));
         labelAnzahlM.setMinimumSize(new java.awt.Dimension(36, 19));
         labelAnzahlM.setText("0000");
 
-        labelSelektiert.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelSelektiert.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelSelektiert.setText("Selektiert:");
 
         labelAnzahlS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelAnzahlS.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelAnzahlS.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelAnzahlS.setMaximumSize(new java.awt.Dimension(36, 19));
         labelAnzahlS.setMinimumSize(new java.awt.Dimension(36, 19));
         labelAnzahlS.setText("0000");
 
-        labelHinweis.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        labelHinweis.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         labelHinweis.setText("Doppelklick oder Strg+Enter: Stradoku an Fenster mit Stradokufeld übergeben");
         labelHinweis.setMaximumSize(new java.awt.Dimension(290, 20));
         labelHinweis.setMinimumSize(new java.awt.Dimension(290, 20));
@@ -867,7 +865,7 @@ public class ListenFrame extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(1, 1, 1)
+                .addGap(1, 5, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(symbolLeiste, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -884,8 +882,8 @@ public class ListenFrame extends JFrame {
                 .addComponent(labelSelektiert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelAnzahlS, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(labelHinweis, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelHinweis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -895,7 +893,7 @@ public class ListenFrame extends JFrame {
                 .addComponent(symbolLeiste, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE)
+                .addGap(0, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelAnzahlM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAnzahlDS, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -70,11 +70,13 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.DOCUMENT_MODAL);
         setResizable(false);
 
-        jLabel_Auftrag.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel_Auftrag.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel_Auftrag.setText("<html> Geben Sie die Nummer der Aufgabe ein, die aus der Liste übernommen werden soll.");
 
+        jLabel_FrageAnzahl.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel_FrageAnzahl.setText("Anzahl der Aufgaben in der Liste:");
 
+        eingabeFeld.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         eingabeFeld.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         eingabeFeld.setText("0");
         eingabeFeld.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -83,8 +85,10 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
             }
         });
 
+        jLabel_FrageNummer.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         jLabel_FrageNummer.setText("Nummer der Aufgabe:");
 
+        buttonAbbrechen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         buttonAbbrechen.setText("Abbrechen");
         buttonAbbrechen.setSelected(true);
         buttonAbbrechen.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +97,7 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
             }
         });
 
+        buttonOK.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         buttonOK.setText("Übernehmen");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +105,7 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
             }
         });
 
+        labelVorhanden.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         labelVorhanden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelVorhanden.setText("55");
 
@@ -113,20 +119,19 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Auftrag, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_FrageNummer, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_FrageAnzahl, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(labelVorhanden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(eingabeFeld, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel_FrageNummer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel_FrageAnzahl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(buttonAbbrechen)
-                        .addGap(63, 63, 63)
-                        .addComponent(buttonOK)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelVorhanden, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonAbbrechen)
+                                .addGap(63, 63, 63)
+                                .addComponent(buttonOK))
+                            .addComponent(eingabeFeld, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonAbbrechen, buttonOK});
@@ -150,7 +155,7 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAbbrechen)
                     .addComponent(buttonOK))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel_FrageAnzahl, labelVorhanden});
