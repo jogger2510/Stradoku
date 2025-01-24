@@ -1,0 +1,8 @@
+Zuerst wird zusätzlich ein Laufzeit-Ordner (das ZIP vom Release) ebenfalls mit Namen Stradoku in das Arbeitsverzeichnis entpackt. Das Projekt kann dann mit NetBeans geöffnet werden, nötige Hilfe-Bibliotheken sind dann im Unterordner "./Stradoku/lib".
+
+
+Nur, wenn die Hilfe angepaßt werden soll:
+
+Für die Help-Datei braucht Ihr einen XML-Editor wie XML-Mind; die Pfade im Kopf der Datei müssen angepaßt werden.
+
+Für die Generierung der Hilfe empfiehlt sich eine Installation von DobuDish außerhalb des Projektordners. In den Input-Ordner kommt ein Link auf die XML-Datei, im Output sind das die fertigen JAR-Dateinen zur Kopie nach "./Stradoku/lib". Der Ordner "custom-cfg" muß vorher ersetzt werden, ZIP in diesem Ordner.
