@@ -20,8 +20,6 @@
         <Property name="text" type="java.lang.String" value="jMenuItem2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator13">
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuZeile">
       <Properties>
         <Property name="alignmentX" type="float" value="5.0"/>

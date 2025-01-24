@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 class ThreadPrintStrSerie extends Thread {
 
-    private final HinweisWarten msgHinweisWarten;
     private final int anzahl;
     private final ListenFrame liste;
     private final ListenModel listeDaten;
@@ -29,10 +28,9 @@ class ThreadPrintStrSerie extends Thread {
      * @param anz Anzahl der einzulesenden Stradokus
      */
     ThreadPrintStrSerie(
-            ListenFrame lst, ListenModel lD, HinweisWarten msg, int anz) {
+            ListenFrame lst, ListenModel lD, int anz) {
         liste = lst;
         listeDaten = lD;
-        msgHinweisWarten = msg;
         anzahl = anz;
     }
 
@@ -55,11 +53,11 @@ class ThreadPrintStrSerie extends Thread {
         }
         PrintStrSerie pSS = new PrintStrSerie();
         if (!pSS.printStradokuSerie(stradokuInfo)) {
-            JOptionPane.showMessageDialog(null,
-                    "Unerwarteter Fehler beim Stradoku-Ausruck!",
-                    "Hinweis", 1);
+            liste.strApp.statusBarHinweis.setText("Unerwarteter Fehler beim Stradoku-Ausruck!");
+            // JOptionPane.showMessageDialog(null,
+            //         "Unerwarteter Fehler beim Stradoku-Ausruck!",
+            //         "Hinweis", 1);
         }
         liste.deselectPrintSdk();
-        msgHinweisWarten.setVisible(false);
     }
 }

@@ -44,6 +44,7 @@ public class ProgrammInfo extends javax.swing.JDialog {
         labelCopyright = new javax.swing.JLabel();
         labelLizenzHinweis = new javax.swing.JLabel();
         labelVersion = new javax.swing.JLabel();
+        labelTitel1 = new javax.swing.JLabel();
 
         setTitle("Info zu diesem Programm");
         setModal(true);
@@ -53,6 +54,7 @@ public class ProgrammInfo extends javax.swing.JDialog {
         labelTitel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelTitel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        buttonBeenden.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         buttonBeenden.setText("Beenden");
         buttonBeenden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,25 +65,36 @@ public class ProgrammInfo extends javax.swing.JDialog {
         labelCopyright.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCopyright.setText("<html><p align=center>Copyright © 2017-2020 by Konrad Demmel</p></html>");
 
+        labelLizenzHinweis.setFont(new java.awt.Font("Serif", 0, 13)); // NOI18N
         labelLizenzHinweis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelLizenzHinweis.setText("<html> <center>Dieses Programm ist freie Software. Sie können es unter \nden Bedingungen der GNU General Public License Version 3, \nwie von der Free Software Foundation veröffentlicht, \nverwenden, weitergeben und/oder modifizieren.</center></html>");
+        labelLizenzHinweis.setText("<html> <center>Dieses Programm ist freie Software. Sie können es unter  den Bedingungen der GNU General Public License Version 3, die im gleichen Ordner beigefügt ist, verwenden, weitergeben und/oder modifizieren.</center></html>");
 
         labelVersion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelVersion.setText("Version 1.1");
         labelVersion.setToolTipText("");
+
+        labelTitel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stradoku/img/autor.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(labelTitel, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(labelVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLizenzHinweis, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonBeenden))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelTitel, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(labelVersion, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCopyright, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelTitel1, javax.swing.GroupLayout.Alignment.CENTER)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(buttonBeenden)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelLizenzHinweis, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -93,11 +106,13 @@ public class ProgrammInfo extends javax.swing.JDialog {
                 .addComponent(labelVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(labelLizenzHinweis, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
+                .addComponent(labelTitel1)
+                .addGap(18, 18, 18)
                 .addComponent(buttonBeenden)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -116,6 +131,7 @@ public class ProgrammInfo extends javax.swing.JDialog {
     private javax.swing.JLabel labelCopyright;
     private javax.swing.JLabel labelLizenzHinweis;
     private javax.swing.JLabel labelTitel;
+    private javax.swing.JLabel labelTitel1;
     private javax.swing.JLabel labelVersion;
     // End of variables declaration//GEN-END:variables
 }

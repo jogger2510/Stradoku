@@ -27,15 +27,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="labelTitel" alignment="2" pref="307" max="32767" attributes="0"/>
-                  <Component id="labelVersion" alignment="2" min="-2" pref="183" max="-2" attributes="0"/>
-                  <Component id="labelCopyright" alignment="2" min="-2" pref="221" max="-2" attributes="0"/>
-                  <Component id="labelLizenzHinweis" alignment="2" min="-2" pref="292" max="-2" attributes="0"/>
-                  <Component id="buttonBeenden" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="labelTitel" alignment="2" pref="375" max="32767" attributes="0"/>
+                          <Component id="labelVersion" alignment="2" min="-2" pref="183" max="-2" attributes="0"/>
+                          <Component id="labelCopyright" alignment="2" min="-2" pref="262" max="-2" attributes="0"/>
+                          <Component id="labelTitel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                      <Component id="buttonBeenden" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelLizenzHinweis" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -48,11 +60,13 @@
               <Component id="labelVersion" min="-2" pref="19" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="labelCopyright" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
               <Component id="labelLizenzHinweis" min="-2" pref="74" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="labelTitel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="buttonBeenden" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,6 +82,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonBeenden">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Beenden"/>
       </Properties>
       <Events>
@@ -82,8 +99,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelLizenzHinweis">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Serif" size="13" style="0"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt;Dieses Programm ist freie Software. Sie k&#xf6;nnen es unter &#xa;den Bedingungen der GNU General Public License Version 3, &#xa;wie von der Free Software Foundation ver&#xf6;ffentlicht, &#xa;verwenden, weitergeben und/oder modifizieren.&lt;/center&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt;Dieses Programm ist freie Software. Sie k&#xf6;nnen es unter  den Bedingungen der GNU General Public License Version 3, die im gleichen Ordner beigef&#xfc;gt ist, verwenden, weitergeben und/oder modifizieren.&lt;/center&gt;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelVersion">
@@ -91,6 +111,13 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Version 1.1"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelTitel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/stradoku/img/autor.png"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

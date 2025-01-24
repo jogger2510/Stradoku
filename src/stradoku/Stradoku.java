@@ -38,7 +38,7 @@ public final class Stradoku extends JFrame
 
    private static final long serialVersionUID = 1L;
 
-   private String VERSION = "6.6.4";
+   private String VERSION = "7.0.0";
    private String name = "kodelasStradoku";
    private String appName = name + " V " + VERSION;
    private String infoString = "Konfigurations-Datei für " + name + " " + VERSION;
@@ -110,10 +110,6 @@ public final class Stradoku extends JFrame
       super();
       try {
          initComponents();
-         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-         } catch (Exception e) {
-         }
          setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
          homePath = System.getProperty("user.dir");
         File jarFile;
@@ -348,7 +344,6 @@ public final class Stradoku extends JFrame
     * @param log für Ausgabe in Logdatei
     */
    public void setStatusBarHinweis(String hinweis, boolean log) {
-      statusBarHinweis.setText(hinweis);
       statusBarHinweis.setText(hinweis);
       if (log) {
          if (vLogg == null) {
@@ -2427,7 +2422,6 @@ public final class Stradoku extends JFrame
         jMenuItem1 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jSeparator13 = new javax.swing.JSeparator();
         stradokuFeld = new javax.swing.JPanel();
         toolBar = new javax.swing.JToolBar();
         seperatorLabel8 = new javax.swing.JLabel();
@@ -4807,7 +4801,6 @@ public final class Stradoku extends JFrame
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
-    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;

@@ -29,9 +29,9 @@ public class ListenFrame extends JFrame {
     private JTable jTable;
     private ListenModel listenModel;
     private final TableRowSorter<TableModel> sorter;
-    private Stradoku strApp;
+    public Stradoku strApp;
     private ThreadPrintStrSerie printSdkSerieThread;
-    private HinweisWarten msgHinweisWarten;
+    // private HinweisWarten msgHinweisWarten;
     private boolean serie = false;
     private HilfeDialog jHilfe = null;
     
@@ -442,14 +442,21 @@ public class ListenFrame extends JFrame {
                 return;
             }
         }
-        msgHinweisWarten = new HinweisWarten(strApp);
-        String hnw = "<html><center><b>Drucker wird initialisiert.<br><br>"
-                + "Bitte solange warten.</b></center></html>";
-        msgHinweisWarten.zeigeHinweis(hnw);
+        // msgHinweisWarten = new HinweisWarten(strApp);
+        // String hnw = "<html><center><b>Drucker wird initialisiert.<br><br>"
+        //         + "Bitte solange warten.</b></center></html>";
+        // msgHinweisWarten.zeigeHinweis(hnw);
+        strApp.statusBarHinweis.setText("Drucker wird initialisiert.");
         printSdkSerieThread = new ThreadPrintStrSerie(this,
-                listenModel, msgHinweisWarten, listenModel.getSelektStradoku());
+                listenModel, listenModel.getSelektStradoku());
+        strApp.statusBarHinweis.setText("Drucker wird initialisiert.");
         printSdkSerieThread.start();
-        msgHinweisWarten.setVisible(true);
+        // msgHinweisWarten.setVisible(true);
+        // try {
+        //     Thread.sleep(5000);
+        // } catch (Exception e) {
+        // }
+        // msgHinweisWarten.setVisible(false);
     }
 
     /**
