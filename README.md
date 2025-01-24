@@ -4,13 +4,11 @@ Ich habe die Weiterentwicklung von Stradoku vom Autor Konrad Demmel übernommen.
 
 Auf dieser Plattform wird die Anwendung aktuell gehalten, letzte Verbesserungen sind die Entfernung der Abhängigkeit zu Java 8 und Windows. Solange Java (JDK oder JRE) installiert ist, startet ein Doppelklick auf `Stradoku.jar` die Anwendung. Drucken ist aber sehr systemabhängig, je nach Plattform funktioniert es derzeit nicht.
 
-**Update**: Die aktuelle Version der Programmdatei kann hier heruntergeladen werden: [Stradoku.jar](https://github.com/jogger2510/Stradoku/raw/refs/heads/main/Stradoku/Stradoku.jar). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
+Falls der Doppelklick nicht funktioniert: Manuelles Starten von Stradoku: `java -jar Stradoku.jar`
 
-**Volle Version**: Der Programmordner zum Herunterladen: [Stradoku.zip](https://github.com/jogger2510/Stradoku/raw/refs/heads/main/Stradoku.zip). Je nach Browsereinstellungen müßt Ihr "Ziel speichern unter ..." verwenden.
+Der Programmordner zum Herunterladen: [Stradoku.zip](https://github.com/jogger2510/Stradoku/releases).
 
-Windows-Anwender finden im Ordner "[Windows](https://github.com/jogger2510/Stradoku/tree/main/Stradoku/Windows)" weitere Informationen. Die alte Java 8 Version dazu gibt es [hier](https://www.java.com/de/download/). Alle nachfolgenden Versionen sind aber schneller.
-
-**Ausschließlich für Programmierer**, die mit Git umgehen können, ist das Repository oben eine Alternative. Das Programm läßt sich mit NetBeans zusammenbauen.
+Windows-Anwender finden im Archiv im Ordner "Windows" weitere Informationen. Die alte Java 8 Version dazu gibt es [hier](https://www.java.com/de/download/). Alle nachfolgenden Versionen sind aber schneller.
 
 Auf dem **Mac** leitet das Betriebssystem Euch, wenn Ihr kein Java installiert habt, sobald Ihr eine `.jar`-Datei doppelklickt.
 
@@ -18,7 +16,6 @@ Auf dem **Mac** leitet das Betriebssystem Euch, wenn Ihr kein Java installiert h
 
 HomeBrew: `brew install openjdk`
 
-Manuelles Starten von Stradoku: `java -jar Stradoku.jar`
-
 Momentan aktuelles JDK ansonsten auch [hier](https://jdk.java.net/23/).
 
+**Ausschließlich für Programmierer**, die mit Git umgehen können, ist das Repository oben eine Alternative. Das Programm läßt sich mit NetBeans zusammenbauen. Für die Hilfe braucht Ihr einen XML-Editor, die Hilfe-Dateien sind mit Dobudish erzeugt.
