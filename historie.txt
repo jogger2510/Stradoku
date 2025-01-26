@@ -7,8 +7,9 @@ Dokumentation der Änderungen
 Version 7.0.1
 
 25.1.25
+- Hänger beim Start beseitigt
 - Print-Umgehungslösung für Mac/Linux mit Postscript-Drucker (Menü Einstellungen)
-- Zeitanzeige über Timer
+- Zeitanzeige aktualisiert über Timer
 - Updatecheck aktualisiert über Timer
 - Archiveignung jetzt im Menü Einstellungen
 
