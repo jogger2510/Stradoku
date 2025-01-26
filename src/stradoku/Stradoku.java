@@ -69,6 +69,8 @@ public final class Stradoku extends JFrame
    private int tipps;
    private int posSicherung;
    private int naviPosition;
+   private boolean postscript;
+   private boolean archivgeeignet = false;
    private String strPath;                                         // gespeichertes Stradoku
    private String homePath;                                        // Arbeitsverzeichnis
    private String filePath = null;                                 // aktueller Speicher-Ordner 
@@ -84,7 +86,8 @@ public final class Stradoku extends JFrame
    private Color weisz = new Color(255, 255, 255);
    private long loesungsZeit;
    private ThreadStrSerie strSerieThread;
-   private ThreadZeitAnzeige uhr;
+   private DisplayTimeListener uhr;
+   private UpdateChecker updatechecker;
    private VerlaufsLogger vLogg;
    private boolean isArchivFehler = false;
    private boolean usedNotizen = false;
@@ -93,7 +96,6 @@ public final class Stradoku extends JFrame
    private boolean usedKndFi = false;
    private boolean gespikt = false;
    private boolean zeigeInfo = true;
-   private boolean archivtauglich = false;
    private boolean geaendert = false;
    private boolean isTipp = false;
    private boolean erstinfo = false;
@@ -140,7 +142,8 @@ public final class Stradoku extends JFrame
          posSicherung = 0;
          labelHinweisfeld.setFont(new Font("Serif", Font.PLAIN, 12));
          statusBarZeit.setText("00:00");
-         uhr = new ThreadZeitAnzeige(this);
+         uhr = new DisplayTimeListener(this);
+         updatechecker = new UpdateChecker(this, VERSION);
          labelKandidaten.setForeground(grau);
          for (int i = 1; i <= 9; i++) {
             kandidatTaste[i].setEnabled(false);
@@ -199,6 +202,8 @@ public final class Stradoku extends JFrame
          wr.write("EingabeHinweise=" + (zeigeInfo ? "1" : "0") + lf);
          wr.write("FilterFarbe=" + strBoard.getFilterColor() + lf);
          wr.write("LoesungsTipps=" + getTipps() + lf);
+         wr.write("Postscript=" + (postscript ? "1" : "0") + lf);
+         wr.write("Archivgeeignet=" + (archivgeeignet ? "1" : "0") + lf);
          wr.flush();
       } catch (IOException e) {
       }
@@ -226,67 +231,62 @@ public final class Stradoku extends JFrame
             return false;
          }
          String[] eintrag = {"xpos", "ypos",
-            "letz", "eing", /*"posi",*/ "filt", "loes"};
+            "letz", "eing", /*"posi",*/ "filt", "loes", "post", "arch"};
          int x = 0, y = 0;
-         int nPos = -1;
          String wert;
-         while (eintrag.length - 1 > nPos) {
+         while ((zeile = in.readLine()) != null) {
+            String e = zeile.substring(0, 4).toLowerCase();
+            if (e.length() < 4) break;
             for (int i = 0; i < eintrag.length; i++) {
-               zeile = in.readLine();
-               if (zeile == null) {
-                  break;
+               if (!e.equals(eintrag[i])) continue;
+               switch (i) {
+                  case 0:
+                     wert = zeile.substring(zeile.indexOf('=') + 1);
+                     x = abs(Integer.parseInt(wert));
+                     break;
+                  case 1:
+                     wert = zeile.substring(zeile.indexOf('=') + 1);
+                     y = abs(Integer.parseInt(wert));
+                     break;
+                  case 2:
+                     if (para.isEmpty()) {
+                        strPath = zeile.substring(zeile.indexOf('=') + 1);
+                     } else {
+                        strPath = para;
+                        filePath = para.substring(0, para.lastIndexOf(File.separator));
+                     }
+                     setTitle(appName + " - " + strPath);
+                     break;
+                  case 3:
+                     wert = zeile.substring(zeile.indexOf('=') + 1);
+                     zeigeInfo = wert.equals("1");
+                     mhEingabeHinweise.setSelected(zeigeInfo);
+                     zeigeHinweis(zeigeInfo);
+                     break;
+                  case 4:
+                     wert = zeile.substring(zeile.indexOf('=') + 1);
+                     int kf = Integer.parseInt(wert);
+                     if (kf >= 0 && kf <= 60) {
+                        strBoard.setFilterColor(kf);
+                     } else {
+                        strBoard.setFilterColor(30);
+                     }
+                     break;
+                  case 5:
+                     tipps = Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     break;
+                  case 6:
+                     postscript = 1 == Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     mePostscript.setSelected(postscript);
+                     break;
+                  case 7 :
+                     archivgeeignet = 1 == Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     meArchivgeeignet.setSelected(archivgeeignet);
+                     break;
                }
-               String e = zeile.substring(0, 4);
-               if (e.length() < 1) {
-                  break;
-               }
-               if (e.toLowerCase().equals(eintrag[i])) {
-                  nPos = i;
-                  switch (nPos) {
-                     case 0:
-                        wert = zeile.substring(zeile.indexOf('=') + 1);
-                        x = abs(Integer.parseInt(wert));
-                        break;
-                     case 1:
-                        wert = zeile.substring(zeile.indexOf('=') + 1);
-                        y = abs(Integer.parseInt(wert));
-                        if (y < 0) {
-                           y = abs(y);
-                        }
-                        break;
-                     case 2:
-                        if (para.isEmpty()) {
-                           strPath = zeile.substring(zeile.indexOf('=') + 1);
-                        } else {
-                           strPath = para;
-                           filePath = para.substring(0, para.lastIndexOf(File.separator));
-                        }
-                        setTitle(appName + " - " + strPath);
-                        break;
-                     case 3:
-                        wert = zeile.substring(zeile.indexOf('=') + 1);
-                        zeigeInfo = wert.equals("1");
-                        mhEingabeHinweise.setSelected(zeigeInfo);
-                        zeigeHinweis(zeigeInfo);
-                        break;
-                     case 4:
-                        wert = zeile.substring(zeile.indexOf('=') + 1);
-                        int kf = Integer.parseInt(wert);
-                        if (kf >= 0 && kf <= 60) {
-                           strBoard.setFilterColor(kf);
-                        } else {
-                           strBoard.setFilterColor(30);
-                        }
-                        break;
-                     case 5:
-                        tipps = Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
-                        break;
-                  }
-               }
+               break;
             }
          }
-         File file = new File(homePath + File.separator + "archivtauglich");
-         archivtauglich = file.exists();
          if (zeigen) {
             GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
             GraphicsDevice[] devs = env.getScreenDevices();
@@ -381,8 +381,17 @@ public final class Stradoku extends JFrame
     *
     * @return true oder false
     */
-   public boolean getTestModus() {
+    public boolean getTestModus() {
       return testModus;
+   }
+
+   /**
+    * Soll im Fehlerfall direkt PostScript gesendet werden ?
+    *
+    * @return true oder false
+    */
+    public boolean getPostScript() {
+      return postscript;
    }
 
    /**
@@ -658,13 +667,13 @@ public final class Stradoku extends JFrame
          // Eingabe soll beendet werden
          symLeisteStrEditieren.setSelected(true);
          boolean beenden = true;
-         lev = strOrg.loeseStradoku(archivtauglich, true);
+         lev = strOrg.loeseStradoku(archivgeeignet, true);
          lz = strOrg.getLoesungsZellen();
          int in;
          String meldung;
          boolean gueltig;
          EingabeBeendenDialog dlg = new EingabeBeendenDialog(this);
-         // alles außer nicht archivtauglich
+         // alles außer nicht archivgeeignet
          if (lev <= 5) {
             if (lev < 0) {
                meldung = "Diese Aufgabe kann nicht als Stradoku gelöst werden. "
@@ -1960,10 +1969,21 @@ public final class Stradoku extends JFrame
     * @param std Stunden
     * @param min Minuten
     */
-   public void setZeit(int std, int min) {
-      statusBarZeit.setText(""
-            + (std > 9 ? std : "0" + std) + ":"
-            + (min > 9 ? min : "0" + min));
+    boolean dots;
+   public void setZeit(int seconds) {
+      dots = !dots;
+      boolean min;
+      if (min = (seconds >= 3600)) seconds = (seconds + 30) / 60;
+      int first = seconds / 60;
+      int last = seconds % 60;
+      statusBarZeit.setText(first + (!min || dots ? ":" : " ")+ (last > 9 ? "" : "0") + last + (min ? "h" : ""));
+   }
+
+   /**
+    * Farbwechsel auf rot bei Update.
+    */
+   public void setUpdate() {
+      statusBarZeit.setBackground(Color.RED);
    }
 
    /**
@@ -2270,13 +2290,13 @@ public final class Stradoku extends JFrame
    }
 
    /**
-    * Gibt Info ob ein Import von Stradoku erchivtauglich erfolgen soll. Archivtauglich ist ein
+    * Gibt Info ob ein Import von Stradoku erchivtauglich erfolgen soll. archivgeeignet ist ein
     * Stradoku, wenn es in allen 16 Varianten die selbes Lösung hat.
     *
-    * @return true wenn archivtauglich
+    * @return true wenn archivgeeignet
     */
-   public boolean get_archivtauglich() {
-      return archivtauglich;
+   public boolean get_archivgeeignet() {
+      return archivgeeignet;
    }
 
    /**
@@ -2548,7 +2568,9 @@ public final class Stradoku extends JFrame
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         mmEntfernen = new javax.swing.JMenuItem();
         mmEntferneAlle = new javax.swing.JMenuItem();
-        jSeparator14 = new javax.swing.JPopupMenu.Separator();
+        menuEinstellungen = new javax.swing.JMenu();
+        mePostscript = new javax.swing.JCheckBoxMenuItem();
+        meArchivgeeignet = new javax.swing.JCheckBoxMenuItem();
         menuInfo = new javax.swing.JMenu();
         mhInfoProgramm = new javax.swing.JMenuItem();
         mhInfoKurztasten = new javax.swing.JMenuItem();
@@ -3848,9 +3870,32 @@ public final class Stradoku extends JFrame
             }
         });
         menuFarbMarkierung.add(mmEntferneAlle);
-        menuFarbMarkierung.add(jSeparator14);
 
         menuZeile.add(menuFarbMarkierung);
+
+        menuEinstellungen.setText("Einstellungen");
+        menuEinstellungen.setToolTipText("");
+        menuEinstellungen.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+
+        mePostscript.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        mePostscript.setText("Postscript-Drucker");
+        mePostscript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mePostscriptActionPerformed(evt);
+            }
+        });
+        menuEinstellungen.add(mePostscript);
+
+        meArchivgeeignet.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        meArchivgeeignet.setText("Archiveignung prüfen");
+        meArchivgeeignet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meArchivgeeignetActionPerformed(evt);
+            }
+        });
+        menuEinstellungen.add(meArchivgeeignet);
+
+        menuZeile.add(menuEinstellungen);
 
         menuInfo.setText("Hilfe");
         menuInfo.setToolTipText("");
@@ -4491,13 +4536,26 @@ public final class Stradoku extends JFrame
     }//GEN-LAST:event_mdBeendenMitSicherungActionPerformed
 
    /**
-    * Leitet auf eine Eingabe der entsprechenden Menüoption einen Update-Check ein.
+    * Gibt auf eine Eingabe der entsprechenden Menüoption den Update-Stand aus.
     *
     * @param evt Aktionsereignis für Menüoption 'Update prüfen'
     */
     private void mhInfoUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mhInfoUpdateActionPerformed
-       UpdateCheck updateCheck = new UpdateCheck(this, VERSION);
-       updateCheck.start();
+      if (!updatechecker.checked()) {
+         JOptionPane.showMessageDialog(this, "<html><b>" +
+         "Leider konnte Ihre Programm-Version mit den Daten<br>" +
+         "auf dem Programm-Server nicht abgeglichen werden.",
+         "Hinweis", 1);
+         return;
+      }
+      if (updatechecker.updateAvailable()) {
+         UpdateDialog upDlg = new UpdateDialog(this, VERSION);
+         upDlg.zeigeDialog();
+         return;
+     }
+      JOptionPane.showMessageDialog(this, "<html><b>" +
+      "Sie haben die neueste Version von Stradoku.",
+      "Hinweis", 1);
     }//GEN-LAST:event_mhInfoUpdateActionPerformed
 
    /**
@@ -4791,6 +4849,14 @@ public final class Stradoku extends JFrame
       // TODO add your handling code here:
    }//GEN-LAST:event_naviPosActionPerformed
 
+    private void mePostscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mePostscriptActionPerformed
+         postscript = !postscript;
+    }//GEN-LAST:event_mePostscriptActionPerformed
+
+    private void meArchivgeeignetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meArchivgeeignetActionPerformed
+         archivgeeignet = !archivgeeignet;
+   }//GEN-LAST:event_meArchivgeeignetActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoesungsTipp;
     private javax.swing.JPanel hinweisPanel;
@@ -4801,7 +4867,6 @@ public final class Stradoku extends JFrame
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
-    private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -4857,9 +4922,12 @@ public final class Stradoku extends JFrame
     private javax.swing.JMenuItem mdiBeendenOhneSicherung;
     private javax.swing.JMenuItem mdiEinfuegen;
     private javax.swing.JMenuItem mdiErzeugen;
+    private javax.swing.JCheckBoxMenuItem meArchivgeeignet;
+    private javax.swing.JCheckBoxMenuItem mePostscript;
     private javax.swing.JMenu menuAnzeige;
     public javax.swing.JMenu menuBearbeiten;
     private javax.swing.JMenu menuDatei;
+    private javax.swing.JMenu menuEinstellungen;
     private javax.swing.JMenu menuFarbMarkierung;
     private javax.swing.JMenu menuInfo;
     private javax.swing.JMenu menuLevel;

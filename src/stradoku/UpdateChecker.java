@@ -1,75 +1,61 @@
 /*
- * UpdateCheck.java ist Teil des Programmes kodelasStradoku
- * Erzeugt am:                  09.12.2011 19:23
- * Letzte Änderung:             06.02.2020 14:00
+ * UpdateChecker.java ist Teil des Programmes Stradoku
  * 
- * Copyright (C) Konrad Demmel, 2010 - 2020
+ * Copyright (C) 2025 Gero Dittmer
  */
 
 package stradoku;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.HttpURLConnection;
 import java.net.URI;
-import javax.swing.JOptionPane;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
- * Update-Abfrage
+ * Checks
  */
-public class UpdateCheck extends Thread {
-
-    private final String programmVersion;
-    private final Stradoku mainFrame;
+public class UpdateChecker implements ActionListener {
+    
+    private boolean success;
     private final int prversion;
+    private boolean updateavailable;
+    private final Timer timer = new Timer(4 * 1000, this);
+    private final Stradoku strApp;
 
     /**
      * Konstruktor
-     * @param mf Referenz auf Hauptfenster
-     * @param pver String zu Programmversion
+     * @param mf Referenz zu Hauptklasse
      */
-    UpdateCheck(Stradoku mf, String pver) {
-        mainFrame = mf;
-        programmVersion = pver;
-        prversion = getNum(programmVersion);
+    public UpdateChecker(Stradoku mf, String pver) {
+        timer.setRepeats(false);
+        timer.start();
+        prversion = getNum(pver);
+        strApp = mf;
     }
 
-    /**
-     * Ermittelt die Update-Situation und gibt Ergebnis aus.
-     */
     @Override
-    public void run() {
+    public void actionPerformed(ActionEvent e) {
         String spversion = downloadVersion("https://github.com/jogger2510/Stradoku/raw/refs/heads/main/version.txt");
-        if (spversion.length() >= 3) {
-            int stand = 0;
-            if (prversion < getNum(spversion)) {
-                stand = 1;
-            }
-            // Programmversion und eingetragene letzte Version sind gleich
-            if (stand == 0) {
-                JOptionPane.showMessageDialog(mainFrame, "<html><b>" +
-                        "Sie haben die neueste Version von Stradoku.",
-                        "Hinweis", 1);
-            }
-            else {
-                UpdateDialog upDlg = new UpdateDialog(mainFrame, programmVersion);
-                upDlg.zeigeDialog();
-            }
-        }
-        else {
-            JOptionPane.showMessageDialog(mainFrame, "<html><b>" +
-                    "Leider konnte Ihre Programm-Version mit den Daten<br>" +
-                    "auf dem Programm-Server nicht abgeglichen werden.",
-                    "Hinweis", 1);
+        if (success && spversion.length() >= 3) {
+            updateavailable = prversion < getNum(spversion);
+            if (updateAvailable()) strApp.setUpdate();
         }
     }
 
+    public boolean updateAvailable () { return updateavailable; }
+
+    public boolean checked () { return success; }
+    
     /**
      * Liefert den Inhalt aus der angegebenen Hyperlink-Quelle
      * @param url Hyperlink-Quelle
      * @return Text aus Hyperlink-Quelle
      */
     private String downloadVersion(String url) {
+        success = true;
         String version = "";
         try {
             HttpURLConnection con = (HttpURLConnection) new URI(url).toURL().openConnection();
@@ -85,6 +71,9 @@ public class UpdateCheck extends Thread {
             }
             version = buffer.toString();
         } catch (Exception e) {
+            success = false;
+            timer.setDelay(3600 * 1000);
+            timer.start();
         }
         return version;
     }

@@ -8,6 +8,8 @@
 
 package stradoku;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -19,21 +21,13 @@ import javax.print.attribute.standard.MediaSizeName;
  */
 public class PrintStrSerie {
 
-    private int seiten;
-
     /**
      * Initialisiert den Drucker und steuert den seitenweisen Ausdruck von
      * in der Regel vier Stradoku.
      * @param info Referenz auf die Klasse StrInfo mit den Daten für den Ausdruck
      * @return true wenn Drucker initialisiert werden konnte, sonst false
      */
-    public boolean printStradokuSerie(String[][] info) {
-        if (info == null) {
-            seiten = 1;
-        }
-        else {
-            seiten = (info.length + 3) / 4;
-        }
+    public boolean printStradokuSerie(String[][] info, ListenFrame liste) {
         // Set DocFlavor and print attributes:
         DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
         PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
@@ -51,19 +45,34 @@ public class PrintStrSerie {
             if (prservDflt != null)
                 prserv = prservDflt;
             if (prserv != null) {
-                PrintStrSeite stradokuSeite = new PrintStrSeite(info);
-                for (int s = 0; s < seiten; s++) {
+                prserv = ServiceUI.printDialog( null, 50, 50, prservices, prservDflt, null, aset );
+                if (prserv != null) {
+                    PrintStrSeite stradokuSeite = new PrintStrSeite(info);
                     DocPrintJob dpj = prserv.createPrintJob();
                     Doc doc = new SimpleDoc(stradokuSeite, flavor, null);
                     dpj.print(doc, aset);
+                    return true;
                 }
             }
-            else {
-                return false;
-            }
         } catch (PrintException pe) {
-            return false;
         }
-        return true;
+        FileOutputStream fos = null;
+        try {
+            StreamPrintServiceFactory[] prservFactories = StreamPrintServiceFactory.lookupStreamPrintServiceFactories(
+                flavor, DocFlavor.BYTE_ARRAY.POSTSCRIPT.getMimeType() );
+            if( null == prservFactories || 0 >= prservFactories.length ) return false;
+            fos = new FileOutputStream(liste.strApp.getHomePath() + File.separator + "PrintFile.ps" );
+            StreamPrintService sps = prservFactories[0].getPrintService( fos );
+            PrintStrSeite stradokuSeite = new PrintStrSeite(info);
+            DocPrintJob dpj = sps.createPrintJob();
+            Doc doc = new SimpleDoc(stradokuSeite, flavor, null);
+            dpj.print(doc, aset);
+        } catch( Exception ie ) {}
+        finally {
+            try {
+                fos.close();
+            } catch (Exception e) {}
+        }
+        return false;
     }
 }

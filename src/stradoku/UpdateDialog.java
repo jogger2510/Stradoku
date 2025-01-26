@@ -67,7 +67,7 @@ public class UpdateDialog extends JDialog {
         labelTxt = new HtmlLabel(this, 
                 "<html><center><b>Sie haben von Stradoku die " +
                 "Version " + version + ".</b><br><br>Es gibt eine neuere Version, " +
-                "die <b><a href=\"https://github.com/jogger2510/Stradoku/Stradoku.zip\">hier</a></b> " + 
+                "die <b><a href=\"https://github.com/jogger2510/Stradoku/releases/\">hier</a></b> " + 
                 "heruntergeladen werden kann.</center>");
         okButton = new JButton();
         okButton.setText("Ok");

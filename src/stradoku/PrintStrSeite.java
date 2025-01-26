@@ -37,9 +37,7 @@ public class PrintStrSeite implements Printable {
     private String[] nDS = new String[3]; // kompletter Datensats für ein Stradoku
     private final String[][] straInfo;  // Datensaätze für auszudruckende Stradokus
     private final int anzahl;
-    private int dSI;    // Index für ein Stradoku in straInfo
-    private int pos;
-    private int pair;
+    private final int seiten;
     private static final Color SZ_DGRAU = new Color(100, 100, 100);
 
     /**
@@ -55,8 +53,7 @@ public class PrintStrSeite implements Printable {
     public PrintStrSeite(String[][] inf) {
         straInfo = inf;
         anzahl = straInfo == null ? 1 : straInfo.length;
-        dSI = 0;
-        pair = 0;
+        seiten = (anzahl + 3) / 4;
     }
 
     /**
@@ -72,31 +69,23 @@ public class PrintStrSeite implements Printable {
     public int print(Graphics g, PageFormat pf, int iPage)
             throws PrinterException {
         int fontSize;
-        if (iPage != 0) {
+        if (iPage >= seiten) {
             return NO_SUCH_PAGE;
         }
-        pair++;
-        if (pair % 2 != 0) {
-            return PAGE_EXISTS;
-        }
+        int base = iPage * 4;
         try {
             Graphics2D g2 = (Graphics2D) g;
             g2.translate(17, 17);               // Koordinatensystem verschieben
             g2.scale(1.0 / RES_MPL, 1.0 / RES_MPL);
             g.setColor(Color.black);
-            for (pos = 0; pos < 4; pos++) {
+            for (int pos = 0; pos < 4; pos++) {
                 int x = POS[pos].x;
                 int y = POS[pos].y;
                 zeichneStrFeld(g2, x, y);
-                if (straInfo == null) {
-                    nDS = null;
-                }
-                else {
-                    nDS = straInfo[dSI];
-                }
-                if (dSI + 1 < anzahl) {                   
-                    dSI++;
-                }
+                int index = base + pos;
+                if (straInfo == null || index >= anzahl) 
+                    continue;
+                nDS = straInfo[index];
                 fontSize = 12;
                 g.setFont(new Font("SansSerif", Font.PLAIN, fontSize * RES_MPL));
                 setzeTitel(g2, x, y);
@@ -151,9 +140,6 @@ public class PrintStrSeite implements Printable {
      * @param y0 Nullpunkt für Y-Koordinaten
      */
     private void setzeTitel(Graphics g2, int x0, int y0) {
-        if (nDS == null) {
-            return;
-        }
         g2.drawString(" Stradoku "
                      + nDS[0] + " - Level "
                      + nDS[2], x0 + 255, y0 + 180);  // mit x0 + 150 in Mitte
@@ -166,9 +152,6 @@ public class PrintStrSeite implements Printable {
      * @param y0 Nullpunkt für Y-Koordinaten
      */
     private void setzeWerte(Graphics g2, int x0, int y0) {
-        if (nDS == null) {
-            return;
-        }
         String aufgabe = nDS[1];
         for (int i = 0; i <= 80; i++) {                 // für alle Zellen
             char w = aufgabe.charAt(i);                 // Zeichen lesen

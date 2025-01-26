@@ -4,6 +4,13 @@ Dokumentation der Änderungen
 
 --------------------------------------------------------------------------------
 
+Version 7.0.1
+
+25.1.25
+- Print-Umgehungslösung für Mac/Linux mit Postscript-Drucker (Menü Einstellungen)
+- Zeitanzeige über Timer
+- Updatecheck aktualisiert über Timer
+- Archiveignung jetzt im Menü Einstellungen
 
 Version 7.0.0
 
