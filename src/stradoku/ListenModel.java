@@ -94,7 +94,7 @@ public class ListenModel extends DefaultTableModel {
                         buffer[4] = "";
                     }
                     liste.add(new Datensatz(false,
-                            Integer.parseInt(buffer[0]), buffer[1], buffer[2],
+                            Util.getNum(buffer[0]), buffer[1], buffer[2],
                             buffer[3], buffer[4]));
                 } while (true);
             }

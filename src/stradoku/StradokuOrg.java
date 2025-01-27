@@ -2078,7 +2078,7 @@ public class StradokuOrg implements GlobaleObjekte {
       int fz = freieZellen;
       int counter = 0;
       int aktLevel = level;
-      boolean arche = strApp.get_archivtauglich();
+      boolean arche = strApp.get_archivgeeignet();
       // erst Lösungswerte
       for (int n = 0; n < 81; n++) {
          int i = RandomNdx[n];

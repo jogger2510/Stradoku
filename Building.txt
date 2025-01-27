@@ -1,6 +1,6 @@
 Zuerst wird zusätzlich ein Laufzeit-Ordner (das ZIP vom Release) ebenfalls mit Namen Stradoku in das Arbeitsverzeichnis entpackt. Das Projekt kann dann mit NetBeans geöffnet werden, nötige Hilfe-Bibliotheken sind dann im Unterordner "./Stradoku/lib".
 
-Das Script "deploy.sh" ist evtl. eine Hilfe.
+Das Bash-Scripte sind evtl. eine Hilfe.
 
 
 Nur, wenn die Hilfe angepaßt werden soll:

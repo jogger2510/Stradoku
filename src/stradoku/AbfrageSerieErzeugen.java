@@ -16,7 +16,7 @@ import java.awt.event.*;
  */
 public class AbfrageSerieErzeugen extends javax.swing.JDialog {
 
-   private int ergebnis;
+   private boolean escaped;
    private final int maxAufgaben;
    public String anzeige;
 
@@ -41,22 +41,17 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
    /**
     * Startet das Dialogfenster.
     *
-    * @param arg übergebene Argumente Level und Anzahl
-    * @return Anzahl der zu erstllenden Aufgaben
+   * @param anzahl die vorhandenen Aufgane
+   * @return Anzahl der zu erstellenden Aufgaben
     */
-   public int zeigeDialog(int[] arg) {
-      labelVorhanden.setText("" + arg[0]);
-      eingabeFeld.setText("");
-      ergebnis = 0;
-      setVisible(true);
-      try {
-         arg[1] = Integer.parseInt(eingabeFeld.getText());
-      } catch (NumberFormatException e) {
-         arg[1] = 0;
-         ergebnis = 0;
-      }
-      return ergebnis;
-   }
+
+   public int zeigeDialog(int anzahl) {
+    labelVorhanden.setText("" + anzahl);
+    eingabeFeld.setText("");
+    escaped = false;
+    setVisible(true);
+    return escaped ? 0 : Util.getNum(eingabeFeld.getText());
+ }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -172,7 +167,6 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
     * @param evt nicht verwendet
     */
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
-       ergebnis = 1;
        setVisible(false);
     }//GEN-LAST:event_buttonOKActionPerformed
 
@@ -182,7 +176,8 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
     * @param evt nicht verwendet
     */
     private void buttonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAbbrechenActionPerformed
-       setVisible(false);
+        escaped = true;
+        setVisible(false);
     }//GEN-LAST:event_buttonAbbrechenActionPerformed
 
    /**
@@ -194,10 +189,10 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
        int taste = evt.getKeyCode();
        switch (taste) {
           case KeyEvent.VK_ENTER:
-             ergebnis = 1;
              setVisible(false);
              break;
           case KeyEvent.VK_ESCAPE:
+            escaped = true;
              setVisible(false);
        }
     }//GEN-LAST:event_eingabeFeldKeyPressed

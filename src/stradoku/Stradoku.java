@@ -38,7 +38,7 @@ public final class Stradoku extends JFrame
 
    private static final long serialVersionUID = 1L;
 
-   private String VERSION = "7.0.0";
+   private String VERSION = "7.0.1";
    private String name = "kodelasStradoku";
    private String appName = name + " V " + VERSION;
    private String infoString = "Konfigurations-Datei für " + name + " " + VERSION;
@@ -85,7 +85,6 @@ public final class Stradoku extends JFrame
    private Color grau = new Color(192, 192, 192);
    private Color weisz = new Color(255, 255, 255);
    private long loesungsZeit;
-   private ThreadStrSerie strSerieThread;
    private DisplayTimeListener uhr;
    private UpdateChecker updatechecker;
    private VerlaufsLogger vLogg;
@@ -141,7 +140,6 @@ public final class Stradoku extends JFrame
          editModus = 0;
          posSicherung = 0;
          labelHinweisfeld.setFont(new Font("Serif", Font.PLAIN, 12));
-         statusBarZeit.setText("00:00");
          uhr = new DisplayTimeListener(this);
          updatechecker = new UpdateChecker(this, VERSION);
          labelKandidaten.setForeground(grau);
@@ -235,18 +233,18 @@ public final class Stradoku extends JFrame
          int x = 0, y = 0;
          String wert;
          while ((zeile = in.readLine()) != null) {
+            if (zeile.length() < 6) break;
             String e = zeile.substring(0, 4).toLowerCase();
-            if (e.length() < 4) break;
             for (int i = 0; i < eintrag.length; i++) {
                if (!e.equals(eintrag[i])) continue;
                switch (i) {
                   case 0:
                      wert = zeile.substring(zeile.indexOf('=') + 1);
-                     x = abs(Integer.parseInt(wert));
+                     x = abs(Util.getNum(wert));
                      break;
                   case 1:
                      wert = zeile.substring(zeile.indexOf('=') + 1);
-                     y = abs(Integer.parseInt(wert));
+                     y = abs(Util.getNum(wert));
                      break;
                   case 2:
                      if (para.isEmpty()) {
@@ -265,7 +263,7 @@ public final class Stradoku extends JFrame
                      break;
                   case 4:
                      wert = zeile.substring(zeile.indexOf('=') + 1);
-                     int kf = Integer.parseInt(wert);
+                     int kf = Util.getNum(wert);
                      if (kf >= 0 && kf <= 60) {
                         strBoard.setFilterColor(kf);
                      } else {
@@ -273,14 +271,14 @@ public final class Stradoku extends JFrame
                      }
                      break;
                   case 5:
-                     tipps = Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     tipps = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      break;
                   case 6:
-                     postscript = 1 == Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     postscript = 1 == Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      mePostscript.setSelected(postscript);
                      break;
                   case 7 :
-                     archivgeeignet = 1 == Integer.parseInt(zeile.substring(zeile.indexOf('=') + 1));
+                     archivgeeignet = 1 == Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      meArchivgeeignet.setSelected(archivgeeignet);
                      break;
                }
@@ -1056,14 +1054,9 @@ public final class Stradoku extends JFrame
       }
       symLeisteSerieErzeugen.setSelected(false);
       AbfrageSerieErzeugen strSerie = new AbfrageSerieErzeugen(this, max, true);
-      int anzahl = 0;
-      int[] arg = {aktLevel, anzahl};
-      int ergebnis = strSerie.zeigeDialog(arg);
-      anzahl = arg[1];
-      if (ergebnis != 1) {
-         return;
-      }
-      if (anzahl == 0 || anzahl > max) {
+      int anzahl = strSerie.zeigeDialog(level);
+      if (anzahl <= 0) return;
+      if (anzahl > max) {
          JOptionPane.showMessageDialog(this,
                "\nIn einem Durchgang werden maximal " + max
                + " Aufgaben erzeugt.\n\n"
@@ -1071,12 +1064,37 @@ public final class Stradoku extends JFrame
                "Hinweis", 1);
          return;
       }
-      strSerieThread = new ThreadStrSerie(archiv, strListe, anzahl, aktLevel);
-      strSerieThread.start();
-      strListe.setAnzahl();
+      serieEzeugen(anzahl, aktLevel);
       if (archiv != null && !isArchivFehler) {
          archiv.schlieszeArchiv();
       }
+   }
+
+   private void serieEzeugen(int anzahl, int lev) {
+      int aktAnzahl;
+      int max = 0;
+      int startAnzahl = strListe.getAnzahl();
+      strListe.setSerie(true);
+      do {
+          String aufgabe = archiv.getAufgabe(null, lev);
+          StradokuString2Matrix.makeStradokuString2Matrx(aufgabe, new int[81]);
+          // Aufgabe in Liste speichern
+          char c = '0';
+          int frz = 0;
+          // freie Zellen zählen
+          for(int j = aufgabe.length()-1; j >= 0; j--){
+              if(aufgabe.charAt(j) == c) frz++;
+          }
+          strListe.addStradoku(aufgabe, "" + lev, frz, "");
+          aktAnzahl = strListe.getAnzahl();
+          if (max++ > anzahl * 4) {
+              break;
+          }
+      } while (aktAnzahl - startAnzahl < anzahl);
+      strListe.setAnzahl();
+      strListe.setSerie(false);
+      strListe.speichernListe();
+      listeZeigen();
    }
 
    /**
@@ -1100,40 +1118,37 @@ public final class Stradoku extends JFrame
       }
       AbfrageAusListeLaden strLaden = new AbfrageAusListeLaden(this, true);
       int anzahl = strListe.getAnzahl();
-      int[] arg = {anzahl, 0};
-      boolean gewaehlt = strLaden.zeigeDialog(arg);
-      if (gewaehlt) {
-         int auswahl = arg[1];
-         if (auswahl > 0 && auswahl <= anzahl) {
-            auswahl--;
-            String strg = strListe.getStradoku(auswahl);
-            if (strOrg.importStradokuString(strg, false)) {
-               strPath = "A" + strListe.getNummer(auswahl);
-               setImportStatus(strListe.getBemerkung(auswahl));
-               setTitle(appName + " - " + strPath);
-               usedKListe = false;
-               usedKndFi = false;
-               usedNotizen = false;
-               testModus = false;
-               fehler = 0;
-               gespikt = false;
-               modMenuBearbeitenTestmodus();
-               usedTestmod = false;
-               labelHinweisfeld.setText("");
-               setStartZeit(0);
-               setStatusBarLevel(level);
-               setFehlerFreieZellen(0);
-               resetKandAnzeige(true);
-               strOrg.setFilterKnd(0);
-               repaint();
-               strBoard.requestFocusInWindow();
-            }
-         } else {
-            JOptionPane.showMessageDialog(this,
-                  "Eine Stradoku-Aufgabe mit der Nummer "
-                  + auswahl + " gibt es nicht.",
-                  "Hinweis", 1);
+      int auswahl = strLaden.zeigeDialog(anzahl);
+      if (auswahl == 0) return;
+      if (auswahl > 0 && auswahl <= anzahl) {
+         auswahl--;
+         String strg = strListe.getStradoku(auswahl);
+         if (strOrg.importStradokuString(strg, false)) {
+            strPath = "A" + strListe.getNummer(auswahl);
+            setImportStatus(strListe.getBemerkung(auswahl));
+            setTitle(appName + " - " + strPath);
+            usedKListe = false;
+            usedKndFi = false;
+            usedNotizen = false;
+            testModus = false;
+            fehler = 0;
+            gespikt = false;
+            modMenuBearbeitenTestmodus();
+            usedTestmod = false;
+            labelHinweisfeld.setText("");
+            setStartZeit(0);
+            setStatusBarLevel(level);
+            setFehlerFreieZellen(0);
+            resetKandAnzeige(true);
+            strOrg.setFilterKnd(0);
+            repaint();
+            strBoard.requestFocusInWindow();
          }
+      } else {
+         JOptionPane.showMessageDialog(this,
+               "Eine Stradoku-Aufgabe mit der Nummer "
+               + auswahl + " gibt es nicht.",
+               "Hinweis", 1);
       }
    }
 
@@ -4316,7 +4331,7 @@ public final class Stradoku extends JFrame
     * Leitet auf eine Eingabe der entsprechenden Menüoption den Wechsel des aktuell eingestellten
     * Levels ein. Damit wird der Level für zu erzeugende Stradoku festgelegt.
     *
-    * @param evt Aktionsereignis für Levwelmenü
+    * @param evt Aktionsereignis für Levelmenü
     */
     private void menuLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLevelActionPerformed
        setLevelMenu(Integer.parseInt(evt.getActionCommand().substring(6, 7)));

@@ -16,7 +16,7 @@ import java.awt.event.*;
  */
 public class AbfrageAusListeLaden extends javax.swing.JDialog {
 
-   private boolean ergebnis;
+    private boolean escaped;
 
    /**
     * Konstruktor
@@ -34,22 +34,15 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
    /**
     * Zeigt Dialog für die Abfrage, welches Stradoku aus der Liste übernommen werden soll.
     *
-    * @param arg Referenz für Array mit 2 Integer - Mit arg[0] wird die Anzahl der Stradoku in der
-    * Liste übergeben. - Mit arg[1] die Listenposition für das gewünschte Stradoku zurück gegeben.
-    * @return true wenn Auswahl erfolgt ist, sonst false
+    * @param anzahl Anzahl der Stradoku in der Liste übergeben..
+    * @return die Listenposition für das gewünschte Stradoku
     */
-   public boolean zeigeDialog(int[] arg) {
-      labelVorhanden.setText("" + arg[0]);
+   public int zeigeDialog(int anzahl) {
+      labelVorhanden.setText("" + anzahl);
       eingabeFeld.setText("");
-      ergebnis = false;
+      escaped = false;
       setVisible(true);
-      try {
-         arg[1] = Integer.parseInt(eingabeFeld.getText());
-      } catch (NumberFormatException e) {
-         arg[1] = 0;
-         ergebnis = false;
-      }
-      return ergebnis;
+      return escaped ? 0 : Util.getNum(eingabeFeld.getText());
    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -171,7 +164,6 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
     * @param evt nicht ausgewertet
     */
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
-       ergebnis = true;
        setVisible(false);
     }//GEN-LAST:event_buttonOKActionPerformed
 
@@ -181,6 +173,7 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
     * @param evt nicht ausgewertet
     */
     private void buttonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAbbrechenActionPerformed
+        escaped = true;
        setVisible(false);
     }//GEN-LAST:event_buttonAbbrechenActionPerformed
 
@@ -193,11 +186,11 @@ public class AbfrageAusListeLaden extends javax.swing.JDialog {
        int taste = evt.getKeyCode();
        switch (taste) {
           case KeyEvent.VK_ENTER:
-             ergebnis = true;
              setVisible(false);
              break;
           case KeyEvent.VK_ESCAPE:
-             setVisible(false);
+          escaped = true;
+          setVisible(false);
        }
     }//GEN-LAST:event_eingabeFeldKeyPressed
 

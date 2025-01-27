@@ -25,6 +25,7 @@ public class PrintStrSerie {
      * Initialisiert den Drucker und steuert den seitenweisen Ausdruck von
      * in der Regel vier Stradoku.
      * @param info Referenz auf die Klasse StrInfo mit den Daten für den Ausdruck
+     * @param liste Referenz auf Frame
      * @return true wenn Drucker initialisiert werden konnte, sonst false
      */
     public boolean printStradokuSerie(String[][] info, ListenFrame liste) {
@@ -54,8 +55,7 @@ public class PrintStrSerie {
                     return true;
                 }
             }
-        } catch (PrintException pe) {
-        }
+        } catch (PrintException pe) { pe.printStackTrace(); }
         FileOutputStream fos = null;
         try {
             StreamPrintServiceFactory[] prservFactories = StreamPrintServiceFactory.lookupStreamPrintServiceFactories(

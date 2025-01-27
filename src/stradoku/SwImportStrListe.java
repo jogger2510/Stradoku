@@ -69,7 +69,7 @@ public class SwImportStrListe extends SwingWorker<Boolean, Integer>
       listeDaten = new ListenModel(strApp);
       aktPfad = pfad;
       erfolg = true;
-      if (strApp.get_archivtauglich()) {
+      if (strApp.get_archivgeeignet()) {
          archivtauglich = true;
          fw = new FileWriter("unberuecksichtigt.txt");
          bw = new BufferedWriter(fw);

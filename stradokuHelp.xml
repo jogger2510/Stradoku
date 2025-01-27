@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.docbook.org/xml/4.5/docbookx.dtd" [
-<!ENTITY % global.entities SYSTEM "../dobudish/system/custom-xsl/global-entities.xml">
+<!ENTITY % global.entities SYSTEM "/Users/gero/Devel/dobudish/system/custom-xsl/global-entities.xml">
 %global.entities;
-<!ENTITY % entities SYSTEM "../dobudish/documents/Stradokuhelp/custom-cfg/local-entities.xml">
+<!ENTITY % entities SYSTEM "/Users/gero/Devel/dobudish/documents/Stradokuhelp/custom-cfg/local-entities.xml">
 %entities;
 ]>
 <book lang="de">
@@ -167,6 +167,9 @@
       Programmpaket beigefügten Datei "Wichtig_liesmich.txt" ausführlich
       beschrieben.</emphasis></para>
 
+      <para>Speziell unter Linux sind für das Drucken mindestens Pakete wie
+      "cups", "lpr" und "ghostscript" erforderlich.</para>
+
       <para/>
 
       <para><emphasis role="bold">Navigation durch den Inhalt dieser
@@ -279,8 +282,8 @@
       role="bold">Statuszeile</emphasis>, in deren linkem Teil aktuelle
       Informationen ausgegeben werden. Danach folgt die Anzeige des Levels für
       das aktuelle Stradoku und die Anzahl der vom Anwender gemachten
-      Eingabefehler. Ganz rechts wird die jeweils verbrauchte Lösungszeit in
-      Minuten und Stunden angezeigt.</para>
+      Eingabefehler. Ganz rechts wird die jeweils verbrauchte Lösungszeit
+      angezeigt.</para>
 
       <para>Das vorstehend gezeigte Bild zeigt das Programm-Fenster im
       <emphasis role="bold">Lösungsmodus</emphasis>. der Hintergrund der
@@ -726,6 +729,32 @@
                 <para><emphasis role="bold">Tipp markieren </emphasis></para>
 
                 <para>Zelle, auf die ein Tipp verweist, wird markiert.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para><emphasis role="bold"><indexterm>
+                <primary>Einstellungen</primary>
+              </indexterm>Einstellungen</emphasis></para>
+
+            <itemizedlist>
+              <listitem>
+                <para><emphasis
+                role="bold">PostScript-Drucker</emphasis></para>
+
+                <para>Wenn unter Mac oder Linux das Drucken nicht klappt, kann
+                hier eine Umgehungslösung aktiviert werden. Dafür muß der
+                Standarddrucker des Systems PostScript können.</para>
+              </listitem>
+
+              <listitem>
+                <para><emphasis role="bold">Archiveignung
+                prüfen</emphasis></para>
+
+                <para>Legt fest, ob sich Stradokus in allen Varianten von
+                diesem Programm auf dem gleichen Level lösen lassen müssen.
+                Siehe Abschnitt zum Archiv.</para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -2755,6 +2784,16 @@
 
         <para>geöffnet werden. Die auszudruckenden Stradokus müssen in der
         Liste selektiert sein.</para>
+
+        <para>Drucken aus Java heraus ist nicht ganz einfach und funktioniert
+        nicht in jeder Umgebung. Wenn das Drucken fehlschlägt, wird ein
+        Hinweis in der Statuszeile angezeigt und eine Datei "PrintFile.ps" im
+        Programmverzeichnis gespeichert, die dann mit GhostScript oder einem
+        ähnlichen Programm separat gedruckt werden kann. Im Menü "<emphasis
+        role="bold">Einstellungen</emphasis>" gibt es eine Option "<emphasis
+        role="bold">PostScript-Drucker</emphasis>". Damit wird versucht, die
+        Druckdatei direkt auf den Drucker zu senden. Voraussetzung: Mac oder
+        Linux mit PostScript-Drucker als Standard-Drucker.</para>
 
         <para/>
 
@@ -7373,7 +7412,7 @@
       aufgerufen und dann über die entsprechende Schaltfläche zum Solver
       gewechselt werden.</para>
 
-      <para>Danach kopiert man das zu übertrag3ende Stradoku über <emphasis
+      <para>Danach kopiert man das zu übertragende Stradoku über <emphasis
       role="bold">Strg+Umschalt+C</emphasis> im <emphasis role="bold">externen
       Format</emphasis> in die Zwischenablage und ersetzt in der Adresszeile
       vom Solver alle nach dem '<emphasis role="bold">=</emphasis>'-Zeichen
@@ -7415,11 +7454,11 @@
       Informationen sind über einen einzigen Integerwert abrufbar.</para>
 
       <para>Wenn ich auf meiner alten Kiste eine Liste mit 2.500 Stradokus mit
-      einem Level von 1 bis 4 archivtaglich importiere, dann dauert dies etwa
-      5 Sekunden. Archievtauglich bedeutet, dass jedes dieser Stradokus 15 mal
+      einem Level von 1 bis 4 archivgeeignet importiere, dann dauert dies etwa
+      5 Sekunden. Archivgeeignet bedeutet, dass jedes dieser Stradokus 15 mal
       verändert wird. Dies bedeutet weiterhin, dass jedes Stradoku der Liste
       in der ursprünglichen und allen modifizierten Formen, also zusammen 16
-      mal gelöst werden muss. Das ergibt für die 2.500 Stradokus 40.000
+      mal gelöst werden muss. Das ergibt für die 3.500 Stradokus 56.000
       Lösungs- und Bewertungsvorgänge.</para>
 
       <para>Dabei muss noch geprüft werden, ob alle der 16 Lösungen den selben
@@ -7428,8 +7467,8 @@
       geschrieben. Nicht übernommen werden auch Stradokus, die in der Liste
       öfter als einmal vertreten sind.</para>
 
-      <para>Das sieht allerdings etwas anders aus, wenn Sttradokus mit dem
-      Level 5 archivtauglich importiert werden. Für einen solchen Import ist
+      <para>Das sieht allerdings etwas anders aus, wenn Stradokus mit dem
+      Level 5 archivgeeignet importiert werden. Für einen solchen Import ist
       die benötigte Zeit etwa um den Faktor 100 größer. Bei diesen Stradokus
       wird die Lösung zwar auch über eine logische Auswertung gesucht, aber
       immer dann, wenn es mit der Logik nicht mehr weiter geht, wird für eine
@@ -7464,13 +7503,22 @@
       <para>Das Archiv kann durch manuelles Hinzufügen neuer Stradokus oder
       Änderung bestehender bearbeitet werden. Es sollte allerdings darauf
       geachtet werden, dass im Archiv nur Stradokus aufgenommen werden, die
-      auch archivtauglich sind. Um dies zu gewährleisten muss im
-      Arbeitsverzeichnis eine (leere) Datei mit dem Namen "<emphasis
-      role="bold">archiftauglich</emphasis>" angelegt werden. Nur dann wird
+      auch archivgeeignet sind, dies kann im Menü "<emphasis
+      role="bold">Einstellungen</emphasis>" ausgewählt werden. Nur dann wird
       bei der Erstellung und Bearbeitung von Stradokus darauf hingewiesen,
-      wenn ein Stradoku nicht archivtauglich ist. Durch geringfügige
+      wenn ein Stradoku nicht archivgeeignet ist. Durch geringfügige
       Änderungen, zum Beispiel Hinzufügen oder Entfernen eines Sperrwertes,
-      kann die Archivtauglichkeit wieder hergestellt werden.</para>
+      kann die Archiveignung wieder hergestellt werden.</para>
+
+      <para>Soll ein Stradoku für das Archiv verwendet werden, muss es (von
+      diesem Programm) in allen 16 möglichen Formen mit dem selben Level zu
+      lösen sein. Dabei kann es je nach Variante aufgrund unterschiedlicher
+      Reihenfolge der Lösungsschritte zu einer unterschiedlichen Anzahl von
+      Lösungsschritten kommen, die eine eindeutige Zuordnung zu einem Level
+      verhindert. Bei aktivierter Archiveignung wird diese im
+      Bearbeitungsmodus vor Beendigung der Bearbeitung geprüft und bei
+      fehlender Archiveignung darauf hingewiesen. Aus menschlicher Sicht sind
+      natürlich alle 16 Varianten identisch und gleich schwer.</para>
 
       <para id="archivtauglich">Bei der Generierung von Stradokus greift das
       Programm auf das Archiv zurück und wandelt ein dort gespeichertes
@@ -7478,12 +7526,6 @@
       sichergestellt, dass sich eine Umwandlung erst dann wiederholt, wenn
       alle anderen 15 Formen schon einmal für eine Generierung verwendet
       wurden.</para>
-
-      <para>Soll ein Stradoku für das Archiv verwendet werden, muss es in
-      allen 16 möglichen Formen mit dem selben Level zu lösen sein. Bei
-      aktivierter Archivtauglichkeit iwird diese im Bearbeitungsmosus vor
-      Beendigung der Bearbeitung geprüft und bei fehlender Archivtauglichkeit
-      darauf hingewiesen.</para>
 
       <para>Die Position eines Stradoku aus dem Archiv kann über die Kurztaste
       Strg+F12 abgefragt werden. Über Strg+F10 kann das Archiv auf doppelte

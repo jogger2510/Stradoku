@@ -15,6 +15,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -30,7 +34,6 @@ public class ListenFrame extends JFrame {
     private ListenModel listenModel;
     private final TableRowSorter<TableModel> sorter;
     public Stradoku strApp;
-    private ThreadPrintStrSerie printSdkSerieThread;
     // private HinweisWarten msgHinweisWarten;
     private boolean serie = false;
     private HilfeDialog jHilfe = null;
@@ -362,10 +365,7 @@ public class ListenFrame extends JFrame {
     public int getLevel(int num) {
         // nur erste Ziffer (ev. einmal Level + Wert)
         String tmp = (String) listenModel.getValueAt(num, 3);
-        try {
-            return Integer.parseInt(tmp.substring(0, 1));
-        } catch (NumberFormatException nfe) {}
-        return 0;
+        return Util.getNum(tmp.substring(0, 1));
     }
 
     public void setLevel(int z, String lvl) {
@@ -447,10 +447,7 @@ public class ListenFrame extends JFrame {
         //         + "Bitte solange warten.</b></center></html>";
         // msgHinweisWarten.zeigeHinweis(hnw);
         strApp.statusBarHinweis.setText("Drucker wird initialisiert.");
-        printSdkSerieThread = new ThreadPrintStrSerie(this,
-                listenModel, listenModel.getSelektStradoku());
-        strApp.statusBarHinweis.setText("Drucker wird initialisiert.");
-        printSdkSerieThread.start();
+        doPrint(anzahl);
         // msgHinweisWarten.setVisible(true);
         // try {
         //     Thread.sleep(5000);
@@ -459,6 +456,54 @@ public class ListenFrame extends JFrame {
         // msgHinweisWarten.setVisible(false);
     }
 
+    private void doPrint(int anzahl){
+        String[][] stradokuInfo = null;
+        if (anzahl > 0) {
+            stradokuInfo = new String[anzahl][3];
+            int i = 0;
+            for (int z = 0; z < listenModel.getRowCount(); z++) {
+                if (isSelect(z)) {
+                    stradokuInfo[i][0] = getNummer(z);
+                    stradokuInfo[i][1] = getStradoku(z);
+                    stradokuInfo[i][2] = "" + getLevel(z);
+                    i++;
+                }
+            }
+        }                      
+        PrintStrSerie pSS = new PrintStrSerie();
+        boolean fail;
+        if (fail = !pSS.printStradokuSerie(stradokuInfo, this)) {
+            if (!System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+                String home = strApp.getHomePath();
+                if (strApp.getPostScript()) {
+                    ProcessBuilder builder = new ProcessBuilder();
+                    builder.command("lpr", "-l", "PrintFile.ps");
+                    builder.redirectErrorStream(true);
+                    builder.directory(new File(home));
+                    try {
+                        Process process = builder.start();
+                        BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(process.getInputStream()));
+                        String line;
+                        while ((line = reader.readLine()) != null) {System.out.println(line);}
+                       int exitCode = process.waitFor();
+                       if (exitCode == 0) {
+                            File file = new File(home, "PrintFile.ps");
+                            file.delete();
+                            fail = false;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            // JOptionPane.showMessageDialog(null,
+            //         "Unerwarteter Fehler beim Stradoku-Ausruck!",
+            //         "Hinweis", 1);
+        }
+        if (fail) strApp.statusBarHinweis.setText("Druckfehler: Druckdatei gespeichert!");
+        deselectPrintSdk();
+    }
     /**
      * Aufgabe: Selektierte Stradoku aus der Liste entfernen. Selektierte 
      *          Stradoku am Ende der Liste werden komplett entfernt. Bei
