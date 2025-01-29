@@ -26,6 +26,8 @@ import static java.lang.Math.abs;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import javax.print.attribute.standard.MediaPrintableArea;
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +40,7 @@ public final class Stradoku extends JFrame
 
    private static final long serialVersionUID = 1L;
 
-   private String VERSION = "7.0.1";
+   private String VERSION = "7.0.2";
    private String name = "kodelasStradoku";
    private String appName = name + " V " + VERSION;
    private String infoString = "Konfigurations-Datei für " + name + " " + VERSION;
@@ -99,6 +101,7 @@ public final class Stradoku extends JFrame
    private boolean isTipp = false;
    private boolean erstinfo = false;
    private boolean zeigtLoesung = false;
+   public MediaPrintableArea PrintArea = new MediaPrintableArea(10, 10, 190, 277, MediaPrintableArea.MM);
 
    public int[] test;
 
@@ -202,6 +205,10 @@ public final class Stradoku extends JFrame
          wr.write("LoesungsTipps=" + getTipps() + lf);
          wr.write("Postscript=" + (postscript ? "1" : "0") + lf);
          wr.write("Archivgeeignet=" + (archivgeeignet ? "1" : "0") + lf);
+         wr.write("xprintarea=" + Math.round(PrintArea.getX(MediaPrintableArea.MM)) + lf);
+         wr.write("yprintarea=" + Math.round(PrintArea.getY(MediaPrintableArea.MM)) + lf);
+         wr.write("wprintarea=" + Math.round(PrintArea.getWidth(MediaPrintableArea.MM)) + lf);
+         wr.write("hprintarea=" + Math.round(PrintArea.getHeight(MediaPrintableArea.MM)) + lf);
          wr.flush();
       } catch (IOException e) {
       }
@@ -229,8 +236,8 @@ public final class Stradoku extends JFrame
             return false;
          }
          String[] eintrag = {"xpos", "ypos",
-            "letz", "eing", /*"posi",*/ "filt", "loes", "post", "arch"};
-         int x = 0, y = 0;
+            "letz", "eing", /*"posi",*/ "filt", "loes", "post", "arch", "xpri", "ypri", "wpri", "hpri"};
+         int x = 0, y = 0, xp = 0, yp = 0, wp = 0, hp = 0;
          String wert;
          while ((zeile = in.readLine()) != null) {
             if (zeile.length() < 6) break;
@@ -277,14 +284,28 @@ public final class Stradoku extends JFrame
                      postscript = 1 == Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      mePostscript.setSelected(postscript);
                      break;
-                  case 7 :
+                     case 7 :
                      archivgeeignet = 1 == Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      meArchivgeeignet.setSelected(archivgeeignet);
+                     break;
+                     case 8 :
+                     xp = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
+                     break;
+                     case 9 :
+                     yp = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
+                     break;
+                     case 10 :
+                     wp = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
+                     break;
+                     case 11 :
+                     hp = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
                      break;
                }
                break;
             }
          }
+         if ((xp > 0) && (yp > 0) && (hp > 0) && (wp > 0))
+            PrintArea = new MediaPrintableArea(xp, yp, wp, hp, MediaPrintableArea.MM);
          if (zeigen) {
             GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
             GraphicsDevice[] devs = env.getScreenDevices();

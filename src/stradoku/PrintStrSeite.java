@@ -20,24 +20,16 @@ import java.awt.print.PrinterException;
  */
 public class PrintStrSeite implements Printable {
 
-    private static final int RES_MPL = 4;            // 1 = 72 dpi; 4 = 288 dpi
-    private static final int LINKS = 0;
-    private static final int RECHTS = 1190;
-    private static final int OBEN = 0;
-    private static final int UNTEN = 1680;
-    // Koordinaten für die Ausgabe der vier Felder
-    private static final Point[] POS = {
-        new Point(LINKS, OBEN),
-        new Point(RECHTS, OBEN),
-        new Point(LINKS, UNTEN),
-        new Point(RECHTS, UNTEN)};
-    // Korrekturwerte für die Ausgabe der Sperrzellen und Ziffern
-    private static final int[] KWERT = 
-            {122, 236, 350, 464, 578, 692, 806, 920, 1034};
+    private static final int Raster = 102;
+    private static final int Aussenlinie = 6;
+    private static final int Innenlinie = 2;
+    private static final int Hoehe = 10 * Raster + 2 * Aussenlinie - Innenlinie;
+    private static final int Breite = 9 * Raster + 2 * Aussenlinie - Innenlinie;
     private String[] nDS = new String[3]; // kompletter Datensats für ein Stradoku
     private final String[][] straInfo;  // Datensaätze für auszudruckende Stradokus
     private final int anzahl;
     private final int seiten;
+    private final int perPage;
     private static final Color SZ_DGRAU = new Color(100, 100, 100);
 
     /**
@@ -50,10 +42,11 @@ public class PrintStrSeite implements Printable {
      * - der Buchstabe "s" steht für leere Sperrzelle
      * - die Busctaben "a" - "i" stehen für Sperrwerte ("a"=1, "i"=9)
      */
-    public PrintStrSeite(String[][] inf) {
+    public PrintStrSeite(String[][] inf, int perPage) {
         straInfo = inf;
         anzahl = straInfo == null ? 1 : straInfo.length;
-        seiten = (anzahl + 3) / 4;
+        seiten = (anzahl + perPage - 1) / perPage;
+        this.perPage = perPage;
     }
 
     /**
@@ -68,30 +61,90 @@ public class PrintStrSeite implements Printable {
     @Override
     public int print(Graphics g, PageFormat pf, int iPage)
             throws PrinterException {
-        int fontSize;
         if (iPage >= seiten) {
             return NO_SUCH_PAGE;
         }
-        int base = iPage * 4;
+        int base = iPage * perPage;
         try {
             Graphics2D g2 = (Graphics2D) g;
-            g2.translate(17, 17);               // Koordinatensystem verschieben
-            g2.scale(1.0 / RES_MPL, 1.0 / RES_MPL);
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.translate( pf.getImageableX(), pf.getImageableY() ); // Koordinatensystem verschieben
             g.setColor(Color.black);
-            for (int pos = 0; pos < 4; pos++) {
-                int x = POS[pos].x;
-                int y = POS[pos].y;
+            // Höhe eines Felds 1160
+            // Breite eines Felds 1044
+            // 
+            double iWdth = pf.getImageableWidth();
+            double iHght = pf.getImageableHeight();
+            boolean portrait = iHght > iWdth;
+            int totalheight = 0;
+            int totalwidth = 0;
+            switch (perPage) {
+                case 1:
+                    totalheight = Hoehe;
+                    totalwidth = Breite;
+                    break;
+                    case 2: if (portrait) {
+                        totalheight = 2 * Hoehe + Raster;
+                        totalwidth = Breite;
+                    } else {
+                        totalheight = Hoehe;
+                        totalwidth = 2 * Breite + Raster;
+                    }
+                    break;
+                    case 3: if (portrait) {
+                        totalheight = 3 * Hoehe + 2 * Raster;
+                        totalwidth = Breite;
+                    } else {
+                        totalheight = Hoehe;
+                        totalwidth = 3 * Breite + 2 * Raster;
+                    }
+                    break;
+                case 4:
+                    totalheight = 2 * Hoehe + Raster;
+                    totalwidth = 2 * Breite + Raster;
+                    break;
+                default:
+                    break;
+            }
+            double iResMul = Math.max(totalwidth / iWdth, totalheight / iHght);
+            g2.scale(1.0 / iResMul, 1.0 / iResMul);
+            int x = 0, y = 0;
+            for (int pos = 0; pos < perPage; pos++) {
+                switch (perPage) {
+                    case 1:
+                        x = 0;
+                        y = 0;
+                        break;
+                        case 2: if (portrait) {
+                            y = pos * (Hoehe + Raster);
+                            x = 0;
+                        } else {
+                            y = 0;
+                            x = pos * (Breite + Raster);
+                        }
+                        break;
+                        case 3: if (portrait) {
+                            y = pos * (Hoehe + Raster);
+                            x = 0;
+                        } else {
+                            y = 0;
+                            x = pos * (Breite + Raster);
+                        }
+                        break;
+                    case 4:
+                        x = pos % 2 == 0 ? 0 : Breite + Raster;
+                        y = pos / 2 * (Hoehe + Raster);
+                        break;
+                    default:
+                        break;
+                }
                 zeichneStrFeld(g2, x, y);
-                int index = base + pos;
-                if (straInfo == null || index >= anzahl) 
+                int index = base;
+                if (straInfo == null || base++ >= anzahl) 
                     continue;
                 nDS = straInfo[index];
-                fontSize = 12;
-                g.setFont(new Font("SansSerif", Font.PLAIN, fontSize * RES_MPL));
-                setzeTitel(g2, x, y);
-                fontSize = 18;
-                g.setFont(new Font("SansSerif", Font.BOLD, fontSize * RES_MPL));
-                setzeWerte(g2, x, y);
+                setzeTitel(g2, x, y, new Font("Serif", Font.PLAIN, 36));
+                setzeWerte(g2, x, y, new Font("SansSerif", Font.PLAIN, 72));
             }
             g.dispose();
         }
@@ -110,27 +163,29 @@ public class PrintStrSeite implements Printable {
      */
     private void zeichneStrFeld(Graphics g2, int x0, int y0) {
         // alle waagrechten Linien
-        g2.fillRect(x0, y0 + 300, 1044, 10);
-        g2.fillRect(x0, y0 + 422, 1044, 2);
-        g2.fillRect(x0, y0 + 536, 1044, 2);
-        g2.fillRect(x0, y0 + 650, 1044, 2);
-        g2.fillRect(x0, y0 + 764, 1044, 2);
-        g2.fillRect(x0, y0 + 878, 1044, 2);
-        g2.fillRect(x0, y0 + 992, 1044, 2);
-        g2.fillRect(x0, y0 + 1106, 1044, 2);
-        g2.fillRect(x0, y0 + 1220, 1044, 2);
-        g2.fillRect(x0, y0 + 1334, 1044, 10);
+        y0 += Raster;
+        g2.fillRect(x0, y0, Breite, Aussenlinie);
+        int y1 =  y0 + Raster + Aussenlinie - Innenlinie;
+        g2.fillRect(x0, y1, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 += Raster, Breite, Innenlinie);
+        g2.fillRect(x0, y1 + Raster, Breite, Aussenlinie);
         // alle senkrechten Linien
-        g2.fillRect(x0, y0 + 300, 10, 1044);
-        g2.fillRect(x0 + 122, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 236, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 350, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 464, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 578, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 692, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 806, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 920, y0 + 300, 2, 1044);
-        g2.fillRect(x0 + 1034, y0 + 300, 10, 1044);
+        g2.fillRect(x0, y0, Aussenlinie, Breite);
+        g2.fillRect(x0 += Raster + Aussenlinie - Innenlinie, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 += Raster, y0, Innenlinie, Breite);
+        g2.fillRect(x0 + Raster, y0, Aussenlinie, Breite);
     }
 
     /**
@@ -139,10 +194,10 @@ public class PrintStrSeite implements Printable {
      * @param x0 Nullpunkt für X-Koordinaten
      * @param y0 Nullpunkt für Y-Koordinaten
      */
-    private void setzeTitel(Graphics g2, int x0, int y0) {
-        g2.drawString(" Stradoku "
-                     + nDS[0] + " - Level "
-                     + nDS[2], x0 + 255, y0 + 180);  // mit x0 + 150 in Mitte
+    private void setzeTitel(Graphics g2, int x0, int y0, Font font) {
+        g2.setFont(font);
+        FontMetrics fm = g2.getFontMetrics();
+        centerText(g2, " Stradoku " + nDS[0] + " - Level " + nDS[2], fm, x0, Breite, y0 + (Raster - fm.getHeight()) / 2 + fm.getAscent());
     }
 
     /**
@@ -151,29 +206,43 @@ public class PrintStrSeite implements Printable {
      * @param x0 Nullpunkt für X-Koordinaten
      * @param y0 Nullpunkt für Y-Koordinaten
      */
-    private void setzeWerte(Graphics g2, int x0, int y0) {
+    private void setzeWerte(Graphics g2, int x0, int y0, Font font) {
         String aufgabe = nDS[1];
-        for (int i = 0; i <= 80; i++) {                 // für alle Zellen
-            char w = aufgabe.charAt(i);                 // Zeichen lesen
-            if (w == '0') {                             // leere Zelle
-                continue;
-            }
-            if (w < 'a') {                              // Vorgabewert
-                g2.setColor(Color.black);
-                g2.drawString(
-                    "" + w, x0 + KWERT[i%9]-76, y0+KWERT[i/9]+272 );
-            }
-            else {
-                g2.setColor(SZ_DGRAU);
-                g2.fillRect(x0+KWERT[i%9]-112, y0+KWERT[i/9]+188, 112, 112);
-                if (w < 's') {                          // Sperrwert
-                    w -= '0';
-                    g2.setColor(Color.white);
-                    g2.drawString(
-                    "" + w, x0 + KWERT[i%9]-76, y0+KWERT[i/9]+272 );
+        int i = 0;
+        y0 += Aussenlinie + Raster;
+        x0 += Aussenlinie;
+        g2.setFont(font);
+        FontMetrics fm = g2.getFontMetrics();
+        int vertical = y0 + (Raster - Innenlinie - fm.getHeight()) / 2 + fm.getAscent();
+        for (int y = 0; y < 9; y++) {
+            int x1 = x0;
+            for (int x = 0; x < 9; x++) {
+                char w = aufgabe.charAt(i++);                 // Zeichen lesen
+                if (w != '0') {                             // leere Zelle
+                    if (w < 'a') {                              // Vorgabewert
+                        g2.setColor(Color.black);
+                        centerText(g2, "" + w, fm, x1, Raster - Innenlinie , vertical);
+                    }
+                    else {
+                        g2.setColor(SZ_DGRAU);
+                        g2.fillRect(x1, y0, Raster - Innenlinie, Raster - Innenlinie);
+                        if (w < 's') {                          // Sperrwert
+                            w -= '0';
+                            g2.setColor(Color.white);
+                            centerText(g2, "" + w, fm, x1, Raster - Innenlinie , vertical);
+                        }
+                    }
                 }
+                x1 += Raster;
             }
+            y0 += Raster;
+            vertical += Raster;
         }
         g2.setColor(Color.black);
+    }
+
+    private void centerText(Graphics g2, String s, FontMetrics fm, int left, int width, int y) {
+        int x = (width - fm.stringWidth(s)) / 2;
+        g2.drawString(s, x + left, y);
     }
 }

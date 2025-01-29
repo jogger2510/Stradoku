@@ -14,7 +14,6 @@ import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaPrintableArea;
-import javax.print.attribute.standard.MediaSizeName;
 
 /**
  * Steuert den Serienausdruck von Stradoku-Aufgben
@@ -28,32 +27,33 @@ public class PrintStrSerie {
      * @param liste Referenz auf Frame
      * @return true wenn Drucker initialisiert werden konnte, sonst false
      */
-    public boolean printStradokuSerie(String[][] info, ListenFrame liste) {
+    public boolean printStradokuSerie(String[][] info, ListenFrame liste, int perPage) {
         // Set DocFlavor and print attributes:
         DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
         PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-        // Druckbereich mit Punkt links oben (x, y) sowie Breite 
-        // und Höhe in Millimeter festlegen.
-        aset.add(new MediaPrintableArea(6, 6, 200, 285, MediaPrintableArea.MM));
-        aset.add(MediaSizeName.ISO_A4);
+        // aset.add(MediaSizeName.ISO_A4);
         try {
             // Drucker initialisieren
             PrintService prserv = null;
-            PrintService[] prservices =  PrintServiceLookup.lookupPrintServices(flavor, aset);
+            PrintService[] prservices =  PrintServiceLookup.lookupPrintServices(flavor, null);
             if (prservices != null && prservices.length > 0)
                 prserv = prservices[0];
             PrintService prservDflt = PrintServiceLookup.lookupDefaultPrintService();
             if (prservDflt != null)
                 prserv = prservDflt;
             if (prserv != null) {
-                prserv = ServiceUI.printDialog( null, 50, 50, prservices, prservDflt, null, aset );
-                if (prserv != null) {
-                    PrintStrSeite stradokuSeite = new PrintStrSeite(info);
-                    DocPrintJob dpj = prserv.createPrintJob();
-                    Doc doc = new SimpleDoc(stradokuSeite, flavor, null);
-                    dpj.print(doc, aset);
-                    return true;
+                aset.add(liste.strApp.PrintArea);
+                prserv = ServiceUI.printDialog(null, 50, 50, prservices, prserv, flavor, aset);
+                if (prserv == null) return true;
+                try {
+                    liste.strApp.PrintArea = (MediaPrintableArea) aset.get(MediaPrintableArea.class);
+                } catch (Exception e) {
                 }
+                PrintStrSeite stradokuSeite = new PrintStrSeite(info, perPage);
+                DocPrintJob dpj = prserv.createPrintJob();
+                Doc doc = new SimpleDoc(stradokuSeite, flavor, null);
+                dpj.print(doc, aset);
+                return true;
             }
         } catch (PrintException pe) { pe.printStackTrace(); }
         FileOutputStream fos = null;
@@ -62,8 +62,8 @@ public class PrintStrSerie {
                 flavor, DocFlavor.BYTE_ARRAY.POSTSCRIPT.getMimeType() );
             if( null == prservFactories || 0 >= prservFactories.length ) return false;
             fos = new FileOutputStream(liste.strApp.getHomePath() + File.separator + "PrintFile.ps" );
-            StreamPrintService sps = prservFactories[0].getPrintService( fos );
-            PrintStrSeite stradokuSeite = new PrintStrSeite(info);
+            StreamPrintService sps = prservFactories[0].getPrintService(fos);
+            PrintStrSeite stradokuSeite = new PrintStrSeite(info, perPage);
             DocPrintJob dpj = sps.createPrintJob();
             Doc doc = new SimpleDoc(stradokuSeite, flavor, null);
             dpj.print(doc, aset);

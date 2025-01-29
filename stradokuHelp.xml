@@ -168,7 +168,7 @@
       beschrieben.</emphasis></para>
 
       <para>Speziell unter Linux sind für das Drucken mindestens Pakete wie
-      "cups", "lpr" und "ghostscript" erforderlich.</para>
+      "cups", "cups-bsd" und "ghostscript" erforderlich.</para>
 
       <para/>
 
@@ -2768,9 +2768,9 @@
             <primary>Stradokus ausdrucken</primary>
           </indexterm>Stradoku aus der Liste ausdrucken</emphasis></para>
 
-        <para>Stradoku können, jeweils vier auf einer Seite DIN A4,
-        ausgedruckt werden. Der Ausdruck erfolgt über das Listenfenster.
-        Dieses kann über</para>
+        <para>Stradoku können mit wählbarer Anzahl je Seite ausgedruckt
+        werden. Der Ausdruck erfolgt über das Listenfenster. Dieses kann
+        über</para>
 
         <itemizedlist>
           <listitem>
@@ -2791,9 +2791,10 @@
         Programmverzeichnis gespeichert, die dann mit GhostScript oder einem
         ähnlichen Programm separat gedruckt werden kann. Im Menü "<emphasis
         role="bold">Einstellungen</emphasis>" gibt es eine Option "<emphasis
-        role="bold">PostScript-Drucker</emphasis>". Damit wird versucht, die
-        Druckdatei direkt auf den Drucker zu senden. Voraussetzung: Mac oder
-        Linux mit PostScript-Drucker als Standard-Drucker.</para>
+        role="bold">PostScript-Drucker</emphasis>". Damit wird versucht, diese
+        Druckdatei direkt auf den Drucker zu senden und anschließend zu
+        löschen. Voraussetzung: Mac oder Linux mit PostScript-Drucker als
+        Standard-Drucker.</para>
 
         <para/>
 
@@ -3012,7 +3013,7 @@
                   <imagedata fileref="resource/deselekt.png"/>
                 </imageobject>
               </inlinemediaobject> Über diese Schaltfläche wird für alle
-            selktierten Datensätze die Selektierung aufgehoben.</para>
+            selektierten Datensätze die Selektierung aufgehoben.</para>
           </listitem>
 
           <listitem>
@@ -3020,7 +3021,7 @@
                 <imageobject>
                   <imagedata fileref="resource/delete.png"/>
                 </imageobject>
-              </inlinemediaobject> Entfernt alle slektierten Stradoku aus der
+              </inlinemediaobject> Entfernt alle selektierten Stradoku aus der
             Liste. Dabei kann festgelegt werden, ob Zeilen mit zu entfernenden
             Stradoku ebenfalls entfernt werden sollen. Falls man sich dafür
             entscheidet, wird die Liste neu durchnummeriert. Andernfalls
@@ -3036,8 +3037,10 @@
                 <imageobject>
                   <imagedata fileref="resource/druck.png"/>
                 </imageobject>
-              </inlinemediaobject> Druckt alle selekierten Stradoku, jeweils
-            vier auf einem Blatt DIN A4, aus.</para>
+              </inlinemediaobject> Druckt alle selekierten Stradoku mit
+            wählbarer Anzahl von einem bis vier Rätseln pro Blatt aus.
+            Papierformat und Ränder (z.B. für Notizen) können im Druckdialog
+            frei gewählt werden und werden dauerhaft übernommen.</para>
           </listitem>
 
           <listitem id="tasteSuchen">

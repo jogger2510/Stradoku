@@ -1,13 +1,9 @@
 Mögliche Verbesserungen ohne Garantie, dass je etwas passiert!
 Keine Sortierung nach Priorität!
 
-
-- Drucken auf Mac und Linux
-- Einzelne Rätsel groß drucken
-- Thread-Logik überarbeiten
 - Interfaces entfernen
 - Rätsel normieren
-- Archivfunktionalitäten ausbauen
+- Archivfunktionalitäten erweitern
 - Internationalisierung
 - größere Fenster
 - Technische Basis Hilfe-System erneuern

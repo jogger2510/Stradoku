@@ -429,25 +429,22 @@ public class ListenFrame extends JFrame {
      */
     private void druckeSerie() {
         int anzahl = listenModel.getSelektStradoku();
-        if (anzahl < 1) {
-            // Abfrage, ob leere Seite gedruckt werden soll
-            int wahl = JOptionPane.showConfirmDialog(strApp,
-                "<html><br><brJOptionPane>Es sind keine Aufgaben für den "+
-                        "Ausdruck selektiert.<br><br>Soll ein Blatt mit "+
-                        "vier leeren Stradokusfeldern gedruckt werden?<br><br>",
-                "Abfrage zu leerem Stradokufeld",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.NO_OPTION);
-            if (wahl != JOptionPane.YES_OPTION) {
-                return;
-            }
-        }
+        String text;
+        if (anzahl < 1)
+            text = "<html><br>Es sind keine Aufgaben für den Ausdruck selektiert.<br><br>Wie viele " +
+                        "leere Stradokufelder sollen auf eine Seite gedruckt werden?<br><br>";
+        else
+            text = "<html><br>Wie viele Rätsel sollen pro Seite gedruckt werden?<br><br>";
+        Integer[] options = {1, 2, 3, 4};
+        Object result = JOptionPane.showInputDialog(this, text, "Felder pro Seite",
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (result == null) return;
         // msgHinweisWarten = new HinweisWarten(strApp);
         // String hnw = "<html><center><b>Drucker wird initialisiert.<br><br>"
         //         + "Bitte solange warten.</b></center></html>";
         // msgHinweisWarten.zeigeHinweis(hnw);
         strApp.statusBarHinweis.setText("Drucker wird initialisiert.");
-        doPrint(anzahl);
+        doPrint(anzahl, (int)result);
         // msgHinweisWarten.setVisible(true);
         // try {
         //     Thread.sleep(5000);
@@ -456,7 +453,7 @@ public class ListenFrame extends JFrame {
         // msgHinweisWarten.setVisible(false);
     }
 
-    private void doPrint(int anzahl){
+    private void doPrint(int anzahl, int perPage){
         String[][] stradokuInfo = null;
         if (anzahl > 0) {
             stradokuInfo = new String[anzahl][3];
@@ -472,10 +469,11 @@ public class ListenFrame extends JFrame {
         }                      
         PrintStrSerie pSS = new PrintStrSerie();
         boolean fail;
-        if (fail = !pSS.printStradokuSerie(stradokuInfo, this)) {
+        if (fail = !pSS.printStradokuSerie(stradokuInfo, this, perPage)) {
             if (!System.getProperty("os.name").toLowerCase().startsWith("windows")) {
                 String home = strApp.getHomePath();
-                if (strApp.getPostScript()) {
+                File file = new File(home, "PrintFile.ps");
+                if (strApp.getPostScript() && file.exists()) {
                     ProcessBuilder builder = new ProcessBuilder();
                     builder.command("lpr", "-l", "PrintFile.ps");
                     builder.redirectErrorStream(true);
@@ -488,7 +486,6 @@ public class ListenFrame extends JFrame {
                         while ((line = reader.readLine()) != null) {System.out.println(line);}
                        int exitCode = process.waitFor();
                        if (exitCode == 0) {
-                            File file = new File(home, "PrintFile.ps");
                             file.delete();
                             fail = false;
                         }
