@@ -749,8 +749,7 @@
               </listitem>
 
               <listitem>
-                <para><emphasis role="bold">Archiveignung
-                prüfen</emphasis></para>
+                <para><emphasis role="bold">Autorenmodus</emphasis></para>
 
                 <para>Legt fest, ob sich Stradokus in allen Varianten von
                 diesem Programm auf dem gleichen Level lösen lassen müssen.
@@ -7507,7 +7506,8 @@
       Änderung bestehender bearbeitet werden. Es sollte allerdings darauf
       geachtet werden, dass im Archiv nur Stradokus aufgenommen werden, die
       auch archivgeeignet sind, dies kann im Menü "<emphasis
-      role="bold">Einstellungen</emphasis>" ausgewählt werden. Nur dann wird
+      role="bold">Einstellungen</emphasis>" als "<emphasis
+      role="bold">Autorenmodus</emphasis>" ausgewählt werden. Nur dann wird
       bei der Erstellung und Bearbeitung von Stradokus darauf hingewiesen,
       wenn ein Stradoku nicht archivgeeignet ist. Durch geringfügige
       Änderungen, zum Beispiel Hinzufügen oder Entfernen eines Sperrwertes,

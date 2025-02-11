@@ -34,7 +34,7 @@ public class ArchivLevel implements GlobaleObjekte {
     * @return Ergebnis der Prüfung - wenn nicht archivtauglich wird dem Level ein Flag für
     * Abweichung hinzugefügt
     */
-   public int getArchivLevel(int[] aufgabe, int[] loesung, int lvl) {
+   public int getArchivLevel(int[] aufgabe, int lvl) {
       level = lvl;
       if (level > 0 && level <= 5) {
          int fixLevel = level;
@@ -47,8 +47,7 @@ public class ArchivLevel implements GlobaleObjekte {
             } else if (i == 7) {
                spiegleFeld(a_aufgabe);
             }
-            LevelSolver loeser = new LevelSolver(null,
-                  a_aufgabe, a_loesung, false);
+            LevelSolver loeser = new LevelSolver(null, a_aufgabe, a_loesung, false);
             int tmpLevel = loeser.loeseAufgabe();
             if (tmpLevel != level) {
                if (tmpLevel > 0) {

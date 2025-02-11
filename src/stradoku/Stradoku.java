@@ -40,10 +40,10 @@ public final class Stradoku extends JFrame
 
    private static final long serialVersionUID = 1L;
 
-   private String VERSION = "7.0.2";
+   private String VERSION = "7.0.3";
    private String name = "kodelasStradoku";
    private String appName = name + " V " + VERSION;
-   private String infoString = "Konfigurations-Datei für " + name + " " + VERSION;
+   private String infoString = "#Konfigurations-Datei für " + name + " " + VERSION;
    private String iniDat = "stradoku.cfg";
    private String iniStr = "letztes.str";
    private String unbenannt = "unbenannt";
@@ -286,7 +286,7 @@ public final class Stradoku extends JFrame
                      break;
                      case 7 :
                      archivgeeignet = 1 == Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
-                     meArchivgeeignet.setSelected(archivgeeignet);
+                     meAutorenmodus.setSelected(archivgeeignet);
                      break;
                      case 8 :
                      xp = Util.getNum(zeile.substring(zeile.indexOf('=') + 1));
@@ -1037,7 +1037,7 @@ public final class Stradoku extends JFrame
       statusBarHinweis.setText(
             "Archiv wird auf doppelte sowie fehlerhafte Einträge überprüft.        "
             + "BITTE WARTEN !");
-      archiv.checkDoppelVorkommen();
+      archiv.fehlerCheck();
       statusBarHinweis.setText(
             "Überprüfung beendet. Das Ergebnis ist in der Datei:                   "
             + "ArchivCheck.txt.");
@@ -1049,12 +1049,12 @@ public final class Stradoku extends JFrame
     */
    public void aufgabenSerieErstellen() {
       labelHinweisfeld.setText("");
-      int aktLevel = levelBox.getSelectedIndex();
+      int levelAuswahl = levelBox.getSelectedIndex();
       int max = 200;
       if (editModus > 0) {
          return;
       }
-      if (aktLevel == 0) {
+      if (levelAuswahl == 0) {
          JOptionPane.showMessageDialog(this,
                "Es muss erst ein gültiger Level eingestellt werden.\n"
                + "Wählen Sie einen Level zwischen 1 und 5.\n",
@@ -1085,13 +1085,13 @@ public final class Stradoku extends JFrame
                "Hinweis", 1);
          return;
       }
-      serieEzeugen(anzahl, aktLevel);
+      serieErzeugen(anzahl, levelAuswahl);
       if (archiv != null && !isArchivFehler) {
          archiv.schlieszeArchiv();
       }
    }
 
-   private void serieEzeugen(int anzahl, int lev) {
+   private void serieErzeugen(int anzahl, int lev) {
       int aktAnzahl;
       int max = 0;
       int startAnzahl = strListe.getAnzahl();
@@ -2606,7 +2606,7 @@ public final class Stradoku extends JFrame
         mmEntferneAlle = new javax.swing.JMenuItem();
         menuEinstellungen = new javax.swing.JMenu();
         mePostscript = new javax.swing.JCheckBoxMenuItem();
-        meArchivgeeignet = new javax.swing.JCheckBoxMenuItem();
+        meAutorenmodus = new javax.swing.JCheckBoxMenuItem();
         menuInfo = new javax.swing.JMenu();
         mhInfoProgramm = new javax.swing.JMenuItem();
         mhInfoKurztasten = new javax.swing.JMenuItem();
@@ -3066,27 +3066,29 @@ public final class Stradoku extends JFrame
             panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatusBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(statusBarHinweis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(statusBarHinweis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelFehler, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(labelFehler, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBarZeit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelStatusBarLayout.setVerticalGroup(
             panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusBarZeit, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+            .addComponent(statusBarZeit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStatusBarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(statusBarHinweis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(statusBarFehler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(labelLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(labelFehler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(statusBarLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(labelFehler, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panelStatusBarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {statusBarFehler, statusBarLevel});
@@ -3922,14 +3924,14 @@ public final class Stradoku extends JFrame
         });
         menuEinstellungen.add(mePostscript);
 
-        meArchivgeeignet.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
-        meArchivgeeignet.setText("Archiveignung prüfen");
-        meArchivgeeignet.addActionListener(new java.awt.event.ActionListener() {
+        meAutorenmodus.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        meAutorenmodus.setText("Autorenmodus");
+        meAutorenmodus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                meArchivgeeignetActionPerformed(evt);
+                meAutorenmodusActionPerformed(evt);
             }
         });
-        menuEinstellungen.add(meArchivgeeignet);
+        menuEinstellungen.add(meAutorenmodus);
 
         menuZeile.add(menuEinstellungen);
 
@@ -4075,7 +4077,7 @@ public final class Stradoku extends JFrame
                                 .addGap(108, 108, 108)
                                 .addComponent(labelTitel)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(panelStatusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelStatusBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {kandidat_1, kandidat_2, kandidat_3, kandidat_4, kandidat_5, kandidat_6, kandidat_7, kandidat_8, kandidat_9, setzeWert_1, setzeWert_2, setzeWert_3, setzeWert_4, setzeWert_5, setzeWert_6, setzeWert_7, setzeWert_8, setzeWert_9});
@@ -4129,8 +4131,9 @@ public final class Stradoku extends JFrame
                                         .addComponent(kandidat_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
                         .addComponent(hinweisPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addComponent(panelStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {kandidat_1, kandidat_2, kandidat_3, kandidat_4, kandidat_5, kandidat_6, kandidat_7, kandidat_8, kandidat_9, setzeWert_1, setzeWert_2, setzeWert_3, setzeWert_4, setzeWert_5, setzeWert_6, setzeWert_7, setzeWert_8, setzeWert_9});
@@ -4889,9 +4892,9 @@ public final class Stradoku extends JFrame
          postscript = !postscript;
     }//GEN-LAST:event_mePostscriptActionPerformed
 
-    private void meArchivgeeignetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meArchivgeeignetActionPerformed
+    private void meAutorenmodusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meAutorenmodusActionPerformed
          archivgeeignet = !archivgeeignet;
-   }//GEN-LAST:event_meArchivgeeignetActionPerformed
+   }//GEN-LAST:event_meAutorenmodusActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoesungsTipp;
@@ -4958,7 +4961,7 @@ public final class Stradoku extends JFrame
     private javax.swing.JMenuItem mdiBeendenOhneSicherung;
     private javax.swing.JMenuItem mdiEinfuegen;
     private javax.swing.JMenuItem mdiErzeugen;
-    private javax.swing.JCheckBoxMenuItem meArchivgeeignet;
+    private javax.swing.JCheckBoxMenuItem meAutorenmodus;
     private javax.swing.JCheckBoxMenuItem mePostscript;
     private javax.swing.JMenu menuAnzeige;
     public javax.swing.JMenu menuBearbeiten;

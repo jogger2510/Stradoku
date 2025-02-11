@@ -4,7 +4,14 @@ Dokumentation der Änderungen
 
 --------------------------------------------------------------------------------
 
-Version 7.0.1
+Version 7.0.3
+10.2.25
+- kleine Bugfixes und Kosmetik
+
+
+Version 7.0.2
+29.1.25
+- kleine Bugfixes und Kosmetik
 
 25.1.25
 - Hänger beim Start beseitigt

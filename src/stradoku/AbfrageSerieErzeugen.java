@@ -41,12 +41,12 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
    /**
     * Startet das Dialogfenster.
     *
-   * @param anzahl die vorhandenen Aufgane
+   * @param level aktueller Level
    * @return Anzahl der zu erstellenden Aufgaben
     */
 
-   public int zeigeDialog(int anzahl) {
-    labelVorhanden.setText("" + anzahl);
+   public int zeigeDialog(int level) {
+    auswahlLevel.setText("" + level);
     eingabeFeld.setText("");
     escaped = false;
     setVisible(true);
@@ -62,7 +62,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         buttonAbbrechen = new javax.swing.JButton();
         buttonOK = new javax.swing.JButton();
-        labelVorhanden = new javax.swing.JLabel();
+        auswahlLevel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Stradoku-Serie generieren");
@@ -104,9 +104,9 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
             }
         });
 
-        labelVorhanden.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        labelVorhanden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVorhanden.setText("3");
+        auswahlLevel.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        auswahlLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        auswahlLevel.setText("3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +124,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
                             .addComponent(buttonAbbrechen))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelVorhanden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(auswahlLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 85, Short.MAX_VALUE)
                             .addComponent(eingabeFeld))))
                 .addGap(31, 31, 31))
@@ -146,7 +146,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(buttonAbbrechen))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelVorhanden)
+                        .addComponent(auswahlLevel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(eingabeFeld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -154,7 +154,7 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, labelVorhanden});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {auswahlLevel, jLabel2});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {eingabeFeld, jLabel3});
 
@@ -198,11 +198,11 @@ public class AbfrageSerieErzeugen extends javax.swing.JDialog {
     }//GEN-LAST:event_eingabeFeldKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel anzeigeLabel;
+    private javax.swing.JLabel auswahlLevel;
     private javax.swing.JButton buttonAbbrechen;
     private javax.swing.JButton buttonOK;
     private javax.swing.JTextField eingabeFeld;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel labelVorhanden;
     // End of variables declaration//GEN-END:variables
 }

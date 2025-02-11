@@ -700,15 +700,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mePostscriptActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="meArchivgeeignet">
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="meAutorenmodus">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Archiveignung pr&#xfc;fen"/>
+                <Property name="text" type="java.lang.String" value="Autorenmodus"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meArchivgeeignetActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meAutorenmodusActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -924,7 +924,7 @@
                   </Group>
               </Group>
           </Group>
-          <Component id="panelStatusBar" alignment="0" max="32767" attributes="1"/>
+          <Component id="panelStatusBar" alignment="1" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -989,8 +989,9 @@
                       <Component id="hinweisPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="panelStatusBar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1668,30 +1669,33 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statusBarHinweis" min="-2" max="-2" attributes="0"/>
+                  <Component id="statusBarHinweis" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelLevel" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusBarLevel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelFehler" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="labelFehler" min="-2" pref="96" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusBarFehler" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusBarZeit" min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="statusBarZeit" alignment="0" pref="26" max="32767" attributes="1"/>
+              <Component id="statusBarZeit" alignment="0" max="32767" attributes="1"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="statusBarFehler" linkSize="5" min="-2" max="-2" attributes="1"/>
+              </Group>
               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                   <Component id="statusBarHinweis" max="-2" attributes="1"/>
-                  <Component id="statusBarFehler" linkSize="5" min="-2" max="-2" attributes="1"/>
                   <Component id="labelLevel" max="-2" attributes="1"/>
                   <Component id="statusBarLevel" linkSize="5" min="-2" max="-2" attributes="1"/>
-                  <Component id="labelFehler" alignment="1" max="-2" attributes="1"/>
               </Group>
+              <Component id="labelFehler" alignment="1" max="-2" attributes="1"/>
           </Group>
         </DimensionLayout>
       </Layout>

@@ -2,9 +2,9 @@
  * Archiv.java ist Teil des Programmes kodelasStradoku
  *
  * Erstellt am:                 06.04.2018 19:00
- * Letzte Änderung:             14.10.2023 23:50
+ * Letzte Änderung:             27.01.2025 16:15
  *
- * Copyright (C) Konrad Demmel, 2019-2024
+ * Copyright (C) Konrad Demmel, 2019-2025
  */
 package stradoku;
 
@@ -160,7 +160,7 @@ public class Archiv implements GlobaleObjekte {
     * @return die generierte Aufgabe als String
     */
    public String getAufgabe(int[] aufgabe, int level) {
-      int[] nafg = new int[81];
+      int[] matrixAfg = new int[81];
       int i;
       // zufällige Aufgabe holen
       Random rand = new Random();
@@ -168,23 +168,23 @@ public class Archiv implements GlobaleObjekte {
       i = rand.nextInt(bas) + lpos[level].start;
       String sAufgabe = aufgaben[i].aufgabe;
       // Strings zu int-Arrays konvertieren
-      StradokuString2Matrix.makeStradokuString2Matrx(sAufgabe, nafg);
+      StradokuString2Matrix.makeStradokuString2Matrx(sAufgabe, matrixAfg);
       // gefundene Aufgabe modifizieren
-      rotiereFeld(nafg);
+      rotiereFeld(matrixAfg);
       if (aufgaben[i].status == 3 || aufgaben[i].status == 11) {
-         tauscheZellWerte(nafg);
+         tauscheZellWerte(matrixAfg);
       } else if (aufgaben[i].status == 7 || aufgaben[i].status == 15) {
-         spiegleFeld(nafg);
+         spiegleFeld(matrixAfg);
       }
       // Aufgabe für Archiv aktualisieren
-      aufgaben[i].aufgabe = getStringAufgabe(nafg);
+      aufgaben[i].aufgabe = getStringAufgabe(matrixAfg);
       // Archiv-Status der Aufgabe aktualisieren
       aufgaben[i].status++;
       if (aufgaben[i].status == 16) {
          aufgaben[i].status = 0;
       }
       if (aufgabe != null) {
-         System.arraycopy(nafg, 0, aufgabe, 0, 81);
+         System.arraycopy(matrixAfg, 0, aufgabe, 0, 81);
       }
       return aufgaben[i].aufgabe;
    }
@@ -271,30 +271,38 @@ public class Archiv implements GlobaleObjekte {
     *
     * @throws java.io.IOException
     */
-   public void checkDoppelVorkommen() throws IOException {
+   public void fehlerCheck() throws IOException {
       fw = new FileWriter(userDir + File.separator + "ArchivCheck.txt");
       bw = new BufferedWriter(fw);
       bw.write("Überprüfung des Archivs auf doppelte Einträge und Eignung\n\n");
       Aufgabe afg = new Aufgabe();
       doppel = 0;
       ungeeignet = 0;
+      
+      // Archiv komplett durchlaufen
       for (int i = 0; i < nAufgaben; i++) {
          afg.aufgabe = aufgaben[i].aufgabe;
          afg.level = aufgaben[i].level;
          afg.status = aufgaben[i].status;
+         // auf doppelvorkommem prüfen
          checkLevelgruppe(i, afg);
+         // Ausgangssituation wieder herstellen
+         afg.aufgabe = aufgaben[i].aufgabe;
+         afg.level = aufgaben[i].level;
+         afg.status = aufgaben[i].status;         
+         // auf Archiveignung prüfen
          checkArchivtauglich(i, afg.level, afg.aufgabe);
       }
       if (doppel == 0) {
-         bw.write("Es wurden keine doppelten Einträge gefunden.\n\n");
+         bw.write("Es wurden keine doppelten Einträge gefunden.\n");
       } else if (doppel == 1) {
-         bw.write("\nEs wurde ein doppelter Eintrag gefunden.\n\n");
+         bw.write("\nEs wurde ein doppelter Eintrag gefunden.\n");
       } else {
          bw.write("\nEs wurden " + doppel + " doppelte Einträge gefunden.\n\n");
       }
       if (ungeeignet == 0) {
          bw.write("Es wurden keine ungeeigneten Einträge gefunden.\n\n");
-      } else if (doppel == 1) {
+      } else if (ungeeignet == 1) {
          bw.write("\nEs wurde ein ungeeigneter Eintrag gefunden.\n\n");
       } else {
          bw.write("\nEs wurden " + ungeeignet + " ungeeignete Einträge gefunden.\n\n");
@@ -302,6 +310,16 @@ public class Archiv implements GlobaleObjekte {
       bw.write("Überprüfung des Archivs abgeschlossen.");
       bw.close();
       fw.close();
+   }
+
+   private void checkArchivtauglich(int pos, int level, String aufgabe) throws IOException {
+      int[] aAufgabe = new int[81];
+      StradokuString2Matrix.makeStradokuString2Matrx(aufgabe, aAufgabe);
+      ArchivLevel aLevel = new ArchivLevel();
+      if (aLevel.getArchivLevel(aAufgabe, level) != level) {
+         printArchivEignung(pos + 1);
+         ungeeignet++;
+      }
    }
 
    /**
@@ -416,16 +434,4 @@ public class Archiv implements GlobaleObjekte {
       }
       saveZip(buffer);
    }
-
-   private void checkArchivtauglich(int pos, int level, String aufgabe) throws IOException {
-      int[] stradoku = new int[81];
-      int[] loesung = new int[81];
-      StradokuString2Matrix.makeStradokuString2Matrx(aufgabe, stradoku);
-      ArchivLevel aLevel = new ArchivLevel();
-      if (aLevel.getArchivLevel(stradoku, loesung, level) != level) {
-         printArchivEignung(pos + 1);
-         ungeeignet++;
-      }
-   }
-   
 }

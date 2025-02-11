@@ -96,9 +96,8 @@ public class ListenFrame extends JFrame {
         JTableHeader header = jTable.getTableHeader();
         header.setFont(new Font("SansSerif", Font.BOLD, 12));
         header.setForeground(Color.white);
-        header.setUpdateTableInRealTime(true);
-        header.setReorderingAllowed(true);
         header.setBackground(Color.BLACK);
+        header.setReorderingAllowed(true);
         MouseAdapter mouseHandler = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
@@ -681,7 +680,6 @@ public class ListenFrame extends JFrame {
     private void initComponents() {
 
         symbolLeiste = new javax.swing.JToolBar();
-        seperatorLabel8 = new javax.swing.JLabel();
         buttonClose = new javax.swing.JButton();
         seperatorLabel10 = new javax.swing.JLabel();
         buttonUebernehmen = new javax.swing.JButton();
@@ -725,11 +723,6 @@ public class ListenFrame extends JFrame {
         symbolLeiste.setMinimumSize(new java.awt.Dimension(829, 30));
         symbolLeiste.setPreferredSize(new java.awt.Dimension(829, 28));
         symbolLeiste.setVerifyInputWhenFocusTarget(false);
-
-        seperatorLabel8.setMaximumSize(new java.awt.Dimension(9, 32));
-        seperatorLabel8.setMinimumSize(new java.awt.Dimension(9, 32));
-        seperatorLabel8.setPreferredSize(new java.awt.Dimension(9, 32));
-        symbolLeiste.add(seperatorLabel8);
 
         buttonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/stradoku/img/str.png"))); // NOI18N
         buttonClose.setToolTipText("Liste schließen und Stradokufeld anzeigen - Strg+L");
@@ -1029,7 +1022,6 @@ public class ListenFrame extends JFrame {
     private javax.swing.JLabel seperatorLabel11;
     private javax.swing.JLabel seperatorLabel12;
     private javax.swing.JLabel seperatorLabel2;
-    private javax.swing.JLabel seperatorLabel8;
     private javax.swing.JLabel seperatorLabel9;
     private javax.swing.JToolBar symbolLeiste;
     // End of variables declaration//GEN-END:variables

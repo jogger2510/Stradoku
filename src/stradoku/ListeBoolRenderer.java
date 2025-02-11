@@ -21,7 +21,7 @@ class ListeBoolRenderer extends JCheckBox implements TableCellRenderer {
     private static final long serialVersionUID = 1L;
     private final JTable list;
     private final ListenFrame lstFrame;
-    private final Color colorSelected = new Color(51, 153, 255);
+    private static final Color colorSelected = new Color(51, 153, 255);
     private int selected;
 
     /**
